@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class FirstFormTest < ActiveSupport::TestCase
+class BuserTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
