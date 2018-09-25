@@ -1,2 +1,0 @@
-class Buser < ApplicationRecord
-end
