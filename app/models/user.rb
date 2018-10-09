@@ -15,6 +15,6 @@
 #
 
 class User < ApplicationRecord
-  devise :database_authenticatable, :registerable
+  devise :database_authenticatable, :registerable, :validatable, :timeoutable, :lockable, :recoverable
   belongs_to :company
 end

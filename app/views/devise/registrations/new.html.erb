@@ -16,7 +16,7 @@
 
   <div class="field">
     <%= f.label :company_id %><br />
-    <%= f.number_field :company_id %>
+    <%= f.collection_select :company_id, Company.order(:companyname),:id,:companyname, include_blank: true %>
   </div>
 
   <div class="field">
