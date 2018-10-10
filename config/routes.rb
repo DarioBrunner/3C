@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :faqs
+  resources :dataprotections
+  resources :channels
   devise_for :users
   resources :users
   resources :companies

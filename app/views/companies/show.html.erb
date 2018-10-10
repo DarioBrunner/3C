@@ -15,5 +15,10 @@
   <%= @company.passwort %>
 </p>
 
+<p>
+  <strong>Available Channels:</strong>
+  <%= @company.channelnumber %>
+</p>
+
 <%= link_to 'Edit', edit_company_path(@company) %> |
 <%= link_to 'Back', companies_path %>

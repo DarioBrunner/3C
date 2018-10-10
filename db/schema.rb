@@ -10,12 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_08_041425) do
+ActiveRecord::Schema.define(version: 2018_10_10_050210) do
+
+  create_table "channels", force: :cascade do |t|
+    t.integer "typ"
+    t.string "url"
+    t.string "title"
+    t.string "login"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string "companyname"
     t.text "adress"
     t.string "passwort"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "channelnumber", default: 10, null: false
+  end
+
+  create_table "dataprotections", force: :cascade do |t|
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "faqs", force: :cascade do |t|
+    t.text "question"
+    t.text "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

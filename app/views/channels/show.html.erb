@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Typ:</strong>
+  <%= @channel.typ.humanize %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @channel.url %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @channel.title %>
+</p>
+
+<p>
+  <strong>Login:</strong>
+  <%= @channel.login %>
+</p>
+
+<%= link_to 'Edit', edit_channel_path(@channel) %> |
+<%= link_to 'Back', channels_path %>

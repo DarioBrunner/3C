@@ -1,0 +1,2 @@
+class Dataprotection < ApplicationRecord
+end
