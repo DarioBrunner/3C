@@ -15,7 +15,7 @@
       <tr>
         <td><%= faq.question %></td>
         <td><%= link_to 'Show', faq %></td>
-        <%if current_user.admin?||current_user.superuser?%>
+        <%if current_user.superuser?%>
           <td><%= link_to 'Edit', edit_faq_path(faq) %></td>
           <td><%= link_to 'Destroy', faq, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <%end%>
@@ -25,7 +25,7 @@
 </table>
 
 <br>
-<%if current_user.admin?||current_user.superuser?%>
+<%if current_user.superuser?%>
   <%= link_to 'New Faq', new_faq_path %>
 <%end%>
 
