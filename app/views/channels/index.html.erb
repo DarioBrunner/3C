@@ -6,9 +6,11 @@
   <thead>
     <tr>
       <th>Typ</th>
-      <th>Url</th>
       <th>Title</th>
-      <th>Login</th>
+      <%if current_user.admin?%>
+       <th>Url</th>
+       <th>Login</th>
+      <%end %>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,17 +19,20 @@
     <% @channels.each do |channel| %>
       <tr>
         <td><%= channel.typ.humanize %></td>
-        <td><%= channel.url %></td>
         <td><%= channel.title %></td>
+        <%if current_user.admin?%>
+        <td><%= channel.url %></td>
         <td><%= channel.login %></td>
         <td><%= link_to 'Show', channel %></td>
         <td><%= link_to 'Edit', edit_channel_path(channel) %></td>
         <td><%= link_to 'Destroy', channel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end%>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
+<%if current_user.admin?%>
 <%= link_to 'New Channel', new_channel_path %>
+<%end%>

@@ -11,7 +11,9 @@
   <% if user_signed_in? %>
   <div>
     <%=link_to('Logout', destroy_user_session_path, :method => :delete, class:"button")%>
-   <%=link_to('Company', companies_path, class:"button")%>
+    <%if current_user.admin?||current_user.superuser?%>
+      <%=link_to('Company', companies_path, class:"button")%>
+    <%end%>
     <%=link_to('Group', groups_path, class:"button")%>
     <%=link_to('User', users_path, class:"button")%>
     <%=link_to('Channel', channels_path, class:"button")%>

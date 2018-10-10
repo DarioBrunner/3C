@@ -14,9 +14,11 @@
     <% @dataprotections.each do |dataprotection| %>
       <tr>
         <td><%= dataprotection.content %></td>
+        <%if current_user.superuser?%>
         <td><%= link_to 'Show', dataprotection %></td>
         <td><%= link_to 'Edit', edit_dataprotection_path(dataprotection) %></td>
         <td><%= link_to 'Destroy', dataprotection, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end%>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +26,6 @@
 
 <br>
 
-<%= link_to 'New Dataprotection', new_dataprotection_path %>
+<%if current_user.superuser?%>
+  <%= link_to 'New Faq', new_faq_path %>
+<%end%>
