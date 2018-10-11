@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  channel: one
+  group: one
+  blogging: 
+  writing: false
+
+two:
+  channel: two
+  group: two
+  blogging: 
+  writing: false

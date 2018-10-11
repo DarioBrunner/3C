@@ -3,8 +3,17 @@ class UsersController < ApplicationController
 
   # GET /users
   # GET /users.json
+  # if current_user.superuser?
+  #       @users = User.all
+  #     else
+  #       @users = current_user.company.users
+  #     end
   def index
-    @users = User.all
+    if current_user.superuser?
+      @users = User.all
+    else
+      @users = current_user.company.users
+    end
   end
 
   # GET /users/1

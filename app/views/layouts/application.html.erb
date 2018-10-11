@@ -15,7 +15,11 @@
       <%=link_to('Company', companies_path, class:"button")%>
     <%end%>
     <%=link_to('Group', groups_path, class:"button")%>
+    <%if current_user.admin?||current_user.superuser?%>
+      <%=link_to('User', users_path, class:"button")%>
+    <%else%>
     <%=link_to('User', edit_user_registration_path, class:"button")%>
+    <%end%>
     <%=link_to('Channel', channels_path, class:"button")%>
     <%if current_user.admin?%>
       <%=link_to('Admin', admins_path, class:"button")%>
