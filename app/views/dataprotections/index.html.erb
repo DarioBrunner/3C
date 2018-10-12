@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Dataprotections</h1>
+<h1>Dataprotection</h1>
 <%if current_user.superuser?%>
   <% @dataprotections.each do |dataprotection| %>
   <p><%= link_to 'Show', dataprotection  %> <%= link_to 'Edit', edit_dataprotection_path(dataprotection) %> <%= link_to 'Destroy', dataprotection, method: :delete, data: { confirm: 'Are you sure?' } %></p>

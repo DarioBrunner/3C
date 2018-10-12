@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :impressums
   resources :admins
   resources :faqs
   resources :dataprotections

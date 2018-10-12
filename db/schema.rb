@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_11_050012) do
+ActiveRecord::Schema.define(version: 2018_10_12_035020) do
 
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -64,6 +64,32 @@ ActiveRecord::Schema.define(version: 2018_10_11_050012) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "impressums", force: :cascade do |t|
+    t.text "context"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_to_channels", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "channel_id"
+    t.boolean "blogging"
+    t.boolean "writting"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["channel_id"], name: "index_user_to_channels_on_channel_id"
+    t.index ["user_id"], name: "index_user_to_channels_on_user_id"
+  end
+
+  create_table "user_to_groups", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_user_to_groups_on_group_id"
+    t.index ["user_id"], name: "index_user_to_groups_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

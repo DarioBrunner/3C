@@ -20,8 +20,34 @@
     <%= form.label :description %>
     <%= form.text_area :description %>
   </div>
+  <strong>Channels:</strong>
+  <div class="field">
+  <% Channel.all.each do |channel| %>
+    <%= check_box_tag "group[channel_ids][]", channel.id, @group.channel_ids.include?(channel.id) %>
+    <%= channel.title %>
+    <br />
+  <% end %>
+  </div>
+  <strong>Users:</strong>
+  <div class="field">
+    <% User.all.each do |user| %>
+      <%= check_box_tag "group[user_ids][]", user.id, @group.user_ids.include?(user.id) %>
+      <%= user.name %>
+      <br />
+    <% end %>
+  </div>
+  <strong>Users_channels:</strong>
+  <div class="field">
+    <% User.all.each do |user| %>
+      <%= check_box_tag "channel[user_ids][]", user.id, @channel.user_ids.include?(user.id) %>
+      <%= user.name %>
+      <br />
+    <% end %>
+  </div>
+
 
   <div class="actions">
     <%= form.submit %>
   </div>
+
 <% end %>

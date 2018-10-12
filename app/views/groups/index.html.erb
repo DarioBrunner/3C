@@ -26,12 +26,8 @@
   </tbody>
 </table>
 
-<% Group.all.each do |group| %>
-  <%= check_box_tag "channel[group_ids][]", group.id, @channel.group_ids.include?(group.id) %>
-  <%= group.name %>
-  <br />
-<% end %>
 <br>
+
 <%if current_user.admin?%>
 <%= link_to 'New Group', new_group_path %>
 <% end %>

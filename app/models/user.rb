@@ -15,6 +15,11 @@
 #
 
 class User < ApplicationRecord
-  devise :database_authenticatable, :registerable, :validatable, :timeoutable, :lockable, :recoverable
+  devise :database_authenticatable, :registerable, :validatable, :timeoutable, :lockable, :recoverable, :rememberable
+
   belongs_to :company
+  has_many :user_to_groups
+  has_many :groups, :through => :user_to_groups
+  has_many :user_to_channels
+  has_many :channels, :through => :user_to_channels
 end

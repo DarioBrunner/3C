@@ -9,6 +9,24 @@
   <strong>Description:</strong>
   <%= @group.description %>
 </p>
+<strong>Channel:</strong>
+<p>
+  <% Channel.all.each do |channel| %>
+    <% if @group.channel_ids.include?(channel.id) %>
+      <%= channel.title %>
+      <br />
+    <%end%>
+  <% end %>
+</p>
+<strong>User:</strong>
+<p>
+  <% User.all.each do |user| %>
+    <% if @group.user_ids.include?(user.id) %>
+      <%= user.name %>
+      <br />
+    <%end%>
+  <% end %>
+</p>
 
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>

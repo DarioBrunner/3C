@@ -1,0 +1,2 @@
+class Impressum < ApplicationRecord
+end
