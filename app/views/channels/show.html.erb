@@ -6,19 +6,25 @@
 </p>
 
 <p>
-  <strong>Url:</strong>
-  <%= @channel.url %>
+  <strong>Title:</strong>
+  <%= @channel.title %>
 </p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @channel.title %>
+  <strong>Status:</strong>
+  <%= @channel.status %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @channel.url %>
 </p>
 
 <p>
   <strong>Login:</strong>
   <%= @channel.login %>
 </p>
+
 
 <%= link_to 'Edit', edit_channel_path(@channel) %> |
 <%= link_to 'Back', channels_path %>

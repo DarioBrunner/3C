@@ -27,9 +27,28 @@
     <%=link_to('Dataprotection', dataprotections_path, class:"button")%>
     <%=link_to('Impressum', impressums_path, class:"button")%>
     <%=link_to('Faq', faqs_path, class:"button")%>
-
   </div>
-  <%end%>
+  <br>
+  <p> <%=link_to('Chat', chats_path, class:"button")%>
+    <% @channels.each do |channel| %>
+     <%if channel.both? || channel.chat?%>
+      <%= channel.title %>
+    <% end %>
+  <% end %></p>
+  <p> <%=link_to('Blog', blogs_path, class:"button")%>
+    <% @channels.each do |channel| %>
+      <%if channel.both? || channel.blog?%>
+    <%= channel.title %>
+      <% end %>
+  <% end %></p>
+
+
+  <p <% @channels.each do |channel| %>
+       <%= channel.title %>
+    <% end %></p>
+
+
+<%end%>
   <body>
     <%= yield %>
   </body>

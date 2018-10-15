@@ -7,6 +7,7 @@
     <tr>
       <th>Typ</th>
       <th>Title</th>
+      <th>Status</th>
       <%if current_user.admin?%>
        <th>Url</th>
        <th>Login</th>
@@ -20,6 +21,7 @@
       <tr>
         <td><%= channel.typ.humanize %></td>
         <td><%= channel.title %></td>
+        <td><%= channel.status %></td>
         <%if current_user.admin?%>
         <td><%= channel.url %></td>
         <td><%= channel.login %></td>
