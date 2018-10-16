@@ -12,19 +12,13 @@
 
 <p>
   <strong>Status:</strong>
-  <%= @channel.status %>
+  <%= @channel.status.humanize %>
 </p>
 
 <p>
   <strong>Url:</strong>
   <%= @channel.url %>
 </p>
-
-<p>
-  <strong>Login:</strong>
-  <%= @channel.login %>
-</p>
-
 
 <%= link_to 'Edit', edit_channel_path(@channel) %> |
 <%= link_to 'Back', channels_path %>

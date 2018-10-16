@@ -28,27 +28,25 @@
     <%=link_to('Impressum', impressums_path, class:"button")%>
     <%=link_to('Faq', faqs_path, class:"button")%>
   </div>
-  <br>
+<%end%>
+<%unless current_user.nil?%>
+    <strong>Current User:</strong>
+    <p><%= current_user.name %></p>
+
+
   <p> <%=link_to('Chat', chats_path, class:"button")%>
     <% @channels.each do |channel| %>
-     <%if channel.both? || channel.chat?%>
-      <%= channel.title %>
-    <% end %>
-  <% end %></p>
+      <%if channel.both? || channel.chat? %>
+       <%= channel.title %>
+      <% end %>
+    <% end %></p>
   <p> <%=link_to('Blog', blogs_path, class:"button")%>
     <% @channels.each do |channel| %>
-      <%if channel.both? || channel.blog?%>
-    <%= channel.title %>
-      <% end %>
-  <% end %></p>
-
-
-  <p <% @channels.each do |channel| %>
+      <%if channel.both? || channel.blog? %>
        <%= channel.title %>
+      <% end %>
     <% end %></p>
-
-
-<%end%>
+  <%end%>
   <body>
     <%= yield %>
   </body>

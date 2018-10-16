@@ -18,15 +18,19 @@
   </div>
 
   <div class="field">
-    <%= form.label :url %>
-    <%= form.text_field :url %>
-  </div>
-
-  <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
 
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.select :status, Channel.statuses.keys.map { |option| [ option.humanize, option] }%>
+  </div>
+
+  <div class="field">
+    <%= form.label :url %>
+    <%= form.text_field :url %>
+  </div>
   <div class="field">
     <%= form.label :login %>
     <%= form.text_field :login %>

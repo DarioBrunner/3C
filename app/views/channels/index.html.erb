@@ -10,7 +10,6 @@
       <th>Status</th>
       <%if current_user.admin?%>
        <th>Url</th>
-       <th>Login</th>
       <%end %>
       <th colspan="3"></th>
     </tr>
@@ -24,7 +23,6 @@
         <td><%= channel.status %></td>
         <%if current_user.admin?%>
         <td><%= channel.url %></td>
-        <td><%= channel.login %></td>
         <td><%= link_to 'Show', channel %></td>
         <td><%= link_to 'Edit', edit_channel_path(channel) %></td>
         <td><%= link_to 'Destroy', channel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
