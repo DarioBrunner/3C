@@ -11,7 +11,7 @@
   <% if user_signed_in? %>
   <div>
     <%=link_to('Logout', destroy_user_session_path, :method => :delete, class:"button")%>
-    <%if current_user.admin?||current_user.superuser?%>
+    <%if !current_user.nil?||current_user.superuser?%>
       <%=link_to('Company', companies_path, class:"button")%>
     <%end%>
     <%=link_to('Group', groups_path, class:"button")%>
@@ -21,9 +21,13 @@
     <%=link_to('User', edit_user_registration_path, class:"button")%>
     <%end%>
     <%=link_to('Channel', channels_path, class:"button")%>
-    <%if current_user.admin?%>
+
+    <% current_user.user_to_companies.each do|userTocompany | %>
+      <%if userTocompany.admin?%>
       <%=link_to('Admin', admins_path, class:"button")%>
       <%end%>
+    <%end%>
+
     <%=link_to('Dataprotection', dataprotections_path, class:"button")%>
     <%=link_to('Impressum', impressums_path, class:"button")%>
     <%=link_to('Faq', faqs_path, class:"button")%>

@@ -1,4 +1,4 @@
-class AdminToCompany < ApplicationRecord
+class UserToCompany < ApplicationRecord
   belongs_to :user
   belongs_to :company
 end

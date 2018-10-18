@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   #       @users = current_user.company.users
   #     end
   def index
-    if current_user.superuser?
+    if !current_user.nil?
       @users = User.all
     else
       @users = current_user.company.users

@@ -7,7 +7,7 @@ class CompaniesController < ApplicationController
     if current_user.superuser?
       @companies = Company.all
     else
-      @companies = [ current_user.company ]
+      @companies =  current_user.companies
     end
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_15_112603) do
+ActiveRecord::Schema.define(version: 2018_10_17_065143) do
 
   create_table "admin_to_companies", force: :cascade do |t|
     t.integer "user_id"
@@ -103,6 +103,16 @@ ActiveRecord::Schema.define(version: 2018_10_15_112603) do
     t.index ["user_id"], name: "index_user_to_channels_on_user_id"
   end
 
+  create_table "user_to_companies", force: :cascade do |t|
+    t.boolean "admin", default: false
+    t.integer "user_id"
+    t.integer "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_user_to_companies_on_company_id"
+    t.index ["user_id"], name: "index_user_to_companies_on_user_id"
+  end
+
   create_table "user_to_groups", force: :cascade do |t|
     t.integer "user_id"
     t.integer "group_id"
@@ -121,13 +131,10 @@ ActiveRecord::Schema.define(version: 2018_10_15_112603) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
-    t.integer "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
-    t.boolean "admin", default: false, null: false
     t.boolean "superuser", default: false, null: false
-    t.index ["company_id"], name: "index_users_on_company_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

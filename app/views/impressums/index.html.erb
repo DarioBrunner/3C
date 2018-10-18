@@ -13,12 +13,7 @@
 
   <%end%>
         <pre><%= impressum.context %></pre>
-
-
-
     <% end %>
-
-
 <br>
 <%if current_user.superuser?%>
 <%= link_to 'New Impressum', new_impressum_path %>

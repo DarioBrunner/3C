@@ -15,7 +15,10 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.company.companyname %></td>
+        <td><% user.companies.each do |company|  %>
+             <%= company.companyname %>
+           <% end %>
+            </td>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= link_to 'Show', user %></td>

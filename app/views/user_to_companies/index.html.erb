@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>User To Companies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Admin</th>
+      <th>User</th>
+      <th>Company</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_to_companies.each do |user_to_company| %>
+      <tr>
+        <td><%= user_to_company.admin %></td>
+        <td><%= user_to_company.user_id %></td>
+        <td><%= user_to_company.company_id %></td>
+        <td><%= link_to 'Show', user_to_company %></td>
+        <td><%= link_to 'Edit', edit_user_to_company_path(user_to_company) %></td>
+        <td><%= link_to 'Destroy', user_to_company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User To Company', new_user_to_company_path %>
