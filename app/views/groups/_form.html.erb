@@ -1,44 +1,47 @@
 <%= form_with(model: group, local: true) do |form| %>
-  <% if group.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
+  <div class="container">
 
-      <ul>
-      <% group.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <% if group.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-  <strong>Channels:</strong>
-  <div class="field">
-  <% Channel.all.each do |channel| %>
-    <%= check_box_tag "group[channel_ids][]", channel.id, @group.channel_ids.include?(channel.id) %>
-    <%= channel.title %>
-    <br />
-  <% end %>
-  </div>
-  <strong>Users:</strong>
-  <div class="field">
-    <% User.all.each do |user| %>
-      <%= check_box_tag "group[user_ids][]", user.id, @group.user_ids.include?(user.id) %>
-      <%= user.name %>
-      <br />
+        <ul>
+          <% group.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
-  </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <div class="field">
+      <%= form.label :title %>
+      <%= form.text_field :title %>
+    </div>
+
+    <div class="field">
+      <%= form.label :description %>
+      <%= form.text_area :description %>
+    </div>
+    <strong>Channels:</strong>
+    <div class="field">
+      <% Channel.all.each do |channel| %>
+        <%= check_box_tag "group[channel_ids][]", channel.id, @group.channel_ids.include?(channel.id) %>
+        <%= channel.title %>
+        <br/>
+      <% end %>
+    </div>
+    <strong>Users:</strong>
+    <div class="field">
+      <% User.all.each do |user| %>
+        <%= check_box_tag "group[user_ids][]", user.id, @group.user_ids.include?(user.id) %>
+        <%= user.name %>
+        <br/>
+      <% end %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
 
 <% end %>
+</div>

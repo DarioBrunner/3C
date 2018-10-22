@@ -1,25 +1,26 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
 
-<h1>Impressum</h1>
-
-
-
+  <h1>Impressum</h1>
 
 
-    <% @impressums.each do |impressum| %>
-  <%if current_user.superuser?%>
-    <p><%= link_to 'Show', impressum %> <%= link_to 'Edit', edit_impressum_path(impressum) %>
-      <%= link_to 'Destroy', impressum, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-
-  <%end%>
-        <pre><%= impressum.context %></pre>
 
 
+
+  <% @impressums.each do |impressum| %>
+    <% if current_user.superuser? %>
+      <p><%= link_to 'Show', impressum %> <%= link_to 'Edit', edit_impressum_path(impressum) %>
+        <%= link_to 'Destroy', impressum, method: :delete, data: {confirm: 'Are you sure?'} %></p>
 
     <% end %>
+    <pre><%= impressum.context %></pre>
 
 
-<br>
-<%if current_user.superuser?%>
-<%= link_to 'New Impressum', new_impressum_path %>
-<%end%>
+  <% end %>
+
+
+  <br>
+  <% if current_user.superuser? %>
+    <%= link_to 'New Impressum', new_impressum_path %>
+  <% end %>
+</div>

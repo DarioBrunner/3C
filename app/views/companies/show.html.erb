@@ -1,36 +1,38 @@
 <p id="notice"><%= notice %></p>
+<div class="container">
 
-<p>
-  <strong>Companyname:</strong>
-  <%= @company.companyname %>
-</p>
+  <p>
+    <strong>Companyname:</strong>
+    <%= @company.companyname %>
+  </p>
 
-<p>
-  <strong>Adress:</strong>
-  <%= @company.adress %>
-</p>
+  <p>
+    <strong>Adress:</strong>
+    <%= @company.adress %>
+  </p>
 
-<p>
-  <strong>Available Channels:</strong>
-  <%= @company.channelnumber %>
-</p>
+  <p>
+    <strong>Available Channels:</strong>
+    <%= @company.channelnumber %>
+  </p>
 
-<table>
-  <tr>
-    <th>User</th>
-    <th>Admin</th>
-  </tr>
-  <div class="field">
-    <% User.all.each do |admin| %>
-      <tr>
-        <td><%= admin.name %></td>
-        <td><%= check_box_tag "company[user_ids][]", admin.id, @company.user_ids.include?(admin.id) %></td>
-        <br />
-      </tr>
-    <% end %>
-  </div>
-  </tr>
-</table>
+  <table>
+    <tr>
+      <th>User</th>
+      <th>Admin</th>
+    </tr>
+    <div class="field">
+      <% User.all.each do |admin| %>
+        <tr>
+          <td><%= admin.name %></td>
+          <td><%= check_box_tag "company[user_ids][]", admin.id, @company.user_ids.include?(admin.id) %></td>
+          <br/>
+        </tr>
+      <% end %>
+    </div>
+    </tr>
+  </table>
 
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+  <%= link_to 'Edit', edit_company_path(@company) %> |
+  <%= link_to 'Back', companies_path %>
+</div>

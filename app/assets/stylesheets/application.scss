@@ -1,2 +1,15 @@
+//@import "bootstrap";
 
-@import "bootstrap";
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+footer {
+  background-color: #000000;
+  color: white;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}

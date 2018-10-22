@@ -1,32 +1,33 @@
 <p id="notice"><%= notice %></p>
+<div class="container">
 
-<h1>Faqs</h1>
+  <h1>Faqs</h1>
 
-<table>
-  <thead>
+  <table>
+    <thead>
     <tr>
       <th>Question</th>
       <th colspan="3"></th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
+    <tbody>
     <% @faqs.each do |faq| %>
       <tr>
         <td><%= faq.question %></td>
         <td><%= link_to 'Show', faq %></td>
-        <%if current_user.superuser?%>
+        <% if current_user.superuser? %>
           <td><%= link_to 'Edit', edit_faq_path(faq) %></td>
-          <td><%= link_to 'Destroy', faq, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <%end%>
+          <td><%= link_to 'Destroy', faq, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        <% end %>
       </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 
-<br>
-<%if current_user.superuser?%>
-  <%= link_to 'New Faq', new_faq_path %>
-<%end%>
+  <br>
+  <% if current_user.superuser? %>
+    <%= link_to 'New Faq', new_faq_path %>
+  <% end %>
 
-
+</div>

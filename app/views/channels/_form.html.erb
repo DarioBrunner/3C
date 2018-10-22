@@ -1,42 +1,45 @@
 <%= form_with(model: channel, local: true) do |form| %>
-  <% if channel.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(channel.errors.count, "error") %> prohibited this channel from being saved:</h2>
+  <div class="container">
 
-      <ul>
-      <% channel.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% if channel.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(channel.errors.count, "error") %> prohibited this channel from being saved:</h2>
+
+        <ul>
+          <% channel.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
+    <div class="field">
+      <%= form.label :typ %>
+      <%= form.select :typ, Channel.typs.keys.map {|option| [option.humanize, option]}, class: 'channel-typ-select' %>
     </div>
-  <% end %>
 
+    <div class="field">
+      <%= form.label :title %>
+      <%= form.text_field :title %>
+    </div>
 
-  <div class="field">
-    <%= form.label :typ %>
-    <%= form.select :typ, Channel.typs.keys.map { |option| [ option.humanize, option] }, class: 'channel-typ-select' %>
-  </div>
+    <div class="field">
+      <%= form.label :status %>
+      <%= form.select :status, Channel.statuses.keys.map {|option| [option.humanize, option]}, class: 'channel-typ-select' %>
+    </div>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+    <div class="field">
+      <%= form.label :url %>
+      <%= form.text_field :url %>
+    </div>
+    <div class="field">
+      <%= form.label :login %>
+      <%= form.text_field :login %>
+    </div>
 
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.select :status, Channel.statuses.keys.map { |option| [ option.humanize, option] }%>
-  </div>
-
-  <div class="field">
-    <%= form.label :url %>
-    <%= form.text_field :url %>
-  </div>
-  <div class="field">
-    <%= form.label :login %>
-    <%= form.text_field :login %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <div class="actions">
+      <%= form.submit %>
+    </div>
 <% end %>
+</div>

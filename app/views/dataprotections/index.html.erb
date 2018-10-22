@@ -1,31 +1,33 @@
 <p id="notice"><%= notice %></p>
+<div class="container">
 
-<h1>Dataprotection</h1>
-<%if current_user.superuser?%>
-  <% @dataprotections.each do |dataprotection| %>
-  <p><%= link_to 'Show', dataprotection  %> <%= link_to 'Edit', edit_dataprotection_path(dataprotection) %> <%= link_to 'Destroy', dataprotection, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-  <%end%>
-<% end %>
-<table>
-  <thead>
+  <h1>Dataprotection</h1>
+  <% if current_user.superuser? %>
+    <% @dataprotections.each do |dataprotection| %>
+      <p><%= link_to 'Show', dataprotection %> <%= link_to 'Edit', edit_dataprotection_path(dataprotection) %> <%= link_to 'Destroy', dataprotection, method: :delete, data: {confirm: 'Are you sure?'} %></p>
+    <% end %>
+  <% end %>
+  <table>
+    <thead>
     <tr>
-      <th>Content</th>
+      <th>Content:</th>
       <th colspan="3"></th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
+    <tbody>
     <% @dataprotections.each do |dataprotection| %>
       <tr>
         <td><%= dataprotection.content %></td>
       </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 
 
-<br>
+  <br>
 
-<%if current_user.superuser?%>
-  <%= link_to 'New Faq', new_faq_path %>
-<%end%>
+  <% if current_user.superuser? %>
+    <%= link_to 'New Dataprotection', new_dataprotection_path %>
+  <% end %>
+</div>

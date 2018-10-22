@@ -1,0 +1,25 @@
+<div class="container">
+
+<%= form_with(model: copyrigth, local: true) do |form| %>
+  <% if copyrigth.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(copyrigth.errors.count, "error") %> prohibited this copyrigth from being saved:</h2>
+
+      <ul>
+      <% copyrigth.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :copy %>
+    <%= form.text_field :copy %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+</div>

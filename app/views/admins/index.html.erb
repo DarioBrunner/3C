@@ -1,11 +1,10 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
 
-<h1>Admin</h1>
+  <h1>Admin</h1>
 
-
-
-
-<p><%=link_to('Edit Company Profil', companies_path, class:"button")%></p>
-<p><%=link_to('Create/Edit/Delete Group', groups_path, class:"button")%></p>
-<p><%=link_to('Create/Edit/Delete User', users_path, class:"button")%></p>
-<p><%=link_to('Create/Edit/Remove Channels', channels_path, class:"button")%></p>
+  <p><%= link_to('Edit Company Profil', companies_path, class: "button") %></p>
+  <p><%= link_to('Create/Edit/Delete Group', groups_path, class: "button") %></p>
+  <p><%= link_to('Create/Edit/Delete User', users_path, class: "button") %></p>
+  <p><%= link_to('Create/Edit/Remove Channels', channels_path, class: "button") %></p>
+</div>

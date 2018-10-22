@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :copyrigths
   resources :chats
   resources :blogs
   resources :impressums

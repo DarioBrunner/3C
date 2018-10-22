@@ -1,0 +1,29 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+
+  <h1>Copyrigths</h1>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Copy</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @copyrigths.each do |copyrigth| %>
+      <tr>
+        <td><%= copyrigth.copy %></td>
+        <td><%= link_to 'Show', copyrigth %></td>
+        <td><%= link_to 'Edit', edit_copyrigth_path(copyrigth) %></td>
+        <td><%= link_to 'Destroy', copyrigth, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'New Copyrigth', new_copyrigth_path %>
+</div>

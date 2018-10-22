@@ -10,16 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_15_112603) do
-
-  create_table "admin_to_companies", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "company_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["company_id"], name: "index_admin_to_companies_on_company_id"
-    t.index ["user_id"], name: "index_admin_to_companies_on_user_id"
-  end
+ActiveRecord::Schema.define(version: 2018_10_19_084937) do
 
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -64,6 +55,12 @@ ActiveRecord::Schema.define(version: 2018_10_15_112603) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "channelnumber", default: 10, null: false
+  end
+
+  create_table "copyrigths", force: :cascade do |t|
+    t.string "copy"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "dataprotections", force: :cascade do |t|
