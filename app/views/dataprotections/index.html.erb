@@ -7,26 +7,10 @@
       <p><%= link_to 'Show', dataprotection %> <%= link_to 'Edit', edit_dataprotection_path(dataprotection) %> <%= link_to 'Destroy', dataprotection, method: :delete, data: {confirm: 'Are you sure?'} %></p>
     <% end %>
   <% end %>
-  <table>
-    <thead>
-    <tr>
-      <th>Content:</th>
-      <th colspan="3"></th>
-    </tr>
-    </thead>
-
-    <tbody>
     <% @dataprotections.each do |dataprotection| %>
-      <tr>
-        <td><%= dataprotection.content %></td>
-      </tr>
+      <pre><%= dataprotection.content %></pre>
     <% end %>
-    </tbody>
-  </table>
-
-
   <br>
-
   <% if current_user.superuser? %>
     <%= link_to 'New Dataprotection', new_dataprotection_path %>
   <% end %>

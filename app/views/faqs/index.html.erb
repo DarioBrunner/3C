@@ -1,33 +1,27 @@
 <p id="notice"><%= notice %></p>
 <div class="container">
 
-  <h1>Faqs</h1>
+  <h1>Faq</h1>
 
-  <table>
-    <thead>
-    <tr>
-      <th>Question</th>
-      <th colspan="3"></th>
-    </tr>
-    </thead>
 
-    <tbody>
-    <% @faqs.each do |faq| %>
-      <tr>
-        <td><%= faq.question %></td>
-        <td><%= link_to 'Show', faq %></td>
-        <% if current_user.superuser? %>
-          <td><%= link_to 'Edit', edit_faq_path(faq) %></td>
-          <td><%= link_to 'Destroy', faq, method: :delete, data: {confirm: 'Are you sure?'} %></td>
-        <% end %>
-      </tr>
+  <% @faqs.each do |faq| %>
+    <% if current_user.superuser? %>
+      <%= link_to 'Show', faq %>
+      <%= link_to 'Edit', edit_faq_path(faq) %>
+      <<%= link_to 'Destroy', faq, method: :delete, data: {confirm: 'Are you sure?'} %>
     <% end %>
-    </tbody>
-  </table>
-
+    <a href="#<%= faq.id %>" class="btn btn-default btn-block" data-toggle="collapse"><%= faq.question %></a>
+    <div id="<%= faq.id %>" class="collapse">
+      <pre><%= faq.answer %></pre>
+    </div>
+  <% end %>
   <br>
   <% if current_user.superuser? %>
     <%= link_to 'New Faq', new_faq_path %>
   <% end %>
 
 </div>
+<!--<a href="#<%#=faq.answer.to_s%>" class="btn btn-default" data-toggle="collapse">Answer:</a>-->
+<!--<div id="<&=faq.answer.to_s%>" class="collapse">-->
+<%#=faq.answer %>
+<!--</div>-->
