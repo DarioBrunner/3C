@@ -1,17 +1,12 @@
-<div class="container">
-  <p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>
+<div class="jumbotron jumbo-main-content">
 
-  <p>
-    <strong>Title:</strong>
-    <%= @group.title %>
-  </p>
 
-  <p>
-    <strong>Description:</strong>
-    <%= @group.description %>
-  </p>
-  <strong>Channel:</strong>
-  <p>
+   <h1><%= @group.title %></h1>
+
+  <p><strong>Description:</strong></p>
+  <p><%= @group.description %></p>
+  <strong>Channel:</strong></p>
     <% Channel.all.each do |channel| %>
       <% if @group.channel_ids.include?(channel.id) %>
         <%= channel.title %>
@@ -28,7 +23,6 @@
       <% end %>
     <% end %>
   </p>
-
-  <%= link_to 'Edit', edit_group_path(@group) %> |
-  <%= link_to 'Back', groups_path %>
+  <%= link_to 'Edit', edit_group_path(@group), class: 'btn btn-primary'%>
+  <%= link_to 'Back', groups_path, class: 'btn btn-default' %>
 </div>

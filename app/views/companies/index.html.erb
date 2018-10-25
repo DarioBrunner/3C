@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
-<div class="container">
+<div class="jumbotron jumbo-main-content">
 
   <h1>Companies</h1>
-
-  <table>
+  <br>
+  <table class="table">
     <thead>
     <tr>
       <th>Companyname</th>
@@ -21,9 +21,9 @@
         <td><%= company.adress %></td>
         <td><%= company.passwort %></td>
         <td><%= company.channelnumber %></td>
-        <td><%= link_to 'Show', company %></td>
-        <td><%= link_to 'Edit', edit_company_path(company) %></td>
-        <td><%= link_to 'Destroy', company, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        <td><%= link_to 'Show', company ,class: 'btn btn-default'%></td>
+        <td><%= link_to 'Edit', edit_company_path(company),class: 'btn btn-default' %></td>
+        <td><%= link_to 'Destroy', company, method: :delete, data: {confirm: 'Are you sure?'},class: 'btn btn-default' %></td>
       </tr>
     <% end %>
     </tbody>
@@ -31,6 +31,6 @@
 
   <br>
   <% if current_user.superuser? %>
-    <%= link_to 'New Company', new_company_path %>
+    <%= link_to 'New Company', new_company_path, class: 'btn btn-primary' %>
   <% end %>
 </div>

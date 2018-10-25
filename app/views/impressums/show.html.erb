@@ -1,10 +1,9 @@
-<div class="container">
-  <p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>
 
-  <p>
-    <strong>Context:</strong>
-  </p>
+<div class="jumbotron jumbo-main-content">
+  <br>
+
   <pre> <%= @impressum.context %></pre>
-  <%= link_to 'Edit', edit_impressum_path(@impressum) %> |
-  <%= link_to 'Back', impressums_path %>
+  <%= link_to 'Edit', edit_impressum_path(@impressum), class: 'btn btn-primary' %>
+  <%= link_to 'Back', impressums_path, class: 'btn btn-default' %>
 </div>

@@ -1,10 +1,12 @@
 <p id="notice"><%= notice %></p>
-<div class="container">
-
+<div class="jumbotron jumbo-main-content">
   <h1>Dataprotection</h1>
+  <br>
   <% if current_user.superuser? %>
     <% @dataprotections.each do |dataprotection| %>
-      <p><%= link_to 'Show', dataprotection %> <%= link_to 'Edit', edit_dataprotection_path(dataprotection) %> <%= link_to 'Destroy', dataprotection, method: :delete, data: {confirm: 'Are you sure?'} %></p>
+      <p><%= link_to 'Show', dataprotection %>
+        <%= link_to 'Edit', edit_dataprotection_path(dataprotection) %>
+        <%= link_to 'Destroy', dataprotection, method: :delete, data: {confirm: 'Are you sure?'} %></p>
     <% end %>
   <% end %>
     <% @dataprotections.each do |dataprotection| %>
@@ -12,6 +14,6 @@
     <% end %>
   <br>
   <% if current_user.superuser? %>
-    <%= link_to 'New Dataprotection', new_dataprotection_path %>
+    <%= link_to 'New Dataprotection', new_dataprotection_path, class: 'btn btn-primary'%>
   <% end %>
 </div>

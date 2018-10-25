@@ -10,65 +10,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-  <style>
-    #CCC{
-      text-align: center;
-    }
-    .user-link{
-      color: #000000;
-    }
-    .middleNav {
-      background: #fff;
-      height: 100%;
-    }
-
-    .avatar {
-      vertical-align: middle;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-    }
-
-    .header_top {
-      position: fixed;
-      z-index: 1;
-      width: 100%;
-      top: 0;
-    }
-    h1{
-      text-align: center;
-    }
-    .row.content {
-      height: 115px;
-    }
-
-    .row.main-content {
-      height: 1500px;
-      margin-top: 115px;
-    }
-
-    .sidenav {
-      background-color: #f1f1f1;
-      height: 100%;
-      text-align: center;
-    }
-
-    .jumbo-content {
-      padding-top: 0px;
-      background: transparent !important;
-    }
-
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-
-      .row.content {
-        height: auto;
-      }
-    }
-  </style>
+  <style></style>
 
 </head>
 <!--Navbar-->
@@ -96,16 +38,31 @@
           <div class="col-sm-8 middleNav">
             <h3 id="CCC"><strong>3C</strong></h3>
             <p><strong>&nbsp;&nbsp;Chat: </strong>
+              <!--the if statemants are just for showing and testing, the fullfill no use-->
               <% @channels.each do |channel| %>
                 <% if channel.both? || channel.chat? %>
-                  <%= channel.title %><span class="badge">5</span>&nbsp;&nbsp;
+                  <%= channel.title %>
+                  <% if !channel.id.odd?%>
+                   <span class="badge">
+                     <%=channel.id%></span> &nbsp;&nbsp;
+                  <%else%>
+                  <span class="badge new-message">
+                    <%=channel.id%></span> &nbsp;&nbsp;
+                  <%end%>
                 <% end %>
               <% end %>
             </p>
             <p><strong>&nbsp;&nbsp;Blog: </strong>
               <% @channels.each do |channel| %>
                 <% if channel.both? || channel.blog? %>
-                  <%= channel.title %><span class="badge">5</span> &nbsp;&nbsp;
+                  <%= channel.title %>
+                  <% if channel.id.odd?%>
+                   <span class="badge">
+                     <%=channel.id%></span> &nbsp;&nbsp;
+                  <%else%>
+                  <span class="badge new-message">
+                    <%=channel.id%></span> &nbsp;&nbsp;
+                  <%end%>
                 <% end %>
               <% end %>
             </p>
@@ -158,15 +115,15 @@
           <small>Groups:</small>
         </h4>
         <div class="list-group">
-          <a class="list-group-item">Group 1<span class="badge">1</span></a>
-          <a class="list-group-item">Group 2<span class="badge">1</span></a>
+          <a class="list-group-item">Group 1<span class="badge new-message">1</span></a>
+          <a class="list-group-item">Group 2<span class="badge">3</span></a>
         </div>
         <h4>
           <small>Messages:</small>
         </h4>
         <div class="list-group">
           <a class="list-group-item">Uwe Email<span class="badge">1</span></a>
-          <a class="list-group-item">Lars Facbook<span class="badge">1</span></a>
+          <a class="list-group-item">Lars Facbook<span class="badge new-message">1</span></a>
           <a class="list-group-item">Ina Trainergroup<span class="badge">3</span></a>
           <a class="list-group-item">Peter Email<span class="badge">2</span></a>
           <a class="list-group-item">Hans Trainergoup<span class="badge">1</span></a>

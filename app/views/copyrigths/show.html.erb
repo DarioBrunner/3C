@@ -1,9 +1,11 @@
 <p id="notice"><%= notice %></p>
+<div class="jumbotron jumbo-main-content">
 
 <p>
-  <strong>Copy:</strong>
-  <%= @copyrigth.copy %>
+  <strong>Copyright:</strong>
+  ©<%= @copyrigth.copy %>
 </p>
 
-<%= link_to 'Edit', edit_copyrigth_path(@copyrigth) %> |
-<%= link_to 'Back', copyrigths_path %>
+<%= link_to 'Edit', edit_copyrigth_path(@copyrigth), class:'btn btn-primary'%>
+<%= link_to 'Back', copyrigths_path, class:'btn btn-default' %>
+</div>

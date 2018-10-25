@@ -1,9 +1,9 @@
-<div class="container">
-  <p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>
+<div class="jumbotron jumbo-main-content">
 
   <h1>Copyrigths</h1>
-
-  <table>
+  <br>
+  <table class="table">
     <thead>
     <tr>
       <th>Copy</th>
@@ -15,9 +15,9 @@
     <% @copyrigths.each do |copyrigth| %>
       <tr>
         <td><%= copyrigth.copy %></td>
-        <td><%= link_to 'Show', copyrigth %></td>
-        <td><%= link_to 'Edit', edit_copyrigth_path(copyrigth) %></td>
-        <td><%= link_to 'Destroy', copyrigth, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        <td><%= link_to 'Show', copyrigth, class: 'btn btn-default'%></td>
+        <td><%= link_to 'Edit', edit_copyrigth_path(copyrigth), class: 'btn btn-default' %></td>
+        <td><%= link_to 'Destroy', copyrigth, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-default'%></td>
       </tr>
     <% end %>
     </tbody>
@@ -25,5 +25,5 @@
 
   <br>
 
-  <%= link_to 'New Copyrigth', new_copyrigth_path %>
+  <%= link_to 'New Copyrigth', new_copyrigth_path, class: 'btn btn-primary' %>
 </div>

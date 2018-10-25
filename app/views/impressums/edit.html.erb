@@ -1,8 +1,9 @@
-<div class="container">
+<br>
+<div class="jumbotron jumbo-main-content">
   <h1>Editing Impressum</h1>
-
+  <br>
   <%= render 'form', impressum: @impressum %>
 
-  <%= link_to 'Show', @impressum %> |
-  <%= link_to 'Back', impressums_path %>
+  &nbsp&nbsp&nbsp&nbsp<%= link_to 'Show', @impressum, class:'btn btn-primary' %>
+  <%= link_to 'Back', impressums_path, class: 'btn btn-default' %>
 </div>

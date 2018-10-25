@@ -1,8 +1,8 @@
-<div class="container">
-  <p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>
+<div class="jumbotron jumbo-main-content">
 
   <h1>Impressum</h1>
-
+  <br>
 
 
 
@@ -21,6 +21,6 @@
 
   <br>
   <% if current_user.superuser? %>
-    <%= link_to 'New Impressum', new_impressum_path %>
+    <%= link_to 'New Impressum', new_impressum_path, class: 'btn btn-primary' %>
   <% end %>
 </div>

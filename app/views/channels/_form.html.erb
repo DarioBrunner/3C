@@ -15,7 +15,7 @@
 
 
     <div class="field form-group">
-      <%= form.label :typ %>
+      <%= form.label :typ %><%= form.submit 'Add Channel', class: 'btn btn-primary pull-right' %><br>
       <%= form.select :typ, Channel.typs.keys.map {|option| [option.humanize, option]}, class: 'channel-typ-select' %>
     </div>
 
@@ -25,7 +25,7 @@
     </div>
 
     <div class="field form-group">
-      <%= form.label :status %>
+      <%= form.label :status %><br>
       <%= form.select :status, Channel.statuses.keys.map {|option| [option.humanize, option]}, class: 'channel-typ-select' %>
     </div>
 
@@ -36,10 +36,6 @@
     <div class="field form-group">
       <%= form.label :login %>
       <%= form.text_field :login, class: 'form-control', placeholder: 'Login' %>
-    </div>
-
-    <div class="actions form-group">
-      <%= form.submit 'Add Channel', class: 'btn btn-primary' %>
     </div>
 <% end %>
 </div>

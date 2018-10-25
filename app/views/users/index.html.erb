@@ -1,9 +1,8 @@
-<div class="container">
-  <p id="notice"><%= notice %></p>
-
+<p id="notice"><%= notice %></p>
+<div class="jumbotron jumbo-main-content">
   <h1>Users</h1>
-
-  <table>
+  <br>
+  <table class="table">
     <thead>
     <tr>
       <th>Company</th>
@@ -19,13 +18,12 @@
         <td><%= user.company.companyname %></td>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        <td><%= link_to 'Show', user,class: 'btn btn-default' %></td>
+        <td><%= link_to 'Edit', edit_user_path(user),class: 'btn btn-default' %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: {confirm: 'Are you sure?'},class: 'btn btn-default' %></td>
       </tr>
     <% end %>
     </tbody>
   </table>
   <br>
-
 </div>

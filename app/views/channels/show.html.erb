@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
-<div class="container">
+<div class="jumbotron jumbo-main-content">
 
+  <br>
   <p>
     <strong>Typ:</strong>
     <%= @channel.typ.humanize %>
@@ -21,6 +22,6 @@
     <%= @channel.url %>
   </p>
 
-  <%= link_to 'Edit', edit_channel_path(@channel) %> |
-  <%= link_to 'Back', channels_path %>
+  <%= link_to 'Edit', edit_channel_path(@channel), class: 'btn btn-primary' %>
+  <%= link_to 'Back', channels_path, class: 'btn btn-default' %>
 </div>

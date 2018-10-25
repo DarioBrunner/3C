@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
-<div class="container">
+<div class="jumbotron jumbo-main-content">
   <h1>Channels</h1>
-  <table>
+  <br>
+  <table class="table">
     <thead>
     <tr>
       <th>Typ</th>
@@ -22,9 +23,9 @@
         <td><%= channel.status %></td>
         <% if current_user.admin? %>
           <td><%= channel.url %></td>
-          <td><%= link_to 'Show', channel %></td>
-          <td><%= link_to 'Edit', edit_channel_path(channel) %></td>
-          <td><%= link_to 'Destroy', channel, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+          <td><%= link_to 'Show', channel,class: 'btn btn-default' %></td>
+          <td><%= link_to 'Edit', edit_channel_path(channel),class: 'btn btn-default' %></td>
+          <td><%= link_to 'Destroy', channel, method: :delete, data: {confirm: 'Are you sure?'},class: 'btn btn-default' %></td>
         <% end %>
       </tr>
     <% end %>
@@ -33,6 +34,6 @@
 
   <br>
   <% if current_user.admin? %>
-    <%= link_to 'New Channel', new_channel_path %>
+    <%= link_to 'New Channel', new_channel_path, class: 'btn btn-primary' %>
   <% end %>
 </div>
