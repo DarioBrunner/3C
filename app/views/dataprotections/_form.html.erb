@@ -13,13 +13,13 @@
       </div>
     <% end %>
 
-    <div class="field">
+    <div class="field form-group">
       <%= form.label :content %><br>
-      <%= form.text_area :content, size: "75x20" %>
+      <%= form.text_area :content, class: 'form-control' , placeholder: 'Content' %>
     </div>
 
-    <div class="actions">
-      <%= form.submit %>
+    <div class="actions form-group">
+      <%= form.submit 'Add Dataprotection', class: 'btn btn-primary' %>
     </div>
 <% end %>
 </div>

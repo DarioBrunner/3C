@@ -12,28 +12,28 @@
       </div>
     <% end %>
 
-    <div class="field">
+    <div class="field form-group">
       <%= form.label :company_id %>
-      <%= form.text_field :company_id %>
+      <%= form.text_field :company_id, class: 'form-control' , placeholder: 'Company_id'%>
     </div>
 
-    <div class="field">
+    <div class="field form-group">
       <%= form.label :name %>
-      <%= form.text_field :name %>
+      <%= form.text_field :name, class: 'form-control' , placeholder: 'Name' %>
     </div>
 
-    <div class="field">
+    <div class="field form-group">
       <%= form.label :email %>
-      <%= form.text_field :email %>
+      <%= form.text_field :email, class: 'form-control' , placeholder: 'E-mail' %>
     </div>
 
-    <div class="field">
+    <div class="field form-group">
       <%= form.label :password %>
-      <%= form.text_field :password %>
+      <%= form.text_field :password, class: 'form-control' , placeholder: 'Password'%>
     </div>
 
-    <div class="actions">
-      <%= form.submit %>
+    <div class="actions form-group">
+      <%= form.submit 'Add User', class: 'btn btn-primary' %>
     </div>
 <% end %>
 </div>

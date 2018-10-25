@@ -12,13 +12,13 @@
       </div>
     <% end %>
 
-    <div class="field">
+    <div class="field form-group">
       <%= form.label :context %><br>
-      <%= form.text_area :context, size: "45x8"%>
+      <%= form.text_area :context, class: 'form-control' , placeholder: 'Context'%>
     </div>
 
-    <div class="actions">
-      <%= form.submit %>
+    <div class="actions form-group">
+      <%= form.submit'Add Impressum', class: 'btn btn-primary' %>
     </div>
 <% end %>
 </div>

@@ -13,13 +13,13 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :copy %>
-    <%= form.text_field :copy %>
+    <%= form.text_field :copy , class: 'form-control' , placeholder: 'Copyright Text'%>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions form-group">
+    <%= form.submit 'Copyright Channel', class: 'btn btn-primary' %>
   </div>
 <% end %>
 </div>

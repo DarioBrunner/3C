@@ -11,31 +11,31 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :companyname %>
-    <%= form.text_field :companyname %>
+    <%= form.text_field :companyname, class: 'form-control' , placeholder: 'Companyname'%>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :adress %>
-    <%= form.text_field :adress %>
+    <%= form.text_field :adress, class: 'form-control' , placeholder: 'Adress' %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :passwort %>
-    <%= form.text_field :passwort %>
+    <%= form.text_field :passwort, class: 'form-control' , placeholder: 'Password' %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label "Available Channels" %>
-    <%= form.text_field :channelnumber %>
+    <%= form.text_field :channelnumber, class: 'form-control' , placeholder: 'Number of Channels' %>
   </div>
   <table>
     <tr>
       <th>User</th>
       <th>Admin</th>
     </tr>
-      <div class="field">
+      <div class="field form-group">
       <% User.all.each do |admin| %>
           <tr>
           <td><%= admin.name %></td>
@@ -46,7 +46,7 @@
       </div>
     </tr>
   </table>
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions form-group">
+    <%= form.submit 'Add Company', class: 'btn btn-primary'%>
   </div>
 <% end %>

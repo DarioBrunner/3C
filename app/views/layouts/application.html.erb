@@ -11,30 +11,40 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <style>
-    .middleNav{
-      background-color: #ffffff;
+    #CCC{
+      text-align: center;
+    }
+    .user-link{
+      color: #000000;
+    }
+    .middleNav {
+      background: #fff;
       height: 100%;
     }
+
     .avatar {
       vertical-align: middle;
       width: 50px;
       height: 50px;
       border-radius: 50%;
     }
+
     .header_top {
       position: fixed;
-      z-index:1;
+      z-index: 1;
       width: 100%;
       top: 0;
     }
-
+    h1{
+      text-align: center;
+    }
     .row.content {
-      height: 150px;
+      height: 115px;
     }
 
     .row.main-content {
       height: 1500px;
-      margin-top: 150px;
+      margin-top: 115px;
     }
 
     .sidenav {
@@ -42,8 +52,10 @@
       height: 100%;
       text-align: center;
     }
-    .jumbotron{
-      background:transparent !important;
+
+    .jumbo-content {
+      padding-top: 0px;
+      background: transparent !important;
     }
 
     @media screen and (max-width: 767px) {
@@ -59,120 +71,125 @@
   </style>
 
 </head>
-  <!--Navbar-->
-  <% if !current_user.nil? %>
-    <% if user_signed_in? %>
-      <div class="header_top">
-        <div class="container-fluid">
-          <div class="row content">
-
-            <!--Showing Userdata-->
-            <div class="col-sm-2 sidenav">
-              <h4 style="text-align: center;">3C</h4>
-              <div><img src="/Users/dariobrunner/Desktop/_MG_8392 Kopie.jpg" alt="Avatar" class="avatar"></div>
-              <p><%= current_user.name.humanize %> || <%= current_user.company.companyname %></p>
-              <% if current_user.admin? %>
-                <p>Role: Admin</p>
-              <% end %>
-              <% if current_user.superuser? %>
-                <p>Role: Superuser</p>
-              <% end %>
-              <%= link_to('Logout', destroy_user_session_path, :method => :delete,class: "glyphicon glyphicon-log-out" ) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <%= link_to('User', edit_user_registration_path, class: "glyphicon glyphicon-cog") %>
-            </div>
-
-            <!--showing Channelsin Center-->
-            <div class="col-sm-8 middleNav">
-              <h4><small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Channels:</small></h4>
-              <p><strong>Chat: </strong>
-                <% @channels.each do |channel| %>
-                  <% if channel.both? || channel.chat? %>
-                    <%= channel.title %><span class="badge">5</span>&nbsp;&nbsp;
-                  <% end %>
-                <% end %>
-              </p>
-              <p><strong>Blog: </strong>
-                <% @channels.each do |channel| %>
-                  <% if channel.both? || channel.blog? %>
-                    <%= channel.title %><span class="badge">5</span> &nbsp;&nbsp;
-                  <% end %>
-                <% end %>
-              </p>
-            </div>
-
-            <!--Settings right side-->
-            <div class="col-sm-2 sidenav">
-              <a href="#settings" data-toggle="collapse">
-                <h3><span class="glyphicon glyphicon-cog"></span>&nbsp;Settings:</h3></a>
-              <div id="settings" class="collapse">
-                <% if current_user.admin? || current_user.superuser? %>
-                  <%= link_to('Company', companies_path, class: "button") %>
-                <% end %>
-                <%= link_to('Group', groups_path, class: "button") %>
-                <br>
-                <% if current_user.superuser? %>
-                  <%= link_to('Edit Users', users_path, class: "button") %>
-                  <%= link_to('Copyrigth', copyrigths_path, class: "button") %>
-                  <br>
-                <% end %>
-                <%= link_to('Channel', channels_path, class: "button") %>
-                <% if current_user.admin? %>
-                  <%= link_to('Admin', admins_path, class: "button") %>
-                <% end %>
-                <br>
-                <%= link_to('Faq', faqs_path, class: "button") %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
-
+<!--Navbar-->
+<% if !current_user.nil? %>
   <% if user_signed_in? %>
-    <!--content-->
-    <div class="container-fluid">
-      <div class="row main-content">
-        <div class="col-xs-10">
-          <div class="jumbotron">
-          <%= yield %>
-          </div>
-        </div>
+    <div class="header_top">
+      <div class="container-fluid">
+        <div class="row content">
 
-        <!--sidenav news-->
-        <div class="col-xs-2 sidenav" id="rightbar">
-          <h4><small>Groups:</small></h4>
-          <div class="list-group">
-            <a class="list-group-item">Group 1<span class="badge">1</span></a>
-            <a class="list-group-item">Group 2<span class="badge">1</span></a>
+          <!--Showing Userdata-->
+          <div class="col-sm-2 sidenav">
+            <div><img src="/Users/dariobrunner/Desktop/_MG_8392 Kopie.jpg" alt="Avatar" class="avatar"></div>
+            <p><%= current_user.name.humanize %> || <%= current_user.company.companyname %></p>
+            <% if current_user.admin? %>
+              <p>Role: Admin</p>
+            <% end %>
+            <% if current_user.superuser? %>
+              <p>Role: Superuser</p>
+            <% end %>
+            <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: "glyphicon glyphicon-log-out user-link") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <%= link_to('User', edit_user_registration_path, class: "glyphicon glyphicon-cog user-link") %>
           </div>
-          <h4><small>Messages:</small></h4>
-          <div class="list-group">
-            <a class="list-group-item">Uwe Email<span class="badge">1</span></a>
-            <a class="list-group-item">Lars Facbook<span class="badge">1</span></a>
-            <a class="list-group-item">Ina Trainergroup<span class="badge">3</span></a>
-            <a class="list-group-item">Peter Email<span class="badge">2</span></a>
-            <a class="list-group-item">Hans Trainergoup<span class="badge">1</span></a>
+
+          <!--showing Channelsin Center-->
+          <div class="col-sm-8 middleNav">
+            <h3 id="CCC"><strong>3C</strong></h3>
+            <p><strong>&nbsp;&nbsp;Chat: </strong>
+              <% @channels.each do |channel| %>
+                <% if channel.both? || channel.chat? %>
+                  <%= channel.title %><span class="badge">5</span>&nbsp;&nbsp;
+                <% end %>
+              <% end %>
+            </p>
+            <p><strong>&nbsp;&nbsp;Blog: </strong>
+              <% @channels.each do |channel| %>
+                <% if channel.both? || channel.blog? %>
+                  <%= channel.title %><span class="badge">5</span> &nbsp;&nbsp;
+                <% end %>
+              <% end %>
+            </p>
+          </div>
+
+          <!--Settings right side-->
+          <div class="col-sm-2 sidenav">
+            <div class="dropdown">
+              <br>
+              <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                <h3><span class="glyphicon glyphicon-cog"></span>&nbsp;Settings:
+                  <span class="caret"></span></h3>
+              </button>
+              <ul class="dropdown-menu">
+                <% if current_user.admin? || current_user.superuser? %>
+                  <li><a href="#"><%= link_to('Company', companies_path, class: "button") %></a></li>
+                <% end %>
+                  <li><a href="#"><%= link_to('Group', groups_path, class: "button") %></a></li>
+                <% if current_user.superuser? %>
+                  <li><a href="#"><%= link_to('Edit Users', users_path, class: "button") %></a></li>
+                  <li><a href="#"><%= link_to('Copyrigth', copyrigths_path, class: "button") %></a></li>
+                <% end %>
+                  <li><a href="#"><%= link_to('Channel', channels_path, class: "button") %></a></li>
+                <% if current_user.admin? %>
+                  <li><a href="#"><%= link_to('Admin', admins_path, class: "button") %></a></li>
+                <% end %>
+                <li><a href="#"><%= link_to('Faq', faqs_path, class: "button") %></a></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  <% else %>
-    <%= yield %>
   <% end %>
+<% end %>
 
-  <!--Footerclass-->
-  <footer class="container-fluid text-center">
-    <%= link_to('Dataprotection', dataprotections_path, class: "button") %>   ||
-    <%= link_to('Impressum', impressums_path, class: "button") %>
+<% if user_signed_in? %>
+  <!--content-->
+  <div class="container-fluid">
+    <div class="row main-content">
+      <div class="col-xs-10">
+        <div class="jumbotron jumbo-content">
+          <%= yield %>
+        </div>
+      </div>
 
-    <p>©
-      <% @copyrigths.each do |content| %>
-        <%= content.copy %>
-      <% end %></p>
-    </p>
-  </footer>
+      <!--sidenav news-->
+      <div class="col-xs-2 sidenav" id="rightbar">
+        <h4>
+          <small>Groups:</small>
+        </h4>
+        <div class="list-group">
+          <a class="list-group-item">Group 1<span class="badge">1</span></a>
+          <a class="list-group-item">Group 2<span class="badge">1</span></a>
+        </div>
+        <h4>
+          <small>Messages:</small>
+        </h4>
+        <div class="list-group">
+          <a class="list-group-item">Uwe Email<span class="badge">1</span></a>
+          <a class="list-group-item">Lars Facbook<span class="badge">1</span></a>
+          <a class="list-group-item">Ina Trainergroup<span class="badge">3</span></a>
+          <a class="list-group-item">Peter Email<span class="badge">2</span></a>
+          <a class="list-group-item">Hans Trainergoup<span class="badge">1</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <%= yield %>
+<% end %>
 
-  </body>
+<!--Footerclass-->
+<footer class="container-fluid text-center">
+  <%= link_to('Dataprotection', dataprotections_path, class: "button") %>   ||
+  <%= link_to('Impressum', impressums_path, class: "button") %>
+
+  <p>©
+    <% @copyrigths.each do |content| %>
+      <%= content.copy %>
+    <% end %></p>
+  </p>
+</footer>
+
+</body>
 
 </html>

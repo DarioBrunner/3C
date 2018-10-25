@@ -13,17 +13,17 @@
       </div>
     <% end %>
 
-    <div class="field">
+    <div class="field form-group">
       <%= form.label :title %>
-      <%= form.text_field :title %>
+      <%= form.text_field :title , class: 'form-control' , placeholder: 'Title'%>
     </div>
 
-    <div class="field">
+    <div class="field form-group">
       <%= form.label :description %>
-      <%= form.text_area :description %>
+      <%= form.text_area :description, class: 'form-control' , placeholder: 'Description' %>
     </div>
     <strong>Channels:</strong>
-    <div class="field">
+    <div class="field form-group">
       <% Channel.all.each do |channel| %>
         <%= check_box_tag "group[channel_ids][]", channel.id, @group.channel_ids.include?(channel.id) %>
         <%= channel.title %>
@@ -31,7 +31,7 @@
       <% end %>
     </div>
     <strong>Users:</strong>
-    <div class="field">
+    <div class="field form-group">
       <% User.all.each do |user| %>
         <%= check_box_tag "group[user_ids][]", user.id, @group.user_ids.include?(user.id) %>
         <%= user.name %>
@@ -39,8 +39,8 @@
       <% end %>
     </div>
 
-    <div class="actions">
-      <%= form.submit %>
+    <div class="actions form-group">
+      <%= form.submit 'Add Group', class: 'btn btn-primary'%>
     </div>
 
 <% end %>

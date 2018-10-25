@@ -13,18 +13,18 @@
       </div>
     <% end %>
 
-    <div class="field">
+    <div class="field form-group">
       <%= form.label :question %><br>
-      <%= form.text_area :question, size: "45x3"%>
+      <%= form.text_area :question, class: 'form-control' , placeholder: 'Question'%>
     </div>
 
-    <div class="field">
+    <div class="field form-group">
       <%= form.label :answer %><br>
-      <%= form.text_area :answer, size: "45x7" %>
+      <%= form.text_area :answer, class: 'form-control' , placeholder: 'Answer'%>
     </div>
 
-    <div class="actions">
-      <%= form.submit %>
+    <div class="actions form-group">
+      <%= form.submit 'Add Faq', class: 'btn btn-primary'%>
     </div>
 <% end %>
 </div>

@@ -8,9 +8,10 @@
     <% if current_user.superuser? %>
       <%= link_to 'Show', faq %>
       <%= link_to 'Edit', edit_faq_path(faq) %>
-      <<%= link_to 'Destroy', faq, method: :delete, data: {confirm: 'Are you sure?'} %>
+      <%= link_to 'Destroy', faq, method: :delete, data: {confirm: 'Are you sure?'} %>
     <% end %>
-    <a href="#<%= faq.id %>" class="btn btn-default btn-block" data-toggle="collapse"><%= faq.question %></a>
+    <a href="#<%= faq.id %>" class="btn btn-default btn-block" data-toggle="collapse">
+      <%= faq.question %>&nbsp;&nbsp;<span class="caret"></span></a>
     <div id="<%= faq.id %>" class="collapse">
       <pre><%= faq.answer %></pre>
     </div>
@@ -21,7 +22,3 @@
   <% end %>
 
 </div>
-<!--<a href="#<%#=faq.answer.to_s%>" class="btn btn-default" data-toggle="collapse">Answer:</a>-->
-<!--<div id="<&=faq.answer.to_s%>" class="collapse">-->
-<%#=faq.answer %>
-<!--</div>-->
