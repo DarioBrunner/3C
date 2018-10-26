@@ -5,21 +5,21 @@
   <br>
 
   <% @faqs.each do |faq| %>
-    <% if current_user.superuser? %>
-      <%= link_to 'Show', faq ,class: 'btn'%>
-      <%= link_to 'Edit', edit_faq_path(faq),class: 'btn' %>
-      <%= link_to 'Destroy', faq, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn' %>
-    <% end %>
     <a href="#<%= faq.id %>" class="btn btn-default btn-block" data-toggle="collapse">
       <%= faq.question %>&nbsp;&nbsp;<span class="caret"></span></a>
     <div id="<%= faq.id %>" class="collapse">
       <pre><%= faq.answer %></pre>
     </div>
+    <% if current_user.superuser? %>
+      <%= link_to 'Show', faq ,class: 'btn'%>
+      <%= link_to 'Edit', edit_faq_path(faq),class: 'btn' %>
+      <%= link_to 'Destroy', faq, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn' %>
+    <% end %>
     <br>
   <% end %>
   <br>
   <% if current_user.superuser? %>
-    <%= link_to 'New Faq', new_faq_path, class: 'btn btn-primary' %>
+    <%= link_to 'Add Faq', new_faq_path, class: 'btn btn-primary' %>
   <% end %>
 
 </div>

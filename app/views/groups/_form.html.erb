@@ -22,7 +22,7 @@
       <%= form.label :description %>
       <%= form.text_area :description, class: 'form-control' , placeholder: 'Description' %>
     </div>
-    <strong>Channels:</strong><%= form.submit 'Add Group', class: 'btn btn-primary pull-right'%>
+    <strong>Channels:</strong><%= form.submit 'Save Group', class: 'btn btn-primary pull-right'%>
     <div class="field form-group">
       <% Channel.all.each do |channel| %>
         <%= check_box_tag "group[channel_ids][]", channel.id, @group.channel_ids.include?(channel.id) %>
