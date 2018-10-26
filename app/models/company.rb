@@ -12,6 +12,5 @@
 
 class Company < ApplicationRecord
   has_many :users, dependent: :destroy
-  has_many :admin_to_companies
-  has_many :users, :through => :admin_to_companies
+
 end

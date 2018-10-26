@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!, :get_all_channels, :get_all_companies, :get_copyright
+  before_action :authenticate_user!, :get_all_channels, :get_all_companies, :get_copyright, :get_groups
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
@@ -18,6 +18,10 @@ class ApplicationController < ActionController::Base
 
   def get_copyright
     @copyrigths = Copyrigth.all
+  end
+
+  def get_groups
+    @groups = Group.all
   end
 
 end

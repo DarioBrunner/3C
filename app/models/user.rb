@@ -20,9 +20,17 @@ class User < ApplicationRecord
   belongs_to :company
   has_many :user_to_groups
   has_many :groups, :through => :user_to_groups
-  has_many :user_to_channels
-  has_many :channels, :through => :user_to_channels
-  has_many :admin_to_companies
-  has_many :companies, :through => :admin_to_companies
+  # has_many :user_to_channels
+  # has_many :channels, :through => :user_to_channels
+
+  def channels
+    channelArray=[]
+    groups.each do |group|
+      channelArray<<group.channels
+    end
+    channelArray.flatten.uniq
+  end
+
+
 
 end

@@ -22,20 +22,18 @@
       <%= form.label :description %>
       <%= form.text_area :description, class: 'form-control' , placeholder: 'Description' %>
     </div>
-    <strong>Channels:</strong><%= form.submit 'Save Group', class: 'btn btn-primary pull-right'%>
     <div class="field form-group">
+      <strong>Channels:</strong><%= form.submit 'Save Group', class: 'btn btn-primary pull-right'%>
       <% Channel.all.each do |channel| %>
         <%= check_box_tag "group[channel_ids][]", channel.id, @group.channel_ids.include?(channel.id) %>
-        <%= channel.title %>
-        <br/>
+        <%= channel.title %>&nbsp&nbsp&nbsp&nbsp
       <% end %>
     </div>
-    <strong>Users:</strong>
     <div class="field form-group">
+      <strong>Users:</strong>
       <% User.all.each do |user| %>
         <%= check_box_tag "group[user_ids][]", user.id, @group.user_ids.include?(user.id) %>
-        <%= user.name %>
-        <br/>
+        <%= user.name %>&nbsp&nbsp&nbsp&nbsp
       <% end %>
     </div>
 <% end %>

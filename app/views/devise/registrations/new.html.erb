@@ -4,6 +4,7 @@
     <div class="col-sm-3"></div>
     <div class="col-sm-6">
       <div class="jumbotron jumbo-main-content">
+
         <h1>Sign up</h1>
         <br>
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -22,7 +23,7 @@
 
           <div class="field">
              <%= f.label :company_id %><br/>
-             <%= f.collection_select :company_ids, Company.order(:companyname), :id, :companyname, prompt: true %>
+             <%= f.collection_select :company_id, Company.order(:companyname), :id, :companyname, prompt: true %>
           </div>
 
           <div class="field form-group">
