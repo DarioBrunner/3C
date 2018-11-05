@@ -2,6 +2,9 @@
 <div class="jumbotron jumbo-main-content">
 
   <h1>Groups</h1>
+  <% if current_user.admin? %>
+    <%= link_to 'Add Group', new_group_path, class: 'btn btn-primary pull-right' %>
+  <% end %>
   <br>
   <table class="table">
     <thead>
@@ -45,8 +48,4 @@
   </table>
 
   <br>
-
-  <% if current_user.admin? %>
-    <%= link_to 'Add Group', new_group_path, class: 'btn btn-primary' %>
-  <% end %>
 </div>

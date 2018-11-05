@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2018_10_26_100111) do
   end
 
   create_table "channels", force: :cascade do |t|
-    t.integer "typ"
+    t.integer "typ", default: 0
     t.string "url"
     t.string "title"
     t.string "login"
@@ -131,6 +131,9 @@ ActiveRecord::Schema.define(version: 2018_10_26_100111) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.integer "company_id"
+    t.string "name"
+    t.integer "status"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -139,10 +142,8 @@ ActiveRecord::Schema.define(version: 2018_10_26_100111) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
-    t.integer "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
     t.boolean "admin", default: false, null: false
     t.boolean "superuser", default: false, null: false
     t.index ["company_id"], name: "index_users_on_company_id"

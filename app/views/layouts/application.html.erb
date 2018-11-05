@@ -47,8 +47,8 @@
                 <% if channel.both? || channel.chat? %>
                   <% if channel.icon.attached? %>
                     <%= image_tag channel.icon.variant(resize: "25X25"), class: "img-circle" %>
-                    <%= channel.title %>
                   <% end %>
+                  <%= channel.title %>
                   <% if !channel.id.odd? %>
                    <span class="badge">
                      <%= channel.id %></span> &nbsp;&nbsp;
@@ -97,6 +97,7 @@
                 <li><a href="#"><%= link_to('Channel', channels_path, class: "button") %></a></li>
                 <% if current_user.admin? %>
                   <li><a href="#"><%= link_to('Admin', admins_path, class: "button") %></a></li>
+                  <li><a href="#"><%= link_to('Edit Users', users_path, class: "button") %></a></li>
                 <% end %>
                 <li><a href="#"><%= link_to('Faq', faqs_path, class: "button") %></a></li>
               </ul>
@@ -146,18 +147,18 @@
             <div>
               <a class="list-group-item">
                 <% if group.image.attached? %>
-                  <%= image_tag group.image.variant(resize: "25X25"), class: "img-circle", style: "margin-left: 0px;float:left" %><%= group.title %>
-
-                  <% if group.id.odd? %>
+                  <%= image_tag group.image.variant(resize: "25X25"), class: "img-circle", style: "margin-left: 0px;float:left" %>
+                <% end %>
+                <%= group.title %>
+                <% if group.id.odd? %>
                    <span class="badge">
                      <%= group.id %></span>
-                  <% else %>
+                <% else %>
                   <span class="badge new-message">
                     <%= group.id %></span>
-                  <% end %>
-                  </a>
                 <% end %>
-                </div>
+              </a>
+            </div>
 
           <% end %>
         </div>
@@ -171,18 +172,18 @@
             <div>
               <a class="list-group-item">
                 <% if user.avatar.attached? %>
-                  <%= image_tag user.avatar.variant(resize: "25X25"), class: "img-circle", style: "margin-left: 0px;float:left" %><%= user.name %>
-
-                  <% if user.id.odd? %>
+                  <%= image_tag user.avatar.variant(resize: "25X25"), class: "img-circle", style: "margin-left: 0px;float:left" %>
+                <% end %>
+                <%= user.name %>
+                <% if user.id.odd? %>
                    <span class="badge">
                      <%= user.id %></span>
-                  <% else %>
+                <% else %>
                   <span class="badge new-message">
                     <%= user.id %></span>
-                  <% end %>
-                  </a>
                 <% end %>
-                </div>
+              </a>
+            </div>
 
           <% end %>
         </div>

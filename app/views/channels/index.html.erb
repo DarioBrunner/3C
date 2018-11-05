@@ -1,6 +1,9 @@
 <p id="notice"><%= notice %></p>
 <div class="jumbotron jumbo-main-content">
   <h1>Channels</h1>
+  <% if current_user.admin? %>
+    <%= link_to 'Add Channel', new_channel_path, class: 'btn btn-primary pull-right' %>
+  <% end %>
   <br>
   <table class="table">
     <thead>
@@ -36,7 +39,4 @@
   </table>
 
   <br>
-  <% if current_user.admin? %>
-    <%= link_to 'Add Channel', new_channel_path, class: 'btn btn-primary' %>
-  <% end %>
 </div>
