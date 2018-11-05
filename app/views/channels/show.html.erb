@@ -2,6 +2,9 @@
 <div class="jumbotron jumbo-main-content">
 
   <br>
+  <% if @channel.icon.attached? %>
+    <p><%= image_tag @channel.icon.variant(resize: "175X175")%></p>
+  <% end %>
   <p>
     <strong>Typ:</strong>
     <%= @channel.typ.humanize %>

@@ -12,18 +12,27 @@
         </ul>
       </div>
     <% end %>
+    <div class="field form-group">
+      <%= form.label :image %><%= form.submit 'Save Group', class: 'btn btn-primary pull-right' %>
+      <% if group.image.attached? %>
+        <p><%= image_tag @group.image.variant(resize: "175x175") %></p>
+      <% end %>
+      <%= form.file_field :image %>
+    </div>
 
     <div class="field form-group">
       <%= form.label :title %>
-      <%= form.text_field :title , class: 'form-control' , placeholder: 'Title'%>
+      <%= form.text_field :title, class: 'form-control', placeholder: 'Title' %>
     </div>
 
     <div class="field form-group">
       <%= form.label :description %>
-      <%= form.text_area :description, class: 'form-control' , placeholder: 'Description' %>
+      <%= form.text_area :description, class: 'form-control', placeholder: 'Description' %>
     </div>
+
+
     <div class="field form-group">
-      <strong>Channels:</strong><%= form.submit 'Save Group', class: 'btn btn-primary pull-right'%>
+      <strong>Channels:</strong>
       <% Channel.all.each do |channel| %>
         <%= check_box_tag "group[channel_ids][]", channel.id, @group.channel_ids.include?(channel.id) %>
         <%= channel.title %>&nbsp&nbsp&nbsp&nbsp

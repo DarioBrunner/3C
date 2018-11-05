@@ -8,6 +8,7 @@
     <tr>
       <th>Title</th>
       <th>Description</th>
+      <th>Picture</th>
       <th colspan="3"></th>
     </tr>
     </thead>
@@ -17,6 +18,10 @@
       <tr>
         <td><%= group.title %></td>
         <td><%= group.description %></td>
+        <td>
+          <% if group.image.attached? %>
+            <p><%= image_tag group.image.variant(resize: "20x20"),  class: "img-circle" %></p>
+          <% end %></td>
         <td><%= link_to 'Show', group, class: 'btn btn-default' %></td>
         <% if current_user.admin? %>
           <td><%= link_to 'Edit', edit_group_path(group), class: 'btn btn-default' %></td>
@@ -29,7 +34,10 @@
                 <%= user.name %>&nbsp
               <% end %>
             </td>
-          <td></td><td></td><td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         <% end %>
         </tr>
     <% end %>

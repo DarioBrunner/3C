@@ -13,9 +13,16 @@
       </div>
     <% end %>
 
+    <div class="field form-group">
+      <%= form.label :icon %><%= form.submit 'Save Channel', class: 'btn btn-primary pull-right' %>
+      <% if channel.icon.attached? %>
+        <p><%= image_tag @channel.icon.variant(resize: "175x175") %></p>
+      <% end %>
+      <%= form.file_field :icon %>
+    </div>
 
     <div class="field form-group">
-      <%= form.label :typ %><%= form.submit 'Save Channel', class: 'btn btn-primary pull-right' %><br>
+      <%= form.label :typ %><br>
       <%= form.select :typ, Channel.typs.keys.map {|option| [option.humanize, option]}, class: 'channel-typ-select' %>
     </div>
 

@@ -3,7 +3,9 @@
 
 
    <h1><%= @group.title %></h1>
-
+ <% if @group.image.attached? %>
+  <p><%= image_tag @group.image.variant(resize: "175X175")%></p>
+ <% end %>
   <p><strong>Description:</strong></p>
   <p><%= @group.description %></p>
   <strong>Channel:</strong></p>

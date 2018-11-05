@@ -20,6 +20,7 @@ class User < ApplicationRecord
   belongs_to :company
   has_many :user_to_groups
   has_many :groups, :through => :user_to_groups
+  has_one_attached :avatar
   # has_many :user_to_channels
   # has_many :channels, :through => :user_to_channels
 

@@ -5,6 +5,9 @@
     <strong>Companyname:</strong>
     <%= @company.companyname %>
   </p>
+  <% if @company.icon.attached? %>
+    <p><%= image_tag @company.icon.variant(resize: "175X175")%></p>
+  <% end %>
 
   <p>
     <strong>Adress:</strong>
@@ -15,6 +18,7 @@
     <strong>Available Channels:</strong>
     <%= @company.channelnumber %>
   </p>
+
 
   <%= link_to 'Edit', edit_company_path(@company), class: 'btn btn-primary' %>
   <%= link_to 'Back', companies_path, class: 'btn btn-default' %>
