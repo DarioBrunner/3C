@@ -1,22 +1,25 @@
 <%= form_with(model: dataprotection, local: true) do |form| %>
-  <% if dataprotection.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(dataprotection.errors.count, "error") %> prohibited this dataprotection from being saved:</h2>
+  <div class="container">
 
-      <ul>
-      <% dataprotection.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% if dataprotection.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(dataprotection.errors.count, "error") %> prohibited this dataprotection from being saved:</h2>
+
+        <ul>
+          <% dataprotection.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field form-group">
+      <%= form.label :content %><br>
+      <%= form.text_area :content, class: 'form-control' , placeholder: 'Content' %>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <div class="actions form-group">
+      <%= form.submit 'Save Dataprotection', class: 'btn btn-primary' %>
+    </div>
 <% end %>
+</div>

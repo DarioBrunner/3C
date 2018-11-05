@@ -1,0 +1,2 @@
+module CopyrigthsHelper
+end

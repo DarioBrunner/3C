@@ -1,5 +1,8 @@
-<h1>New Channel</h1>
+<br>
+<div class="jumbotron jumbo-main-content">
+  <h1>New Channel</h1>
+  <br>
+  <%= render 'form', channel: @channel %>
 
-<%= render 'form', channel: @channel %>
-
-<%= link_to 'Back', channels_path %>
+  &nbsp&nbsp&nbsp&nbsp<%= link_to 'Back', channels_path, class: 'btn btn-primary' %>
+</div>

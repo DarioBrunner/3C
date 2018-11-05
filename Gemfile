@@ -1,15 +1,16 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'bootstrap', '~> 4.1.3'
 gem 'autoprefixer-rails'
 
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'rails-ujs', '~> 0.1.0'
 gem 'devise'
+gem "mini_magick"
 gem 'annotate'
-
-
+#gem 'bootstrap', '~> 4.1.3'
+gem 'sprockets-rails', :require => 'sprockets/railtie'
+gem 'aws-sdk-s3', require: false
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
 # Use sqlite3 as the database for Active Record

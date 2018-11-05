@@ -1,6 +1,9 @@
-<h1>Editing Dataprotection</h1>
+<br>
+<div class="jumbotron jumbo-main-content">
+  <h1>Editing Dataprotection</h1>
+  <br>
+  <%= render 'form', dataprotection: @dataprotection %>
 
-<%= render 'form', dataprotection: @dataprotection %>
-
-<%= link_to 'Show', @dataprotection %> |
-<%= link_to 'Back', dataprotections_path %>
+  &nbsp&nbsp&nbsp&nbsp<%= link_to 'Show', @dataprotection, class: 'btn btn-primary'%>
+  <%= link_to 'Back', dataprotections_path, class: 'btn btn-default'%>
+</div>

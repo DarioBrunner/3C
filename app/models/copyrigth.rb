@@ -1,0 +1,2 @@
+class Copyrigth < ApplicationRecord
+end

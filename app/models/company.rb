@@ -12,6 +12,7 @@
 
 class Company < ApplicationRecord
 
-  has_many :user_to_companies
-  has_many :users, :through => :user_to_companies
+  has_many :users, dependent: :destroy
+  has_one_attached :icon
+
 end

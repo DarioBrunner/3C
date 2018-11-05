@@ -1,57 +1,211 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>RubyTestApp</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>RubyTestApp</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <style></style>
+
+</head>
+<!--Navbar-->
+<% if !current_user.nil? %>
   <% if user_signed_in? %>
-  <div>
-    <%=link_to('Logout', destroy_user_session_path, :method => :delete, class:"button")%>
-    <%if !current_user.nil?||current_user.superuser?%>
-      <%=link_to('Company', companies_path, class:"button")%>
-    <%end%>
-    <%=link_to('Group', groups_path, class:"button")%>
-    <%if current_user.superuser?%>
-      <%=link_to('User', users_path, class:"button")%>
-    <%else%>
-    <%=link_to('User', edit_user_registration_path, class:"button")%>
-    <%end%>
-    <%=link_to('Channel', channels_path, class:"button")%>
+    <div class="header_top">
+      <div class="container-fluid">
+        <div class="row content">
 
-    <% current_user.user_to_companies.each do|userTocompany | %>
-      <%if userTocompany.admin?%>
-      <%=link_to('Admin', admins_path, class:"button")%>
-      <%end%>
-    <%end%>
+          <!--Showing Userdata-->
+          <div class="col-sm-2 sidenav">
+            <% if current_user.company.icon.attached? %>
+              <p><%= image_tag current_user.company.icon.variant(resize: "75X75"), class: "img-circle" %></p>
+            <% end %>
+            <p><%= current_user.name.humanize %>
+              <% if current_user.admin? %>
+                Role: Admin
+              <% end %>
+              <% if current_user.superuser? %>
+                Role: Superuser
+              <% end %></p>
+            <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: "glyphicon glyphicon-log-out user-link") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <%= link_to('User', edit_user_registration_path, class: "glyphicon glyphicon-cog user-link") %>
+          </div>
 
-    <%=link_to('Dataprotection', dataprotections_path, class:"button")%>
-    <%=link_to('Impressum', impressums_path, class:"button")%>
-    <%=link_to('Faq', faqs_path, class:"button")%>
+          <!--showing Channels in Center and Logo-->
+          <div class="col-sm-8 middleNav">
+            <h3 id="CCC"><strong>3C</strong></h3>
+            <p><%= link_to('Chat', chats_path, class: "btn btn-default") %>
+              <!--the if statemants are just for showing and testing, the fullfill no use-->
+              <% %>
+
+              <% current_user.channels.each do |channel| %>
+                <% if channel.both? || channel.chat? %>
+                  <% if channel.icon.attached? %>
+                    <%= image_tag channel.icon.variant(resize: "25X25"), class: "img-circle" %>
+                    <%= channel.title %>
+                  <% end %>
+                  <% if !channel.id.odd? %>
+                   <span class="badge">
+                     <%= channel.id %></span> &nbsp;&nbsp;
+                  <% else %>
+                  <span class="badge new-message">
+                    <%= channel.id %></span> &nbsp;&nbsp;
+                  <% end %>
+                <% end %>
+              <% end %>
+              <p><%= link_to('Blog', blogs_path, class: "btn btn-default") %>
+                <% current_user.channels.each do |channel| %>
+                  <% if channel.both? || channel.blog? %>
+                    <% if channel.icon.attached? %>
+                      <%= image_tag channel.icon.variant(resize: "25X25"), class: "img-circle" %>
+                    <% end %>
+                    <%= channel.title %>
+                    <% if channel.id.odd? %>
+                   <span class="badge">
+                     <%= channel.id %></span> &nbsp;&nbsp;
+                    <% else %>
+                  <span class="badge new-message">
+                    <%= channel.id %></span> &nbsp;&nbsp;
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </p>
+              </div>
+
+          <!--Settings right side-->
+          <div class="col-sm-2 sidenav">
+            <div class="dropdown">
+              <br>
+              <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                <h3><span class="glyphicon glyphicon-cog"></span>&nbsp;Settings:
+                  <span class="caret"></span></h3>
+              </button>
+              <ul class="dropdown-menu">
+                <% if current_user.admin? || current_user.superuser? %>
+                  <li><a href="#"><%= link_to('Company', companies_path, class: "button") %></a></li>
+                <% end %>
+                <li><a href="#"><%= link_to('Group', groups_path, class: "button") %></a></li>
+                <% if current_user.superuser? %>
+                  <li><a href="#"><%= link_to('Edit Users', users_path, class: "button") %></a></li>
+                  <li><a href="#"><%= link_to('Copyrigth', copyrigths_path, class: "button") %></a></li>
+                <% end %>
+                <li><a href="#"><%= link_to('Channel', channels_path, class: "button") %></a></li>
+                <% if current_user.admin? %>
+                  <li><a href="#"><%= link_to('Admin', admins_path, class: "button") %></a></li>
+                <% end %>
+                <li><a href="#"><%= link_to('Faq', faqs_path, class: "button") %></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <!--setup for messages like error-->
+  <% if flash[:notice] %>
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash[:notice] %>
+    </div>
+  <% elsif flash[:error] %>
+    <div class="alert alert-warning">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash[:error] %>
+    </div>
+  <% elsif flash[:alert] %>
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+<% end %>
+
+<% if user_signed_in? %>
+  <!--content-->
+  <div class="container-fluid">
+    <div class="row main-content">
+      <div class="col-xs-10">
+        <div class="jumbotron jumbo-content">
+          <%= yield %>
+        </div>
+      </div>
+
+      <!--sidenav news-->
+      <div class="col-xs-2 sidenav" id="rightbar">
+        <h4>
+          <small>Groups:</small>
+        </h4>
+        <div class="list-group">
+          <!--the if statemants are just for showing and testing, the fullfill no use-->
+          <% current_user.groups.each do |group| %>
+            <div>
+              <a class="list-group-item">
+                <% if group.image.attached? %>
+                  <%= image_tag group.image.variant(resize: "25X25"), class: "img-circle", style: "margin-left: 0px;float:left" %><%= group.title %>
+
+                  <% if group.id.odd? %>
+                   <span class="badge">
+                     <%= group.id %></span>
+                  <% else %>
+                  <span class="badge new-message">
+                    <%= group.id %></span>
+                  <% end %>
+                  </a>
+                <% end %>
+                </div>
+
+          <% end %>
+        </div>
+
+        <h4>
+          <small>Messages:</small>
+        </h4>
+        <div class="list-group">
+          <!--the if statemants are just for showing and testing, the fullfill no use-->
+          <% User.all.each do |user| %>
+            <div>
+              <a class="list-group-item">
+                <% if user.avatar.attached? %>
+                  <%= image_tag user.avatar.variant(resize: "25X25"), class: "img-circle", style: "margin-left: 0px;float:left" %><%= user.name %>
+
+                  <% if user.id.odd? %>
+                   <span class="badge">
+                     <%= user.id %></span>
+                  <% else %>
+                  <span class="badge new-message">
+                    <%= user.id %></span>
+                  <% end %>
+                  </a>
+                <% end %>
+                </div>
+
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-<%end%>
-<%unless current_user.nil?%>
-    <strong>Current User:</strong>
-    <p><%= current_user.name %></p>
+<% else %>
+  <%= yield %>
+<% end %>
 
+<!--Footerclass-->
+<footer class="container-fluid text-center">
+  <%= link_to('Dataprotection', dataprotections_path, class: "button") %>   ||
+  <%= link_to('Impressum', impressums_path, class: "button") %>
 
-  <p> <%=link_to('Chat', chats_path, class:"button")%>
-    <% @channels.each do |channel| %>
-      <%if channel.both? || channel.chat? %>
-       <%= channel.title %>
-      <% end %>
+  <p>
+    ©
+    <% @copyrigths.each do |content| %>
+      <%= content.copy %>
     <% end %></p>
-  <p> <%=link_to('Blog', blogs_path, class:"button")%>
-    <% @channels.each do |channel| %>
-      <%if channel.both? || channel.blog? %>
-       <%= channel.title %>
-      <% end %>
-    <% end %></p>
-  <%end%>
-  <body>
-    <%= yield %>
-  </body>
+  </p>
+</footer>
+
+</body>
+
 </html>

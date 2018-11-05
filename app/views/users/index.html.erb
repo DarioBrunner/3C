@@ -1,18 +1,19 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Users</h1>
-
-<table>
-  <thead>
+<div class="jumbotron jumbo-main-content">
+  <h1>Users</h1>
+  <br>
+  <table class="table">
+    <thead>
     <tr>
       <th>Company</th>
       <th>Name</th>
       <th>Email</th>
+      <th>Picture</th>
       <th colspan="3"></th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
+    <tbody>
     <% @users.each do |user| %>
       <tr>
         <td><% user.companies.each do |company|  %>
@@ -21,13 +22,16 @@
             </td>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+        <% if user.avatar.attached? %>
+          <p><%= image_tag user.avatar.variant(resize: "45x45"), class: "img-circle" %></p>
+        <% end %></td>
+        <td><%= link_to 'Show', user, class: 'btn btn-default' %></td>
+        <td><%= link_to 'Edit', edit_user_path(user), class: 'btn btn-default' %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-default' %></td>
       </tr>
     <% end %>
-  </tbody>
-</table>
-<br>
-
-<%# link_to 'New User', new_user_path %>
+    </tbody>
+  </table>
+  <br>
+</div>

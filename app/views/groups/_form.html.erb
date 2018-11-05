@@ -1,44 +1,49 @@
 <%= form_with(model: group, local: true) do |form| %>
-  <% if group.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
+  <div class="container">
 
-      <ul>
-      <% group.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <% if group.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-  <strong>Channels:</strong>
-  <div class="field">
-  <% Channel.all.each do |channel| %>
-    <%= check_box_tag "group[channel_ids][]", channel.id, @group.channel_ids.include?(channel.id) %>
-    <%= channel.title %>
-    <br />
-  <% end %>
-  </div>
-  <strong>Users:</strong>
-  <div class="field">
-    <% User.all.each do |user| %>
-      <%= check_box_tag "group[user_ids][]", user.id, @group.user_ids.include?(user.id) %>
-      <%= user.name %>
-      <br />
+        <ul>
+          <% group.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
-  </div>
+    <div class="field form-group">
+      <%= form.label :image %><%= form.submit 'Save Group', class: 'btn btn-primary pull-right' %>
+      <% if group.image.attached? %>
+        <p><%= image_tag @group.image.variant(resize: "175x175") %></p>
+      <% end %>
+      <%= form.file_field :image %>
+    </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <div class="field form-group">
+      <%= form.label :title %>
+      <%= form.text_field :title, class: 'form-control', placeholder: 'Title' %>
+    </div>
 
+    <div class="field form-group">
+      <%= form.label :description %>
+      <%= form.text_area :description, class: 'form-control', placeholder: 'Description' %>
+    </div>
+
+
+    <div class="field form-group">
+      <strong>Channels:</strong>
+      <% Channel.all.each do |channel| %>
+        <%= check_box_tag "group[channel_ids][]", channel.id, @group.channel_ids.include?(channel.id) %>
+        <%= channel.title %>&nbsp&nbsp&nbsp&nbsp
+      <% end %>
+    </div>
+    <div class="field form-group">
+      <strong>Users:</strong>
+      <% User.all.each do |user| %>
+        <%= check_box_tag "group[user_ids][]", user.id, @group.user_ids.include?(user.id) %>
+        <%= user.name %>&nbsp&nbsp&nbsp&nbsp
+      <% end %>
+    </div>
 <% end %>
+</div>

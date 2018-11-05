@@ -1,9 +1,7 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @dataprotection.content %>
-</p>
-
-<%= link_to 'Edit', edit_dataprotection_path(@dataprotection) %> |
-<%= link_to 'Back', dataprotections_path %>
+  <p id="notice"><%= notice %></p>
+  <div class="jumbotron jumbo-main-content">
+    <pre><%= @dataprotection.content%></pre>
+  </p>
+  <%= link_to 'Edit', edit_dataprotection_path(@dataprotection), class: 'btn btn-primary' %>
+  <%= link_to 'Back', dataprotections_path, class: 'btn btn-default' %>
+</div>

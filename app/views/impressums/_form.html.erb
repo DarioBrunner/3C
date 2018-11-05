@@ -1,22 +1,24 @@
 <%= form_with(model: impressum, local: true) do |form| %>
-  <% if impressum.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(impressum.errors.count, "error") %> prohibited this impressum from being saved:</h2>
+  <div class="container">
+    <% if impressum.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(impressum.errors.count, "error") %> prohibited this impressum from being saved:</h2>
 
-      <ul>
-      <% impressum.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+          <% impressum.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field form-group">
+      <%= form.label :context %><br>
+      <%= form.text_area :context, class: 'form-control' , placeholder: 'Context'%>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :context %>
-    <%= form.text_area :context %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <div class="actions form-group">
+      <%= form.submit'Save Impressum', class: 'btn btn-primary' %>
+    </div>
 <% end %>
+</div>

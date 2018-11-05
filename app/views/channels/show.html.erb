@@ -1,24 +1,30 @@
 <p id="notice"><%= notice %></p>
+<div class="jumbotron jumbo-main-content">
 
-<p>
-  <strong>Typ:</strong>
-  <%= @channel.typ.humanize %>
-</p>
+  <br>
+  <% if @channel.icon.attached? %>
+    <p><%= image_tag @channel.icon.variant(resize: "175X175")%></p>
+  <% end %>
+  <p>
+    <strong>Typ:</strong>
+    <%= @channel.typ.humanize %>
+  </p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @channel.title %>
-</p>
+  <p>
+    <strong>Title:</strong>
+    <%= @channel.title %>
+  </p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @channel.status.humanize %>
-</p>
+  <p>
+    <strong>Status:</strong>
+    <%= @channel.status %>
+  </p>
 
-<p>
-  <strong>Url:</strong>
-  <%= @channel.url %>
-</p>
+  <p>
+    <strong>Url:</strong>
+    <%= @channel.url %>
+  </p>
 
-<%= link_to 'Edit', edit_channel_path(@channel) %> |
-<%= link_to 'Back', channels_path %>
+  <%= link_to 'Edit', edit_channel_path(@channel), class: 'btn btn-primary' %>
+  <%= link_to 'Back', channels_path, class: 'btn btn-default' %>
+</div>

@@ -1,33 +1,58 @@
 <p id="notice"><%= notice %></p>
+<div class="jumbotron jumbo-main-content">
 
-<h1>Groups</h1>
-
-<table>
-  <thead>
+  <h1>Groups</h1>
+  <br>
+  <table class="table">
+    <thead>
     <tr>
       <th>Title</th>
       <th>Description</th>
+      <th>Picture</th>
       <th colspan="3"></th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
+    <tbody>
     <% @groups.each do |group| %>
       <tr>
         <td><%= group.title %></td>
         <td><%= group.description %></td>
-        <td><%= link_to 'Show', group %></td>
-        <%if !current_user.nil? %>
-        <td><%= link_to 'Edit', edit_group_path(group) %></td>
-        <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <% if group.image.attached? %>
+            <p><%= image_tag group.image.variant(resize: "20x20"),  class: "img-circle" %></p>
+          <% end %></td>
+        <td><%= link_to 'Show', group, class: 'btn btn-default' %></td>
+        <% if current_user.admin? %>
+          <td><%= link_to 'Edit', edit_group_path(group), class: 'btn btn-default' %></td>
+          <td><%= link_to 'Destroy', group, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-default' %></td>
+          </tr>
+          <tr>
+            <td><Strong>Users</Strong></td>
+            <td>
+              <% group.users.each do |user| %>
+                <%= user.name %>&nbsp
+              <% end %>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         <% end %>
-      </tr>
+        </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 
-<br>
+  <br>
 
+<<<<<<< HEAD
 <%if !current_user.nil? %>
 <%= link_to 'New Group', new_group_path %>
 <% end %>
+=======
+  <% if current_user.admin? %>
+    <%= link_to 'Add Group', new_group_path, class: 'btn btn-primary' %>
+  <% end %>
+</div>
+>>>>>>> bootstrap

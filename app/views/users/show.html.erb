@@ -1,22 +1,24 @@
 <p id="notice"><%= notice %></p>
+<div class="jumbotron jumbo-main-content">
+  <br>
+  <p>
+    <strong>Company:</strong>
+    <%= @user.company.companyname %>
+  </p>
 
-<p>
-  <strong>Company:</strong>
-  <%= @user.company.companyname %>
-</p>
+  <p>
+    <strong>Name:</strong>
+    <%= @user.name %>
+  </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+  <p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
 
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+  <%= link_to 'Edit', edit_user_path(@user), class:'btn btn-primary' %>
+  <%= link_to 'Back', users_path, class: 'btn btn-default'%>
+</div>
 
 

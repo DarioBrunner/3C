@@ -1,52 +1,48 @@
-<%= form_with(model: company, local: true) do |form| %>
+<%= form_with(model: company) do |form| %>
   <% if company.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(company.errors.count, "error") %> prohibited this company from being saved:</h2>
 
       <ul>
-      <% company.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% company.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
+  <div class="field form-group">
+    <%= form.label :icon %><%= form.submit 'Save Group', class: 'btn btn-primary pull-right' %>
+    <% if company.icon.attached? %>
+      <p><%= image_tag @company.icon.variant(resize: "175x175") %></p>
+    <% end %>
+    <%= form.file_field :icon %>
+  </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :companyname %>
-    <%= form.text_field :companyname %>
+    <%= form.text_field :companyname, class: 'form-control', placeholder: 'Companyname' %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :adress %>
-    <%= form.text_field :adress %>
+    <%= form.text_field :adress, class: 'form-control', placeholder: 'Adress' %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :passwort %>
-    <%= form.text_field :passwort %>
+    <%= form.text_field :passwort, class: 'form-control', placeholder: 'Password' %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label "Available Channels" %>
-    <%= form.text_field :channelnumber %>
+    <%= form.text_field :channelnumber, class: 'form-control', placeholder: 'Number of Channels' %>
   </div>
   <table>
-    <tr>
-      <th>User</th>
-      <th>Admin</th>
-    </tr>
-      <div class="field">
-      <% User.all.each do |admin| %>
-          <tr>
-          <td><%= admin.name %></td>
-          <td><%= check_box_tag "company[user_ids][]", admin.id, @company.user_ids.include?(admin.id) %></td>
-          <br />
-        </tr>
-        <% end %>
-      </div>
     </tr>
   </table>
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions form-group">
+    <% if current_user.superuser? %>
+      <%= form.submit 'Save Company', class: 'btn btn-primary' %>
+    <% end %>
   </div>
 <% end %>

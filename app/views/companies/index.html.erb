@@ -1,34 +1,39 @@
 <p id="notice"><%= notice %></p>
+<div class="jumbotron jumbo-main-content">
 
-<h1>Companies</h1>
-
-<table>
-  <thead>
+  <h1>Companies</h1>
+  <br>
+  <table class="table">
+    <thead>
     <tr>
       <th>Companyname</th>
-      <th>Adress</th>
       <th>Passwort</th>
       <th>Available Channels:</th>
+      <th>Picture</th>
       <th colspan="3"></th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
+    <tbody>
     <% @companies.each do |company| %>
       <tr>
         <td><%= company.companyname %></td>
         <td><%= company.adress %></td>
-        <td><%= company.passwort %></td>
         <td><%= company.channelnumber %></td>
-        <td><%= link_to 'Show', company %></td>
-        <td><%= link_to 'Edit', edit_company_path(company) %></td>
-        <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <% if company.icon.attached? %>
+            <p><%= image_tag company.icon.variant(resize: "50x50"),  class: "img-circle" %></p>
+          <% end %></td>
+        <td><%= link_to 'Show', company ,class: 'btn btn-default'%></td>
+        <td><%= link_to 'Edit', edit_company_path(company),class: 'btn btn-default' %></td>
+        <td><%= link_to 'Destroy', company, method: :delete, data: {confirm: 'Are you sure?'},class: 'btn btn-default' %></td>
       </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 
-<br>
-<%if current_user.superuser?%>
-<%= link_to 'New Company', new_company_path %>
-<%end%>
+  <br>
+  <% if current_user.superuser? %>
+    <%= link_to 'Add Company', new_company_path, class: 'btn btn-primary' %>
+  <% end %>
+</div>

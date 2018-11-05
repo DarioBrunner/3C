@@ -1,20 +1,27 @@
 <p id="notice"><%= notice %></p>
+<div class="jumbotron jumbo-main-content">
 
-<h1>Impressum</h1>
+  <h1>Impressum</h1>
+  <br>
 
 
 
 
+  <% @impressums.each do |impressum| %>
+    <% if current_user.superuser? %>
+      <p><%= link_to 'Show', impressum %> <%= link_to 'Edit', edit_impressum_path(impressum) %>
+        <%= link_to 'Destroy', impressum, method: :delete, data: {confirm: 'Are you sure?'} %></p>
 
-    <% @impressums.each do |impressum| %>
-  <%if current_user.superuser?%>
-    <p><%= link_to 'Show', impressum %> <%= link_to 'Edit', edit_impressum_path(impressum) %>
-      <%= link_to 'Destroy', impressum, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-
-  <%end%>
-        <pre><%= impressum.context %></pre>
     <% end %>
-<br>
-<%if current_user.superuser?%>
-<%= link_to 'New Impressum', new_impressum_path %>
-<%end%>
+    <pre><%= impressum.context %></pre>
+
+
+  <% end %>
+
+
+  <br>
+  <% if current_user.superuser? %>
+    <%= link_to 'Add Impressum', new_impressum_path, class: 'btn btn-primary' %>
+  <% end %>
+</div>
+

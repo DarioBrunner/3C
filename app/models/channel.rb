@@ -5,4 +5,5 @@ class Channel < ApplicationRecord
   has_many :groups, :through => :channel_to_groups
   has_many :user_to_channels
   has_many :users, :through => :user_to_channels
+  has_one_attached :icon
 end
