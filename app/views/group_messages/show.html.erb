@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+<div class="jumbotron jumbo-main-content">
+  <p>
+    <strong>Group:</strong>
+    <%= @group_message.group.title %>
+  </p>
+
+  <p>
+    <strong>Message:</strong>
+   <pre><%= @group_message.context%></pre>
+  </p>
+
+
+  <%= link_to 'Edit', edit_group_message_path(@group_message), class: 'btn btn-default' %>
+  <%= link_to 'Back', group_messages_path, class: 'btn btn-primary' %>
+</div>

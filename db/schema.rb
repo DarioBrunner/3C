@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_26_100111) do
+ActiveRecord::Schema.define(version: 2018_11_07_022833) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -95,6 +95,34 @@ ActiveRecord::Schema.define(version: 2018_10_26_100111) do
     t.text "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "group_comments", force: :cascade do |t|
+    t.integer "group_message_id"
+    t.integer "user_id"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_message_id"], name: "index_group_comments_on_group_message_id"
+    t.index ["user_id"], name: "index_group_comments_on_user_id"
+  end
+
+  create_table "group_messages", force: :cascade do |t|
+    t.integer "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "context"
+    t.index ["group_id"], name: "index_group_messages_on_group_id"
+  end
+
+  create_table "group_user_messages", force: :cascade do |t|
+    t.integer "group_id"
+    t.integer "user_id"
+    t.integer "last_message_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_group_user_messages_on_group_id"
+    t.index ["user_id"], name: "index_group_user_messages_on_user_id"
   end
 
   create_table "groups", force: :cascade do |t|

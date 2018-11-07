@@ -14,6 +14,10 @@ class Group < ApplicationRecord
  has_many :channels, :through => :channel_to_groups
  has_many :user_to_groups
  has_many :users, :through => :user_to_groups
+
+ has_many :group_messages
+ has_many :group_user_messages
+
  has_one_attached :image
 
 end

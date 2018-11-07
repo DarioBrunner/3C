@@ -11,7 +11,7 @@
     </div>
   <% end %>
   <div class="field form-group">
-    <%= form.label :icon %><%= form.submit 'Save Group', class: 'btn btn-primary pull-right' %>
+    <%= form.label :icon %>
     <% if company.icon.attached? %>
       <p><%= image_tag @company.icon.variant(resize: "175x175") %></p>
     <% end %>
@@ -42,7 +42,7 @@
   </table>
   <div class="actions form-group">
     <% if current_user.superuser? %>
-      <%= form.submit 'Save Company', class: 'btn btn-primary' %>
+      <%= form.submit 'Save Company', class: 'btn btn-success' %>
     <% end %>
   </div>
 <% end %>

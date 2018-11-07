@@ -14,7 +14,7 @@
     <% end %>
 
     <div class="field form-group">
-      <%= form.label :icon %><%= form.submit 'Save Channel', class: 'btn btn-primary pull-right' %>
+      <%= form.label :icon %>
       <% if channel.icon.attached? %>
         <p><%= image_tag @channel.icon.variant(resize: "175x175") %></p>
       <% end %>
@@ -44,5 +44,8 @@
       <%= form.label :login %>
       <%= form.text_field :login, class: 'form-control', placeholder: 'Login' %>
     </div>
+    <%= form.submit 'Save Channel', class: 'btn btn-success' %>
+
 <% end %>
 </div>
+
