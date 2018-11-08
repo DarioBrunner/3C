@@ -11,7 +11,7 @@
     </div>
   <% end %>
   <div class="field form-group">
-    <%= form.label :icon %>
+    <%= form.label :icon %>  <%= form.submit 'Save Group', class: 'btn btn-success pull-right' %>
     <% if company.icon.attached? %>
       <p><%= image_tag @company.icon.variant(resize: "175x175") %></p>
     <% end %>

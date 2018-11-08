@@ -6,7 +6,7 @@
     <%= devise_error_messages! %>
 
     <div class="field form-group">
-      <%= f.label :avatar %><%= f.submit 'Save User', class: 'btn btn-primary pull-right' %>
+      <%= f.label :avatar %>
       <% if current_user.avatar.attached? %>
         <p><%= image_tag @user.avatar.variant(resize: "175x175") %></p>
       <% end %>
@@ -44,7 +44,7 @@
       <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br/>
       <%= f.password_field :current_password, autocomplete: 'current-password', class: 'form-control', placeholder: 'Current Password' %>
     </div>
-
+    <%= f.submit 'Save User', class: 'btn btn-success' %>
   <% end %>
 
   <h3>Delete my account</h3>
