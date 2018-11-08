@@ -1,5 +1,5 @@
-<div class="container">
 
+<div class="container">
 <%= form_with(model: copyrigth, local: true) do |form| %>
   <% if copyrigth.errors.any? %>
     <div id="error_explanation">
@@ -15,7 +15,7 @@
 
   <div class="field form-group">
     <%= form.label :copy %>
-    <%= form.text_field :copy , class: 'form-control' , placeholder: 'Copyright Text'%>
+    <%= form.text_area :copy , class: 'form-control' , placeholder: 'Copyright Text', size: "30x4"%>
   </div>
 
   <div class="actions form-group">

@@ -13,7 +13,7 @@
       </div>
     <% end %>
     <div class="field form-group">
-      <%= form.label :image %><%= form.submit 'Save Group', class: 'btn btn-primary pull-right' %>
+      <%= form.label :image %>
       <% if group.image.attached? %>
         <p><%= image_tag @group.image.variant(resize: "175x175") %></p>
       <% end %>
@@ -27,7 +27,7 @@
 
     <div class="field form-group">
       <%= form.label :description %>
-      <%= form.text_area :description, class: 'form-control', placeholder: 'Description' %>
+      <%= form.text_area :description, class: 'form-control', placeholder: 'Description', size: "30x5" %>
     </div>
 
 
@@ -45,5 +45,6 @@
         <%= user.name %>&nbsp&nbsp&nbsp&nbsp
       <% end %>
     </div>
+    <%= form.submit 'Save Group', class: 'btn btn-success' %>
 <% end %>
 </div>

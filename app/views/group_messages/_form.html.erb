@@ -1,0 +1,35 @@
+<%= form_with(model: group_message, local: true) do |form| %>
+  <% if group_message.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(group_message.errors.count, "error") %> prohibited this group_message from being saved:</h2>
+
+      <ul>
+      <% group_message.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= form.label :group_id %>
+    <%= form.collection_select :group_id, current_user.groups.order(:title), :id, :title, prompt: true %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :context %>
+    <%= form.text_area :context, class: 'form-control', placeholder: 'Message', size: "30x8" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :comment %>
+    <%= form.text_area :comment, class: 'form-control', placeholder: 'Message', size: "30x8" %>
+  </div>
+
+
+
+
+  <div class="actions form-group">
+    <%= form.submit class: 'btn btn-primary'%>
+  </div>
+<% end %>
