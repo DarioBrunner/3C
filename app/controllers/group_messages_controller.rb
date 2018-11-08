@@ -25,10 +25,12 @@ class GroupMessagesController < ApplicationController
   # POST /group_messages.json
   def create
     @group_message = GroupMessage.new(group_message_params)
+    @group_message.creator_id = current_user.id
 
     respond_to do |format|
-      if @group_message.save
 
+
+      if @group_message.save
         @group_message.group.users.each do |user|
           user_message = user.group_user_messages.new
           user_message.group_id=@group_message.group_id
@@ -47,6 +49,7 @@ class GroupMessagesController < ApplicationController
   # PATCH/PUT /group_messages/1
   # PATCH/PUT /group_messages/1.json
   def update
+    @group_message.creator_id = current_user.id
     respond_to do |format|
       if @group_message.update(group_message_params)
         format.html { redirect_to @group_message, notice: 'Group message was successfully updated.' }

@@ -13,13 +13,21 @@
 
   <div class="field form-group">
     <%= form.label :group_id %>
-    <%= form.collection_select :group_id, Group.order(:title), :id, :title, prompt: true %>
+    <%= form.collection_select :group_id, current_user.groups.order(:title), :id, :title, prompt: true %>
   </div>
 
   <div class="field form-group">
     <%= form.label :context %>
     <%= form.text_area :context, class: 'form-control', placeholder: 'Message', size: "30x8" %>
   </div>
+
+  <div class="field form-group">
+    <%= form.label :comment %>
+    <%= form.text_area :comment, class: 'form-control', placeholder: 'Message', size: "30x8" %>
+  </div>
+
+
+
 
   <div class="actions form-group">
     <%= form.submit class: 'btn btn-primary'%>
