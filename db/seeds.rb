@@ -123,14 +123,18 @@ GroupComment.find_or_create_by({:group_message_id => gm1.id, :user_id => user_su
 GroupComment.find_or_create_by({:group_message_id => gm1.id, :user_id => user_super.id, :comment =>'Bin ich nicht der Meinung.'})
 GroupComment.find_or_create_by({:group_message_id => gm3.id, :user_id => user_super.id, :comment =>'Jup wird erledigt.'})
 GroupComment.find_or_create_by({:group_message_id => gm1.id, :user_id => user_super.id, :comment =>'Das ist ja total Tibeltitipptop.'})
-GroupComment.find_or_create_by({:group_message_id => gm3.id, :user_id => user_wokeecat.id, :comment =>'Jup wird erledigt.'})
+GroupComment.find_or_create_by({:group_message_id => gm9.id, :user_id => user_wokeecat.id, :comment =>'Jup wird erledigt.'})
 GroupComment.find_or_create_by({:group_message_id => gm2.id, :user_id => user_wokeecat.id, :comment =>'Bin ich nicht der Meinung.'})
 GroupComment.find_or_create_by({:group_message_id => gm2.id, :user_id => user2.id, :comment =>'Hm.... ja ok.'})
 GroupComment.find_or_create_by({:group_message_id => gm4.id, :user_id => user_wokeecat.id, :comment =>'Hm.... ja ok.'})
 GroupComment.find_or_create_by({:group_message_id => gm2.id, :user_id => user2.id, :comment =>'Jup wird erledigt.'})
 GroupComment.find_or_create_by({:group_message_id => gm5.id, :user_id => user2.id, :comment =>'Hm.... ja ok.'})
 GroupComment.find_or_create_by({:group_message_id => gm7.id, :user_id => user1.id, :comment =>'Wunderbar'})
-GroupComment.find_or_create_by({:group_message_id => gm6.id, :user_id => user1.id, :comment =>'Wunderbar'})
+GroupComment.find_or_create_by({:group_message_id => gm8.id, :user_id => user_admin.id, :comment =>'Der Admin hat auch noch ein Wort.'})
+GroupComment.find_or_create_by({:group_message_id => gm2.id, :user_id => user_admin.id, :comment =>'Der Admin hat auch noch ein Wort.'})
+GroupComment.find_or_create_by({:group_message_id => gm8.id, :user_id => user_admin.id, :comment =>'Der Admin hat auch noch ein Wort.'})
+GroupComment.find_or_create_by({:group_message_id => gm7.id, :user_id => user_admin.id, :comment =>'Der Admin hat auch noch ein Wort.'})
+GroupComment.find_or_create_by({:group_message_id => gm10.id, :user_id => user_admin.id, :comment =>'Der Admin hat auch noch ein Wort.'})
 
 
 
