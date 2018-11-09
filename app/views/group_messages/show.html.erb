@@ -7,9 +7,16 @@
 
   <p>
     <strong>Message:</strong>
-   <pre><%= @group_message.context%></pre>
+  <pre><%= @group_message.context %></pre>
   </p>
 
+  <p>
+    <strong>Comments:</strong>
+    <%@group_message.group_comments.each do |comment|%>
+    <pre><%= comment.comment %>
+      <br><br><small>Written by: <%=comment.user.name%></small></pre>
+  <% end %>
+  </p>
 
   <%= link_to 'Edit', edit_group_message_path(@group_message), class: 'btn btn-default' %>
   <%= link_to 'Back', group_messages_path, class: 'btn btn-primary' %>

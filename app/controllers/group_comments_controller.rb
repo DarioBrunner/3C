@@ -25,6 +25,7 @@ class GroupCommentsController < ApplicationController
   # POST /group_comments.json
   def create
     @group_comment = GroupComment.new(group_comment_params)
+    @group_comment.user_id=current_user.id
 
     respond_to do |format|
       if @group_comment.save

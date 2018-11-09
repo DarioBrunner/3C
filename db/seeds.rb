@@ -12,10 +12,29 @@
 
 default_company = Company.find_or_create_by({:companyname => "Proofpoint", :adress => "Steckengaße", :passwort => "false"})
 
-trainerall = Group.find_or_create_by({:title => "Trainer.all"})
-yoga =   Group.find_or_create_by({:title => "Yoga"})
-stepper =  Group.find_or_create_by({:title => "Stepper"})
-condition =  Group.find_or_create_by({:title => "Condition"})
+description_trainer= %q(Hier in dieser Gruppe soll alles besprochen werden was die Trainer dieses Studios angeht.
+
+Usw und sofort)
+description_yoga= %q(Hier in dieser Gruppe soll alles besprochen werden was die Yogies dieses Studios angeht.
+
+Bitte nur das nöttigste eintragen.
+)
+description_stepper= %q(Hier in dieser Gruppe soll alles besprochen werden was die Stepper dieses Studios angeht.
+
+bitte kein Spam)
+description_condition= %q(Hier in dieser Gruppe soll alles besprochen werden was die Trainer dieses Studios angeht.
+
+
+Asas
+asdasdasda
+
+sad
+)
+
+trainerall = Group.find_or_create_by({:title => "Trainer.all", :description => description_trainer})
+yoga =   Group.find_or_create_by({:title => "Yoga", :description => description_yoga})
+stepper =  Group.find_or_create_by({:title => "Stepper", :description => description_stepper})
+condition =  Group.find_or_create_by({:title => "Condition", :description => description_condition})
 
 user_super = User.find_or_create_by(:email => 'super@super.com', :company_id => default_company.id, :name => "super", :admin => "false", :superuser => "true") do |user|
   user.password = "123"
@@ -48,6 +67,7 @@ Faq.find_or_create_by({:question => "Who is, a this time", :answer => "hats easy
 Faq.find_or_create_by({:question => "I don`t like to do so is it pos..", :answer => "Clear yes juet talk to .... fist"})
 Faq.find_or_create_by({:question => "what is the answer to everything?", :answer => "42"})
 Faq.find_or_create_by({:question => "Just another question", :answer => "Answer"})
+
 
 Channel.find_or_create_by({:title => "Facebook", :status => "both", :url => "B@to.it", :login => "14256", :typ => "facebook"})
 Channel.find_or_create_by({:title => "Email", :status => "chat", :url => "Mail@to.it", :login => "14256", :typ => "email"})

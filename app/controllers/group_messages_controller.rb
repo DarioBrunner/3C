@@ -25,7 +25,7 @@ class GroupMessagesController < ApplicationController
   # POST /group_messages.json
   def create
     @group_message = GroupMessage.new(group_message_params)
-
+    @group_message.creator_id = current_user.id
     respond_to do |format|
       if @group_message.save
 

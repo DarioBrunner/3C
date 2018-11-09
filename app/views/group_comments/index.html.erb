@@ -18,12 +18,14 @@
     <% @group_comments.each do |group_comment| %>
       <tr>
         <td><%= group_comment.group_message.group.title %> &nbsp&nbsp</td>
-        <td><%= group_comment.user_id %> &nbsp&nbsp</td>
-        <td><%= group_comment.comment %></td>
+        <td><%= group_comment.creator.name %> &nbsp&nbsp</td>
+        <td><pre><%= group_comment.comment %></pre></td>
         <td><%= link_to 'Show', group_comment, class: 'btn btn-default' %></td>
         <% if current_user.id == group_comment.user.id %>
           <td><%= link_to 'Edit', edit_group_comment_path(group_comment), class: 'btn btn-default' %></td>
           <td><%= link_to 'Destroy', group_comment, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-default' %></td>
+        <%else%>
+        <td></td><td></td>
         <% end %>
       </tr>
     <% end %>
