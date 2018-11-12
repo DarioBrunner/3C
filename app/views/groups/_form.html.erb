@@ -11,12 +11,13 @@
         </ul>
       </div>
     <% end %>
+
     <div class="field form-group">
       <%= form.label :image %>
       <% if group.image.attached? %>
         <p><%= image_tag @group.image.variant(resize: "175x175") %></p>
       <% end %>
-      <%= form.file_field :image %>
+      <%= form.file_field :image, direct_upload: true, class: 'form-control'%>
     </div>
 
     <div class="field form-group">

@@ -10,12 +10,13 @@
       </ul>
     </div>
   <% end %>
+
   <div class="field form-group">
     <%= form.label :icon %>  <%= form.submit 'Save Company', class: 'btn btn-success pull-right' %>
     <% if company.icon.attached? %>
       <p><%= image_tag @company.icon.variant(resize: "175x175") %></p>
     <% end %>
-    <%= form.file_field :icon %>
+    <%= form.file_field :icon, class: 'form-control',  %>
   </div>
 
   <div class="field form-group">

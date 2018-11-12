@@ -18,7 +18,7 @@
       <% if channel.icon.attached? %>
         <p><%= image_tag @channel.icon.variant(resize: "175x175") %></p>
       <% end %>
-      <%= form.file_field :icon %>
+      <%= form.file_field :icon, class: 'form-control', %>
     </div>
 
     <div class="field form-group">

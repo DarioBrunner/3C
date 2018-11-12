@@ -10,7 +10,7 @@
       <% if current_user.avatar.attached? %>
         <p><%= image_tag @user.avatar.variant(resize: "175x175") %></p>
       <% end %>
-      <%= f.file_field :avatar %>
+      <%= f.file_field :avatar, class: 'form-control',  %>
     </div>
 
     <div class="field form-group">

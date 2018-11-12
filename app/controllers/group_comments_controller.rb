@@ -25,7 +25,7 @@ class GroupCommentsController < ApplicationController
   # POST /group_comments.json
   def create
     @group_comment = GroupComment.new(group_comment_params)
-    @group_comment.user_id=current_user.id
+    @group_comment.user_id = current_user.id
 
     respond_to do |format|
       if @group_comment.save
@@ -57,7 +57,7 @@ class GroupCommentsController < ApplicationController
   def destroy
     @group_comment.destroy
     respond_to do |format|
-      format.html { redirect_to group_comments_url, notice: 'Group comment was successfully destroyed.' }
+      format.html { redirect_to group_messages_path, notice: 'Group comment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

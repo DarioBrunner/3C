@@ -8,6 +8,7 @@ gem 'rails-ujs', '~> 0.1.0'
 gem 'devise'
 gem "mini_magick"
 gem 'annotate'
+
 #gem 'bootstrap', '~> 4.1.3'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'aws-sdk-s3', require: false
@@ -68,3 +69,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+

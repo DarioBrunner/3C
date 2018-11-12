@@ -32,25 +32,41 @@
             </tr>
           <% end %>
           <!---dropdown comments----------->
-          <% if group_message.group_comments.count != 0 %>
-            <tr>
-              <td><strong>Comments:</strong></td>
-              <td>
+
+          <tr>
+            <td><strong>Comments:</strong></td>
+            <td>
+              <% if group_message.group_comments.count != 0 %>
                 <a href="#<%= group_message.id %>" class="btn btn-default btn-block" data-toggle="collapse">
                   <span class="badge new-message"><%= group_message.group_comments.count %></span>
                   Comments&nbsp;&nbsp;<span class="caret"></span></a>
                 <div id="<%= group_message.id %>" class="collapse">
                   <!---all comments------------->
-                  <%group_message.group_comments.each do |comment|%>
-                  <pre><%=comment.comment %>
-                    <br><small>Written by: <%=comment.user.name%></small></pre>
-                    <%end%>
+                  <% group_message.group_comments.each do |comment| %>
+                    <% if current_user.id == comment.user_id %>
+                  <pre><%= link_to 'Edit', edit_group_comment_path(comment) %> <%= link_to 'Destroy', comment, method: :delete, data: {confirm: 'Are you sure?'} %>
+                    <br><%= comment.comment %>
+                    <br><small>Written by: <%= comment.user.name %></small>
+                  </pre>
+                    <% else %>
+                      <pre><br><%= comment.comment %>
+                        <br><small>Written by: <%= comment.user.name %></small>
+                      </pre>
+                    <% end %>
+                  <% end %>
                 </div>
-              </td>
-              <td><%= link_to 'Add', new_group_comment_path, class: 'btn btn-default' %></td>
-              <td></td><td></td><td></td>
-            </tr>
-          <% end %>
+              <% else %>
+                <a href="#<%= group_message.id %>" class="btn btn-default btn-block" data-toggle="collapse">
+                  <span class="badge">0</span>
+                  Comments&nbsp;&nbsp;</a>
+              <% end %>
+            </td>
+            <td><%= link_to 'Add', new_group_comment_path, class: 'btn btn-default' %></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+
         <% end %>
         </tr>
     <% end %>
