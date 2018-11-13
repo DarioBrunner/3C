@@ -48,14 +48,14 @@ yoga =   Group.find_or_create_by({:title => "Yoga", :description => description_
 stepper =  Group.find_or_create_by({:title => "Stepper", :description => description_stepper})
 condition =  Group.find_or_create_by({:title => "Condition", :description => description_condition})
 
-trainerall.image.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/index.jpg'),
-                        filename: 'index.jpg')
-yoga.image.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/outside-sport.jpg'),
-                  filename: 'outside-sport.jpg')
-stepper.image.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/sporty.jpg'),
-                     filename: 'sporty.jpg')
-condition.image.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/Bildschirmfoto 2018-10-29 um 02.52.54.png'),
-                       filename: 'Bildschirmfoto 2018-10-29 um 02.52.54.png')
+#trainerall.image.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/index.jpg'),
+#                        filename: 'index.jpg')
+#yoga.image.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/outside-sport.jpg'),
+#                  filename: 'outside-sport.jpg')
+#stepper.image.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/sporty.jpg'),
+#                    filename: 'sporty.jpg')
+#condition.image.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/Bildschirmfoto 2018-10-29 um 02.52.54.png'),
+#                       filename: 'Bildschirmfoto 2018-10-29 um 02.52.54.png')
 
 user_super = User.find_or_create_by(:email => 'super@super.com', :company_id => default_company.id, :name => "super", :admin => "false", :superuser => "true") do |user|
   user.password = "123"
@@ -244,21 +244,21 @@ UserToGroup.find_or_create_by({:group_id => condition.id, :user_id => user_wokee
 
 
 
-ChannelToGroups.find_or_create_by({:group_id => trainerall.id, channel_id => facebook.id , blogging => true, writing => true})
-ChannelToGroups.find_or_create_by({:group_id => trainerall.id, channel_id => email.id , blogging => true, writing => true})
-ChannelToGroups.find_or_create_by({:group_id => trainerall.id, channel_id => instagram.id , blogging => true, writing => true})
+ChannelToGroup.find_or_create_by({:group_id => trainerall.id, :channel_id => facebook.id , :blogging => true, :writing => true})
+ChannelToGroup.find_or_create_by({:group_id => trainerall.id, :channel_id => email.id , :blogging => true, :writing => true})
+ChannelToGroup.find_or_create_by({:group_id => trainerall.id, :channel_id => instagram.id , :blogging => true, :writing => true})
 
-ChannelToGroups.find_or_create_by({:group_id => yoga.id, channel_id => instagram.id, blogging => true, writing => true}})
-ChannelToGroups.find_or_create_by({:group_id => yoga.id, channel_id => facebook.id, blogging => true, writing => true}})
-ChannelToGroups.find_or_create_by({:group_id => yoga.id, channel_id => email.id, blogging => true, writing => true}})
+ChannelToGroup.find_or_create_by({:group_id => yoga.id, :channel_id => instagram.id, :blogging => true, :writing => true})
+ChannelToGroup.find_or_create_by({:group_id => yoga.id, :channel_id => facebook.id, :blogging => true, :writing => true})
+ChannelToGroup.find_or_create_by({:group_id => yoga.id, :channel_id => email.id, :blogging => true, :writing => true})
 
-ChannelToGroups.find_or_create_by({:group_id => stepper.id, channel_id => twitter.id, blogging => true, writing => true}})
-ChannelToGroups.find_or_create_by({:group_id => stepper.id, channel_id => slack.id, blogging => true, writing => true}})
-ChannelToGroups.find_or_create_by({:group_id => stepper.id, channel_id => facebook.id, blogging => true, writing => true}})
+ChannelToGroup.find_or_create_by({:group_id => stepper.id, :channel_id => twitter.id, :blogging => true, :writing => true})
+ChannelToGroup.find_or_create_by({:group_id => stepper.id, :channel_id => slack.id, :blogging => true, :writing => true})
+ChannelToGroup.find_or_create_by({:group_id => stepper.id, :channel_id => facebook.id, :blogging => true, :writing => true})
 
-ChannelToGroups.find_or_create_by({:group_id => condition.id channel_id => facebook.id, blogging => true, writing => true}})
-ChannelToGroups.find_or_create_by({:group_id => condition.id channel_id => email.id, blogging => true, writing => true}})
-ChannelToGroups.find_or_create_by({:group_id => condition.id channel_id => instagram.id, blogging => true, writing => true}})
+ChannelToGroup.find_or_create_by({:group_id => condition.id, :channel_id => facebook.id, :blogging => true, :writing => true})
+ChannelToGroup.find_or_create_by({:group_id => condition.id, :channel_id => email.id, :blogging => true, :writing => true})
+ChannelToGroup.find_or_create_by({:group_id => condition.id, :channel_id => instagram.id, :blogging => true, :writing => true})
 
 
 

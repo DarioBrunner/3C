@@ -140,7 +140,7 @@
       <!--sidenav news-->
       <div class="col-xs-2 sidenav" id="rightbar">
         <h4>
-          <small>Groups:</small>
+          <small>Group News:</small>
         </h4>
         <div class="list-group">
 
@@ -173,7 +173,7 @@
           <!--the if statemants are just for showing and testing, the fullfill no use-->
           <% User.all.each do |user| %>
             <div>
-              <a class="list-group-item">
+              <a class="list-group-item " onclick="redirect2()">
                 <% if user.avatar.attached? %>
                   <%= image_tag user.avatar.variant(resize: "25X25"), class: "img-circle", style: "margin-left: 0px;float:left" %>
                 <% end %>
@@ -209,7 +209,12 @@
 </footer>
 <script>
     function redirect() {
-        alert("Redirect is missing");
+        alert("Redirect() is missing");
+    }
+</script>
+<script>
+    function redirect2() {
+        alert("Redirect2() is missing");
     }
 </script>
 </body>
