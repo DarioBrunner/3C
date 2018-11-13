@@ -1,12 +1,22 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
-# Examples:
+# Seeds for
 #
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# Compan
+# Groups
+# GroupMessage
+# GroupComment
+# GroupToChannels
+# GroupUserMessage
+# Channels
+# ChannelToGroup
+# User
+# avatars, icons and images (because of sql error they are # but can be run seperatet)
+# Faq
+# Dataprotection
+# Copyright
 #
-
+#
+#
 
 
 
@@ -192,6 +202,64 @@ GroupComment.find_or_create_by({:group_message_id => gm2.id, :user_id => user_ad
 GroupComment.find_or_create_by({:group_message_id => gm8.id, :user_id => user_admin.id, :comment =>'Der Admin hat auch noch ein Wort.'})
 GroupComment.find_or_create_by({:group_message_id => gm7.id, :user_id => user_admin.id, :comment =>'Der Admin hat auch noch ein Wort.'})
 GroupComment.find_or_create_by({:group_message_id => gm10.id, :user_id => user_admin.id, :comment =>'Der Admin hat auch noch ein Wort.'})
+
+
+GroupUserMessage.find_or_create_by({:group_id => trainerall.id, :last_message_id => gm1.id, :user_id => user1.id})
+GroupUserMessage.find_or_create_by({:group_id => trainerall.id, :last_message_id => gm1.id, :user_id => user_admin.id})
+GroupUserMessage.find_or_create_by({:group_id => trainerall.id, :last_message_id => gm1.id, :user_id => user2.id})
+GroupUserMessage.find_or_create_by({:group_id => trainerall.id, :last_message_id => gm1.id, :user_id => user_super.id})
+
+
+GroupUserMessage.find_or_create_by({:group_id => yoga.id, :last_message_id => gm2.id, :user_id => user1.id})
+GroupUserMessage.find_or_create_by({:group_id => yoga.id, :last_message_id => gm2.id, :user_id => user_admin.id})
+GroupUserMessage.find_or_create_by({:group_id => yoga.id, :last_message_id => gm2.id, :user_id => user2.id})
+
+GroupUserMessage.find_or_create_by({:group_id => stepper.id, :last_message_id => gm3.id, :user_id => user1.id})
+GroupUserMessage.find_or_create_by({:group_id => stepper.id, :last_message_id => gm3.id, :user_id => user_admin.id})
+GroupUserMessage.find_or_create_by({:group_id => stepper.id, :last_message_id => gm3.id, :user_id => user_wokeecat.id})
+GroupUserMessage.find_or_create_by({:group_id => stepper.id, :last_message_id => gm3.id, :user_id => user_super.id})
+
+GroupUserMessage.find_or_create_by({:group_id => condition.id, :last_message_id => gm8.id, :user_id => user1.id})
+GroupUserMessage.find_or_create_by({:group_id => condition.id, :last_message_id => gm8.id, :user_id => user_wokeecat.id})
+
+
+
+UserToGroup.find_or_create_by({:group_id => trainerall.id, :user_id => user1.id})
+UserToGroup.find_or_create_by({:group_id => trainerall.id, :user_id => user_admin.id})
+UserToGroup.find_or_create_by({:group_id => trainerall.id, :user_id => user2.id})
+UserToGroup.find_or_create_by({:group_id => trainerall.id, :user_id => user_super.id})
+
+
+UserToGroup.find_or_create_by({:group_id => yoga.id, :user_id => user1.id})
+UserToGroup.find_or_create_by({:group_id => yoga.id, :user_id => user_admin.id})
+UserToGroup.find_or_create_by({:group_id => yoga.id, :user_id => user2.id})
+
+UserToGroup.find_or_create_by({:group_id => stepper.id, :user_id => user1.id})
+UserToGroup.find_or_create_by({:group_id => stepper.id, :user_id => user_admin.id})
+UserToGroup.find_or_create_by({:group_id => stepper.id, :user_id => user_wokeecat.id})
+UserToGroup.find_or_create_by({:group_id => stepper.id, :user_id => user_super.id})
+
+UserToGroup.find_or_create_by({:group_id => condition.id, :user_id => user1.id})
+UserToGroup.find_or_create_by({:group_id => condition.id, :user_id => user_wokeecat.id})
+
+
+
+ChannelToGroups.find_or_create_by({:group_id => trainerall.id, channel_id => facebook.id , blogging => true, writing => true})
+ChannelToGroups.find_or_create_by({:group_id => trainerall.id, channel_id => email.id , blogging => true, writing => true})
+ChannelToGroups.find_or_create_by({:group_id => trainerall.id, channel_id => instagram.id , blogging => true, writing => true})
+
+ChannelToGroups.find_or_create_by({:group_id => yoga.id, channel_id => instagram.id, blogging => true, writing => true}})
+ChannelToGroups.find_or_create_by({:group_id => yoga.id, channel_id => facebook.id, blogging => true, writing => true}})
+ChannelToGroups.find_or_create_by({:group_id => yoga.id, channel_id => email.id, blogging => true, writing => true}})
+
+ChannelToGroups.find_or_create_by({:group_id => stepper.id, channel_id => twitter.id, blogging => true, writing => true}})
+ChannelToGroups.find_or_create_by({:group_id => stepper.id, channel_id => slack.id, blogging => true, writing => true}})
+ChannelToGroups.find_or_create_by({:group_id => stepper.id, channel_id => facebook.id, blogging => true, writing => true}})
+
+ChannelToGroups.find_or_create_by({:group_id => condition.id channel_id => facebook.id, blogging => true, writing => true}})
+ChannelToGroups.find_or_create_by({:group_id => condition.id channel_id => email.id, blogging => true, writing => true}})
+ChannelToGroups.find_or_create_by({:group_id => condition.id channel_id => instagram.id, blogging => true, writing => true}})
+
 
 
 dataprotection_content = %q(Datenschutzerklärung

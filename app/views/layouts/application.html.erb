@@ -147,12 +147,11 @@
           <!--the if statemants are just for showing and testing, the fullfill no use-->
           <% current_user.groups.each do |group| %>
             <div>
-              <a class="list-group-item">
+              <a class="list-group-item" onclick="redirect()">
                 <% if group.image.attached? %>
                   <%= image_tag group.image.variant(resize: "25X25"), class: "img-circle", style: "margin-left: 0px;float:left" %>
                 <% end %>
                 <%= group.title %>
-
                 <% if group.id.odd? %>
                    <span class="badge">
                      <%= group.group_messages.count%></span>
@@ -208,5 +207,10 @@
     <% end %></p>
   </p>
 </footer>
+<script>
+    function redirect() {
+        alert("Redirect is missing");
+    }
+</script>
 </body>
 </html>
