@@ -40,7 +40,8 @@
           <div class="col-sm-8 middleNav">
             <h3 id="CCC"><strong>3C</strong></h3>
             <p><%= link_to('Chat', chats_path, class: "btn btn-default") %>
-              <%= link_to('Group Messages', group_messages_path, class: "btn btn-default pull-right") %>
+              <%= link_to('New Group Message', new_group_message_path, class: "btn btn-default pull-right") %>
+              <!--the if statemants are just for showing and testing, the fullfill no use-->
               <% current_user.channels.each do |channel| %>
                 <% if channel.both? || channel.chat? %>
                   <% if channel.icon.attached? %>
@@ -57,7 +58,7 @@
                 <% end %>
               <% end %>
               <p><%= link_to('Blog', blogs_path, class: "btn btn-default") %>
-                <%= link_to('New Group Message', new_group_message_path, class: "btn btn-default pull-right") %>
+                <%= link_to('Group Messages', group_messages_path, class: "btn btn-default pull-right") %>
                 <% current_user.channels.each do |channel| %>
                   <% if channel.both? || channel.blog? %>
                     <% if channel.icon.attached? %>
@@ -76,7 +77,7 @@
               </p>
               </div>
 
-          <!--Settings right side-->
+          <!--Settingsmenu right side-->
           <div class="col-sm-2 sidenav">
             <div class="dropdown">
               <br>
@@ -88,24 +89,26 @@
                 <% if current_user.admin? || current_user.superuser? %>
                   <li><a href="#"><%= link_to('Company', companies_path, class: "button") %></a></li>
                 <% end %>
-                <li><a href="#"><%= link_to('Group', groups_path, class: "button") %></a></li>
+                <li><a href="#"><%= link_to('Groups', groups_path, class: "button") %></a></li>
                 <% if current_user.superuser? %>
                   <li><a href="#"><%= link_to('Edit Users', users_path, class: "button") %></a></li>
                   <li><a href="#"><%= link_to('Copyrigth', copyrigths_path, class: "button") %></a></li>
                 <% end %>
-                <li><a href="#"><%= link_to('Channel', channels_path, class: "button") %></a></li>
+                <li><a href="#"><%= link_to('Channels', channels_path, class: "button") %></a></li>
                 <% if current_user.admin? %>
-                  <li><a href="#"><%= link_to('Admin', admins_path, class: "button") %></a></li>
+                  <li><a href="#"><%= link_to('Admin Settings', admins_path, class: "button") %></a></li>
                   <li><a href="#"><%= link_to('Edit Users', users_path, class: "button") %></a></li>
                 <% end %>
                 <li><a href="#"><%= link_to('Faq', faqs_path, class: "button") %></a></li>
               </ul>
             </div>
           </div>
+
         </div>
       </div>
     </div>
   <% end %>
+
   <!--setup for messages like error-->
   <% if flash[:notice] %>
     <div class="alert alert-success">
@@ -138,23 +141,24 @@
       <!--sidenav news-->
       <div class="col-xs-2 sidenav" id="rightbar">
         <h4>
-          <small>Groups:</small>
+          <small>Group News:</small>
         </h4>
         <div class="list-group">
+
           <!--the if statemants are just for showing and testing, the fullfill no use-->
           <% current_user.groups.each do |group| %>
             <div>
-              <a class="list-group-item">
+              <a class="list-group-item" onclick="redirect()">
                 <% if group.image.attached? %>
                   <%= image_tag group.image.variant(resize: "25X25"), class: "img-circle", style: "margin-left: 0px;float:left" %>
                 <% end %>
                 <%= group.title %>
                 <% if group.id.odd? %>
                    <span class="badge">
-                     <%= group.id %></span>
+                     <%= group.group_messages.count%></span>
                 <% else %>
                   <span class="badge new-message">
-                    <%= group.id %></span>
+                    <%= group.group_messages.count %></span>
                 <% end %>
               </a>
             </div>
@@ -166,10 +170,11 @@
           <small>Messages:</small>
         </h4>
         <div class="list-group">
+
           <!--the if statemants are just for showing and testing, the fullfill no use-->
           <% User.all.each do |user| %>
             <div>
-              <a class="list-group-item">
+              <a class="list-group-item " onclick="redirect2()">
                 <% if user.avatar.attached? %>
                   <%= image_tag user.avatar.variant(resize: "25X25"), class: "img-circle", style: "margin-left: 0px;float:left" %>
                 <% end %>
@@ -183,7 +188,6 @@
                 <% end %>
               </a>
             </div>
-
           <% end %>
         </div>
       </div>
@@ -197,7 +201,6 @@
 <footer class="container-fluid text-center">
   <%= link_to('Dataprotection', dataprotections_path, class: "button") %>   ||
   <%= link_to('Impressum', impressums_path, class: "button") %>
-
   <p>
     ©
     <% @copyrigths.each do |content| %>
@@ -205,7 +208,15 @@
     <% end %></p>
   </p>
 </footer>
-
+<script>
+    function redirect() {
+        alert("Redirect() is missing");
+    }
+</script>
+<script>
+    function redirect2() {
+        alert("Redirect2() is missing");
+    }
+</script>
 </body>
-
 </html>

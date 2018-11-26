@@ -15,7 +15,6 @@
       <th colspan="3"></th>
     </tr>
     </thead>
-
     <tbody>
     <% @groups.each do |group| %>
       <tr>
@@ -31,22 +30,23 @@
           <td><%= link_to 'Destroy', group, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-default' %></td>
           </tr>
           <tr>
-            <td><Strong>Users</Strong></td>
+            <td><Strong>Users:</Strong></td>
             <td>
               <% group.users.each do |user| %>
                 <%= user.name %>&nbsp
               <% end %>
-            </td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            </td><td><Strong>Channels:</Strong></td>
+            <td>
+              <% group.channels.each do |channel| %>
+                <%= channel.title %>&nbsp
+              <% end %>
+            </td><td></td><td></td>
+
         <% end %>
         </tr>
     <% end %>
     </tbody>
   </table>
-
   <br>
 <<<<<<< HEAD
 

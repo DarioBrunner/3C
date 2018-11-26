@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+<div class="jumbotron jumbo-main-content">
+  <p>
+    <strong>Group message:</strong>
+  <pre><%= @group_comment.group_message.context %></pre>
+
+  </p>
+
+  <p>
+    <strong>User:</strong>
+    <%= @group_comment.user.name %>
+  </p>
+
+  <p>
+    <strong>Comment:</strong>
+   <pre> <%= @group_comment.comment %> </pre>
+  </p>
+
+  <%= link_to 'Edit', edit_group_comment_path(@group_comment), class: 'btn btn-default' %>
+  <%= link_to 'Back', group_messages_path, class: 'btn btn-primary' %>
+</div>

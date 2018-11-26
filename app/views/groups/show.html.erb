@@ -7,7 +7,7 @@
   <p><%= image_tag @group.image.variant(resize: "175X175")%></p>
  <% end %>
   <p><strong>Description:</strong></p>
-  <p><%= @group.description %></p>
+  <p><pre><%= @group.description %></pre></p>
   <strong>Channel:</strong></p>
     <% Channel.all.each do |channel| %>
       <% if @group.channel_ids.include?(channel.id) %>

@@ -1,62 +1,268 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
-# Examples:
+# Seeds for
 #
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# Compan
+# Groups
+# GroupMessage
+# GroupComment
+# GroupToChannels
+# GroupUserMessage
+# Channels
+# ChannelToGroup
+# User
+# avatars, icons and images (because of sql error they are # but can be run seperatet)
+# Faq
+# Dataprotection
+# Copyright
 #
 
-#ActiveRecord::Base.connection.execute("delete from group_user_messages")
 
 
-Group.create!({:title =>"Trainer.all"})
-Group.create!({:title =>"Yoga"})
-Group.create!({:title =>"Stepper"})
-Group.create!({:title =>"Condition"})
 
-User.create!({:email => 'super@super.com', :company_id => '1', :name => "super", :admin=> "false",:superuser=>"true",:password => "123",:password_confirmation => "123"})
-User.create!({:email => 'admin@admin.com', :company_id => '1', :name => "admin", :admin=> "true",:superuser=>"false",:password => "123",:password_confirmation => "123"})
-User.create!({:email => '1@1.com', :company_id => '1', :name => "cat1", :admin=> "false",:superuser=>"false",:password => "123",:password_confirmation => "123"})
-User.create!({:email => '2@2.com', :company_id => '1', :name => "cat2", :admin=> "false",:superuser=>"false",:password => "123",:password_confirmation => "123"})
-User.create!({:email => '3@3.com', :company_id => '1', :name => "wokeecat", :admin=> "false",:superuser=>"false",:password => "123",:password_confirmation => "123"})
+default_company = Company.find_or_create_by({:companyname => "Proofpoint", :adress => "Steckengaße", :passwort => "false"})
 
-Company.create!({ :companyname => "Proofpoint",:adress => "Steckengaße", :passwort=>"false"})
 
-Copyrigth.create!({ :copy => "Proofpoint Group all rights.....2018"})
+description_trainer= %q(Hier in dieser Gruppe soll alles besprochen werden was die Trainer dieses Studios angeht.
 
-Faq.create!({ :question => "how can i, when bla is allready", :answer =>"Just do it"})
-Faq.create!({ :question => "Who is, a this time", :answer =>"hats easy, we can`t"})
-Faq.create!({ :question => "I don`t like to do so is it pos..", :answer =>"Clear yes juet talk to .... fist"})
-Faq.create!({ :question => "what is the answer to everything?", :answer =>"42"})
-Faq.create!({ :question => "Just another question", :answer =>"Answer"})
+Usw und sofort)
+description_yoga= %q(Hier in dieser Gruppe soll alles besprochen werden was die Yogies dieses Studios angeht.
 
-Channel.create!({ :title => "Facebook", :status => "both", :url => "B@to.it", :login => "14256", :typ =>"slage" })
-Channel.create!({ :title => "Email", :status => "chat", :url => "Mail@to.it", :login => "14256", :typ =>"slage" })
-Channel.create!({ :title => "instagram", :status => "blog", :url => "Bail@to.it", :login => "14256", :typ =>"slage" })
-Channel.create!({ :title => "Twitter", :status => "blog", :url => "Bmail@t.it", :login => "14256", :typ =>"slage" })
-Channel.create!({ :title => "Slack", :status => "chat", :url => "Bil@to.com", :login => "14256", :typ =>"slage" })
+Bitte nur das nöttigste eintragen.
+)
+description_stepper= %q(Hier in dieser Gruppe soll alles besprochen werden was die Stepper dieses Studios angeht.
 
-context1= %q(
+bitte kein Spam)
+description_condition= %q(Hier in dieser Gruppe soll alles besprochen werden was die Trainer dieses Studios angeht.
+
+
+Und so weiter und so
+fort
+
+)
+
+trainerall = Group.find_or_create_by({:title => "Trainer.all", :description => description_trainer})
+yoga =   Group.find_or_create_by({:title => "Yoga", :description => description_yoga})
+stepper =  Group.find_or_create_by({:title => "Stepper", :description => description_stepper})
+condition =  Group.find_or_create_by({:title => "Condition", :description => description_condition})
+
+user_super = User.find_or_create_by(:email => 'super@super.com', :company_id => default_company.id, :name => "super", :admin => "false", :superuser => "true") do |user|
+  user.password = "123"
+  user.password_confirmation = "123"
+end
+
+user_admin = User.find_or_create_by(:email => 'admin@admin.com', :company_id => default_company.id, :name => "admin", :admin => "true", :superuser => "false") do |user|
+  user.password = "123"
+  user.password_confirmation = "123"
+end
+
+user1 = User.find_or_create_by(:email => '1@1.com', :company_id => default_company.id, :name => "User1", :admin => "false", :superuser => "false")do |user|
+  user.password = "123"
+  user.password_confirmation = "123"
+end
+
+user2 = User.find_or_create_by(:email => '2@2.com', :company_id => default_company.id, :name => "User2", :admin => "false", :superuser => "false")do |user|
+  user.password = "123"
+  user.password_confirmation = "123"
+end
+
+user3 = User.find_or_create_by(:email => '3@3.com', :company_id => default_company.id, :name => "User", :admin => "false", :superuser => "false")do |user|
+  user.password = "123"
+  user.password_confirmation = "123"
+end
+
+
+
+Copyrigth.find_or_create_by({:copy => "Proofpoint Group all rights.....2018"})
+
+Faq.find_or_create_by({:question => "how can i, when is allready", :answer => "Just .... and do it"})
+Faq.find_or_create_by({:question => "Who is, a this time", :answer => "hats easy, we can`t"})
+Faq.find_or_create_by({:question => "I don`t like to do, would it be pos..", :answer => "Clear yes just talk to .... fist"})
+Faq.find_or_create_by({:question => "what is the answer to everything?", :answer => "42"})
+Faq.find_or_create_by({:question => "Just another question", :answer => "Answer"})
+
+
+facebook = Channel.find_or_create_by({:title => "Facebook", :status => "both", :url => "B@to.it", :login => "14256", :typ => "facebook"})
+email = Channel.find_or_create_by({:title => "Email", :status => "chat", :url => "Mail@to.it", :login => "14256", :typ => "email"})
+instagram = Channel.find_or_create_by({:title => "instagram", :status => "blog", :url => "Bail@to.it", :login => "14256", :typ => "instagram"})
+twitter = Channel.find_or_create_by({:title => "Twitter", :status => "blog", :url => "Bmail@t.it", :login => "14256", :typ => "twitter"})
+slack =  Channel.find_or_create_by({:title => "Slack", :status => "chat", :url => "Bil@to.com", :login => "14256", :typ => "slack"})
+
+
+#default_company.icon.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/Bildschirmfoto 2018-10-26 um 16.42.07.png'),
+#                            filename: 'Bildschirmfoto 2018-10-26 um 16.42.07.png')
+
+#trainerall.image.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/index.jpg'),
+#                        filename: 'index.jpg')
+#yoga.image.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/outside-sport.jpg'),
+#                  filename: 'outside-sport.jpg')
+#stepper.image.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/sporty.jpg'),
+#                    filename: 'sporty.jpg')
+#condition.image.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/Bildschirmfoto 2018-10-29 um 02.52.54.png'),
+#                       filename: 'Bildschirmfoto 2018-10-29 um 02.52.54.png')
+
+
+#user_super=User.find(1)
+#user_admin=User.find(2)
+#user1=User.find(3)
+#user2=User.find(4)
+#user3=User.find(5)
+
+#user_super.avatar.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/Bildschirmfoto 2018-10-29 um 02.27.12.png'), filename: 'Bildschirmfoto 2018-10-29 um 02.27.12.png')
+#user_admin.avatar.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/Bildschirmfoto 2018-10-29 um 02.27.23.png'), filename: 'Bildschirmfoto 2018-10-29 um 02.27.23.png')
+#user1.avatar.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/images5.jpg'), filename: 'images5.jpg.jpg')
+#user2.avatar.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/Bildschirmfoto 2018-10-29 um 02.27.43.png'), filename: 'Bildschirmfoto 2018-10-29 um 02.27.43.png')
+#user3.avatar.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/Bildschirmfoto 2018-10-29 um 02.54.17.png'), filename: 'Bildschirmfoto 2018-10-29 um 02.54.17.png')
+
+#facebook=Channel.find(1)
+#email=Channel.find(2)
+#instagram=Channel.find(3)
+#twitter=Channel.find(4)
+#slack=Channel.find(5)
+
+#facebook.icon.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Social Media Icons/PNG/Circle Color/Facebook.png'), filename: 'Facebook.png')
+#email.icon.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Social Media Icons/PNG/Circle Color/Stumbleupon.png'), filename: 'Stumbleupon.png')
+#instagram.icon.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Social Media Icons/PNG/Circle Color/Instagram.png'), filename: 'Instagram.png')
+#twitter.icon.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Social Media Icons/PNG/Circle Color/Twitter.png'), filename: 'Twitter.png')
+#slack.icon.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Social Media Icons/PNG/Circle Color/Stumbleupon.png'), filename: 'Stumbleupon.png')
+
+context1 = %q(
 Hey Guys,
 
 it is getting worse, please take care about the Rubbish.
 )
-context2= %q(
+context2 = %q(
 @ all the Man,
 
 your Shower won`t be availeble for two Days.
-Meanwhile yust go to the Gymooms.
+Meanwhile yust go to the Gymrooms.
 )
-context3= %q(
+context3 = %q(
 Good Neews,
 
 next week we get the new Coffemachine.
 )
 
-GroupMessage.create!({:group_id =>"1", :context =>context1})
-GroupMessage.create!({:group_id =>"2", :context=>context2})
-GroupMessage.create!({:group_id =>"3", :context =>context3})
+context4 = %q(
+Hey Guys,
+
+Tomorow ther will be no internet between 11-12.
+Sorry!!!
+
+<<<<<<< HEAD
+=======
+)
+
+context5 = %q(
+@ all the Yogis,
+
+we change for new mats, so everyone feel free to tak the old ones at home.
+
+)
+
+context6 = %q(
+Good Neews,
+
+two new trainers signed coming in dezember.
+
+Best wishes
+your Ceo
+)
+context7 = %q(
+Everyone,
+
+thank you the team works fine.
+
+best wishes
+Daniel
+)
+
+context8 = %q(
+Happy Deepavali everyone.
+)
+
+gm1 = GroupMessage.find_or_create_by({:group_id => trainerall.id, :context => context1, :creator_id => user1.id})
+gm2 = GroupMessage.find_or_create_by({:group_id => yoga.id, :context => context2, :creator_id => user1.id})
+gm3 = GroupMessage.find_or_create_by({:group_id => stepper.id, :context => context3, :creator_id => user_super.id})
+gm4 = GroupMessage.find_or_create_by({:group_id => trainerall.id, :context => context4, :creator_id => user_super.id})
+gm5 = GroupMessage.find_or_create_by({:group_id => yoga.id, :context => context5, :creator_id => user_admin.id})
+gm6 = GroupMessage.find_or_create_by({:group_id => trainerall.id, :context => context6, :creator_id => user_admin.id})
+gm7 = GroupMessage.find_or_create_by({:group_id => trainerall.id, :context => context7, :creator_id => user2.id})
+gm8 = GroupMessage.find_or_create_by({:group_id => condition.id, :context => context8, :creator_id => user1.id})
+gm9 = GroupMessage.find_or_create_by({:group_id => trainerall.id, :context => context6, :creator_id => user2.id})
+gm10 = GroupMessage.find_or_create_by({:group_id => yoga.id, :context => context7, :creator_id => user3.id})
+
+GroupComment.find_or_create_by({:group_message_id => gm1.id, :user_id => user_super.id, :comment =>'Jup wird erledigt.'})
+GroupComment.find_or_create_by({:group_message_id => gm1.id, :user_id => user_super.id, :comment =>'Bin ich nicht der Meinung.'})
+GroupComment.find_or_create_by({:group_message_id => gm3.id, :user_id => user_super.id, :comment =>'Jup wird erledigt.'})
+GroupComment.find_or_create_by({:group_message_id => gm1.id, :user_id => user_super.id, :comment =>'Das ist ja total Tibeltitipptop.'})
+GroupComment.find_or_create_by({:group_message_id => gm9.id, :user_id => user3.id, :comment =>'Jup wird erledigt.'})
+GroupComment.find_or_create_by({:group_message_id => gm2.id, :user_id => user3.id, :comment =>'Bin ich nicht der Meinung.'})
+GroupComment.find_or_create_by({:group_message_id => gm6.id, :user_id => user2.id, :comment =>'Hm.... ja ok.'})
+GroupComment.find_or_create_by({:group_message_id => gm4.id, :user_id => user3.id, :comment =>'Hm.... ja ok.'})
+GroupComment.find_or_create_by({:group_message_id => gm2.id, :user_id => user2.id, :comment =>'Jup wird erledigt.'})
+GroupComment.find_or_create_by({:group_message_id => gm5.id, :user_id => user2.id, :comment =>'Hm.... ja ok.'})
+GroupComment.find_or_create_by({:group_message_id => gm7.id, :user_id => user1.id, :comment =>'Wunderbar'})
+GroupComment.find_or_create_by({:group_message_id => gm8.id, :user_id => user_admin.id, :comment =>'Der Admin hat auch noch ein Wort.'})
+GroupComment.find_or_create_by({:group_message_id => gm2.id, :user_id => user_admin.id, :comment =>'Der Admin hat auch noch ein Wort.'})
+GroupComment.find_or_create_by({:group_message_id => gm8.id, :user_id => user_admin.id, :comment =>'Der Admin hat auch noch ein Wort.'})
+GroupComment.find_or_create_by({:group_message_id => gm7.id, :user_id => user_admin.id, :comment =>'Der Admin hat auch noch ein Wort.'})
+GroupComment.find_or_create_by({:group_message_id => gm10.id, :user_id => user_admin.id, :comment =>'Der Admin hat auch noch ein Wort.'})
+
+
+GroupUserMessage.find_or_create_by({:group_id => trainerall.id, :last_message_id => gm1.id, :user_id => user1.id})
+GroupUserMessage.find_or_create_by({:group_id => trainerall.id, :last_message_id => gm1.id, :user_id => user_admin.id})
+GroupUserMessage.find_or_create_by({:group_id => trainerall.id, :last_message_id => gm1.id, :user_id => user2.id})
+GroupUserMessage.find_or_create_by({:group_id => trainerall.id, :last_message_id => gm1.id, :user_id => user_super.id})
+
+
+GroupUserMessage.find_or_create_by({:group_id => yoga.id, :last_message_id => gm2.id, :user_id => user1.id})
+GroupUserMessage.find_or_create_by({:group_id => yoga.id, :last_message_id => gm2.id, :user_id => user_admin.id})
+GroupUserMessage.find_or_create_by({:group_id => yoga.id, :last_message_id => gm2.id, :user_id => user2.id})
+
+GroupUserMessage.find_or_create_by({:group_id => stepper.id, :last_message_id => gm3.id, :user_id => user1.id})
+GroupUserMessage.find_or_create_by({:group_id => stepper.id, :last_message_id => gm3.id, :user_id => user_admin.id})
+GroupUserMessage.find_or_create_by({:group_id => stepper.id, :last_message_id => gm3.id, :user_id => user3.id})
+GroupUserMessage.find_or_create_by({:group_id => stepper.id, :last_message_id => gm3.id, :user_id => user_super.id})
+
+GroupUserMessage.find_or_create_by({:group_id => condition.id, :last_message_id => gm8.id, :user_id => user1.id})
+GroupUserMessage.find_or_create_by({:group_id => condition.id, :last_message_id => gm8.id, :user_id => user3.id})
+
+
+UserToGroup.find_or_create_by({:group_id => trainerall.id, :user_id => user1.id})
+UserToGroup.find_or_create_by({:group_id => trainerall.id, :user_id => user_admin.id})
+UserToGroup.find_or_create_by({:group_id => trainerall.id, :user_id => user2.id})
+UserToGroup.find_or_create_by({:group_id => trainerall.id, :user_id => user_super.id})
+
+UserToGroup.find_or_create_by({:group_id => yoga.id, :user_id => user1.id})
+UserToGroup.find_or_create_by({:group_id => yoga.id, :user_id => user_admin.id})
+UserToGroup.find_or_create_by({:group_id => yoga.id, :user_id => user2.id})
+
+UserToGroup.find_or_create_by({:group_id => stepper.id, :user_id => user1.id})
+UserToGroup.find_or_create_by({:group_id => stepper.id, :user_id => user_admin.id})
+UserToGroup.find_or_create_by({:group_id => stepper.id, :user_id => user3.id})
+UserToGroup.find_or_create_by({:group_id => stepper.id, :user_id => user_super.id})
+
+UserToGroup.find_or_create_by({:group_id => condition.id, :user_id => user1.id})
+UserToGroup.find_or_create_by({:group_id => condition.id, :user_id => user3.id})
+
+
+
+ChannelToGroup.find_or_create_by({:group_id => trainerall.id, :channel_id => facebook.id , :blogging => true, :writing => true})
+ChannelToGroup.find_or_create_by({:group_id => trainerall.id, :channel_id => email.id , :blogging => true, :writing => true})
+ChannelToGroup.find_or_create_by({:group_id => trainerall.id, :channel_id => instagram.id , :blogging => true, :writing => true})
+
+ChannelToGroup.find_or_create_by({:group_id => yoga.id, :channel_id => instagram.id, :blogging => true, :writing => true})
+ChannelToGroup.find_or_create_by({:group_id => yoga.id, :channel_id => facebook.id, :blogging => true, :writing => true})
+ChannelToGroup.find_or_create_by({:group_id => yoga.id, :channel_id => email.id, :blogging => true, :writing => true})
+
+ChannelToGroup.find_or_create_by({:group_id => stepper.id, :channel_id => twitter.id, :blogging => true, :writing => true})
+ChannelToGroup.find_or_create_by({:group_id => stepper.id, :channel_id => slack.id, :blogging => true, :writing => true})
+ChannelToGroup.find_or_create_by({:group_id => stepper.id, :channel_id => facebook.id, :blogging => true, :writing => true})
+
+ChannelToGroup.find_or_create_by({:group_id => condition.id, :channel_id => facebook.id, :blogging => true, :writing => true})
+ChannelToGroup.find_or_create_by({:group_id => condition.id, :channel_id => email.id, :blogging => true, :writing => true})
+ChannelToGroup.find_or_create_by({:group_id => condition.id, :channel_id => instagram.id, :blogging => true, :writing => true})
+
 
 
 dataprotection_content = %q(Datenschutzerklärung
@@ -313,58 +519,16 @@ Zur Nutzung der Funktionen von Google Maps ist es notwendig, Ihre IP Adresse zu 
 
 Die Nutzung von Google Maps erfolgt im Interesse einer ansprechenden Darstellung unserer Online-Angebote und an einer leichten Auffindbarkeit der von uns auf der Website angegebenen Orte. Dies stellt ein berechtigtes Interesse im Sinne von Art. 6 Abs. 1 lit. f DSGVO dar.)
 
-Dataprotection.create!({ :content => dataprotection_content})
 
+Dataprotection.find_or_create_by({ :content => dataprotection_content})
 
-impresum_content=%q(Impressum
-Angaben gemäß § 5 TMG:
-
-PROOF POINT Werbestudio
-Stephan Winkler (Einzelunternehmen)
-Heilig-Geist-Gasse 398
-84028 Landshut
-Telefon: +49 (871) 93 52 50
-E-Mail: info@proof-point.com
-
-Vertretungsberechtigter: Stephan Winkler
-Umsatzsteuer-Identifikationsnummer: DE204228028
-
-PROOF POINT SDN.BHD.
-Lot 1.03-A, Level 1, No. 8 First Avenue
-Persiaran Bandar Utama
-MY-47800 Petaling Jaya,Selangor, Malaysia
-
-Company ID: 1264094-U
-
-Managing Directors
-Stephan Winkler, Tobias Bergmann
-
-Centershops e.K.
-Heilig-Geist-Gasse 398
-84028 Landshut
-Telefon: +49 (871) 93 52 50
-E-Mail: info@centershops.de
-
-Vertretungsberechtigter: Stephan Winkler
-Umsatzsteuer-Identifikationsnummer: DE204228028
-
-Proof Point data protection GmbH
-Renkenstraße 1
-D-84032 Altdorf
-Telefon: +49 (871) 66 00 31 09
-E-Mail: datenschutz@proof-point.com
-
-Vertretungsberechtigte Geschäftsführer:
-Stephan Winkler, Christian Obermeier
-
-Registereintrag
-Eintragung im Handelsregister B
-Registergericht:Amtsgericht Landshut
-Registernummer: HRB-Nr.: B 11190
-
-Umsatzsteuer-Identifikationsnummer: DE317834455)
 
 impressum_context=%q(
+=======
+Dataprotection.find_or_create_by({:content => dataprotection_content})
+
+impressum_context = %q(
+>>>>>>> GroupMessaging
 Impressum
 Angaben gemäß § 5 TMG:
 
@@ -411,8 +575,8 @@ Eintragung im Handelsregister B
 Registergericht:Amtsgericht Landshut
 Registernummer: HRB-Nr.: B 11190
 
-Umsatzsteuer-Identifikationsnummer: DE317834455)
+Umsatzsteuer-Identifikationsnummer: DE317834455))
 
 
 
-Impressum.create!({:context => impressum_context })
+Impressum.find_or_create_by({:context => impressum_context})
