@@ -45,7 +45,7 @@
                   <!---all comments------------->
                   <% group_message.group_comments.each do |comment| %>
                     <% if current_user.id == comment.user_id %>
-                  <pre><%= link_to 'Edit', edit_group_comment_path(comment) %> <%= link_to 'Destroy', comment, method: :delete, data: {confirm: 'Are you sure?'} %>
+                  <pre><%= link_to 'Edit', edit_group_message_group_comment_path(group_message, comment) %> <%= link_to 'Destroy', group_message_group_comment_path(group_message, comment), method: :delete, data: {confirm: 'Are you sure?'} %>
                     <br><%= comment.comment %>
                     <br><small>Written by: <%= comment.user.name %></small>
                   </pre>
@@ -62,7 +62,7 @@
                   Comments&nbsp;&nbsp;</a>
               <% end %>
             </td>
-            <td><%= link_to 'Add', new_group_comment_path, class: 'btn btn-default' %></td>
+            <td><%= link_to 'Add',  new_group_message_group_comment_path(group_message), class: 'btn btn-default' %></td>
             <td></td>
             <td></td>
             <td></td>

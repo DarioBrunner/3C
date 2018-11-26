@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :group_comments
-  resources :group_messages
+  resources :group_messages do
+    resources :group_comments
+  end
   resources :copyrigths
   resources :chats
   resources :blogs
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
   resources :users
   resources :companies
   resources :groups
+
   root to: "chats#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

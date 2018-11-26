@@ -1,4 +1,4 @@
-<%= form_with(model: group_comment, local: true) do |form| %>
+<%= form_with(model: [group_message, group_comment], local: true) do |form| %>
   <% if group_comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(group_comment.errors.count, "error") %> prohibited this group_comment from being saved:</h2>
@@ -10,19 +10,17 @@
       </ul>
     </div>
   <% end %>
+  <br>
+  <pre><center>Group: <%= group_message.group.title%> </center><%= group_message.context %> </pre>
 
-  <div class="field  form-group">
-    <%= form.label :group_message_id %>
-    <%= form.text_field :group_message_id %>
-  </div>
 
   <div class="field  form-group">
     <%= form.label :comment %>
-    <%= form.text_area :comment %>
+    <%= form.text_area :comment, class: 'form-control', placeholder: 'Message', size: "30x8" %>
   </div>
 
   <div class="actions  form-group">
-    <%= form.submit class: 'btn btn-default' %>
+    <%= form.submit class: 'btn btn-primary' %>
   </div>
 <% end %>
 

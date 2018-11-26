@@ -10,26 +10,31 @@ class GroupCommentsController < ApplicationController
   # GET /group_comments/1
   # GET /group_comments/1.json
   def show
+    @group_message = GroupMessage.find(params[:group_message_id])
   end
 
   # GET /group_comments/new
   def new
     @group_comment = GroupComment.new
+    @group_message = GroupMessage.find(params[:group_message_id])
   end
 
   # GET /group_comments/1/edit
   def edit
+    @group_message = GroupMessage.find(params[:group_message_id])
   end
 
   # POST /group_comments
   # POST /group_comments.json
   def create
-    @group_comment = GroupComment.new(group_comment_params)
+    @group_message = GroupMessage.find(params[:group_message_id])
+    @group_comment = @group_message.group_comments.new(group_comment_params)
     @group_comment.user_id = current_user.id
+
 
     respond_to do |format|
       if @group_comment.save
-        format.html { redirect_to @group_comment, notice: 'Group comment was successfully created.' }
+        format.html { redirect_to [@group_message, @group_comment], notice: 'Group comment was successfully created.' }
         format.json { render :show, status: :created, location: @group_comment }
       else
         format.html { render :new }
@@ -41,9 +46,11 @@ class GroupCommentsController < ApplicationController
   # PATCH/PUT /group_comments/1
   # PATCH/PUT /group_comments/1.json
   def update
+    @group_message = GroupMessage.find(params[:group_message_id])
+    @group_comment = @group_message.group_comments.find(params[:id])
     respond_to do |format|
       if @group_comment.update(group_comment_params)
-        format.html { redirect_to @group_comment, notice: 'Group comment was successfully updated.' }
+        format.html { redirect_to [@group_message, @group_comment], notice: 'Group comment was successfully updated.' }
         format.json { render :show, status: :ok, location: @group_comment }
       else
         format.html { render :edit }
