@@ -21,8 +21,7 @@
 
 
 default_company = Company.find_or_create_by({:companyname => "Proofpoint", :adress => "Steckengaße", :passwort => "false"})
-default_company.icon.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/Bildschirmfoto 2018-10-26 um 16.42.07.png'),
-                            filename: 'Bildschirmfoto 2018-10-26 um 16.42.07.png')
+
 
 description_trainer= %q(Hier in dieser Gruppe soll alles besprochen werden was die Trainer dieses Studios angeht.
 
@@ -37,25 +36,15 @@ bitte kein Spam)
 description_condition= %q(Hier in dieser Gruppe soll alles besprochen werden was die Trainer dieses Studios angeht.
 
 
-Asas
-asdasdasda
+Und so weiter und so
+fort
 
-sad
 )
 
 trainerall = Group.find_or_create_by({:title => "Trainer.all", :description => description_trainer})
 yoga =   Group.find_or_create_by({:title => "Yoga", :description => description_yoga})
 stepper =  Group.find_or_create_by({:title => "Stepper", :description => description_stepper})
 condition =  Group.find_or_create_by({:title => "Condition", :description => description_condition})
-
-#trainerall.image.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/index.jpg'),
-#                        filename: 'index.jpg')
-#yoga.image.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/outside-sport.jpg'),
-#                  filename: 'outside-sport.jpg')
-#stepper.image.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/sporty.jpg'),
-#                    filename: 'sporty.jpg')
-#condition.image.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/Bildschirmfoto 2018-10-29 um 02.52.54.png'),
-#                       filename: 'Bildschirmfoto 2018-10-29 um 02.52.54.png')
 
 user_super = User.find_or_create_by(:email => 'super@super.com', :company_id => default_company.id, :name => "super", :admin => "false", :superuser => "true") do |user|
   user.password = "123"
@@ -67,39 +56,28 @@ user_admin = User.find_or_create_by(:email => 'admin@admin.com', :company_id => 
   user.password_confirmation = "123"
 end
 
-user1 = User.find_or_create_by(:email => '1@1.com', :company_id => default_company.id, :name => "cat1", :admin => "false", :superuser => "false")do |user|
+user1 = User.find_or_create_by(:email => '1@1.com', :company_id => default_company.id, :name => "User1", :admin => "false", :superuser => "false")do |user|
   user.password = "123"
   user.password_confirmation = "123"
 end
 
-user2 = User.find_or_create_by(:email => '2@2.com', :company_id => default_company.id, :name => "cat2", :admin => "false", :superuser => "false")do |user|
+user2 = User.find_or_create_by(:email => '2@2.com', :company_id => default_company.id, :name => "User2", :admin => "false", :superuser => "false")do |user|
   user.password = "123"
   user.password_confirmation = "123"
 end
 
-user_wokeecat = User.find_or_create_by(:email => '3@3.com', :company_id => default_company.id, :name => "wokeecat", :admin => "false", :superuser => "false")do |user|
+user3 = User.find_or_create_by(:email => '3@3.com', :company_id => default_company.id, :name => "User", :admin => "false", :superuser => "false")do |user|
   user.password = "123"
   user.password_confirmation = "123"
 end
 
-#user_super=User.find(1)
-#user_admin=User.find(2)
-#user1=User.find(3)
-#user2=User.find(4)
-#user_wokeecat=User.find(5)
-
-#user_super.avatar.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/Bildschirmfoto 2018-10-29 um 02.27.12.png'), filename: 'Bildschirmfoto 2018-10-29 um 02.27.12.png')
-#user_admin.avatar.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/Bildschirmfoto 2018-10-29 um 02.27.23.png'), filename: 'Bildschirmfoto 2018-10-29 um 02.27.23.png')
-#user1.avatar.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/images5.jpg'), filename: 'images5.jpg.jpg')
-#user2.avatar.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/Bildschirmfoto 2018-10-29 um 02.27.43.png'), filename: 'Bildschirmfoto 2018-10-29 um 02.27.43.png')
-#user_wokeecat.avatar.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/Bildschirmfoto 2018-10-29 um 02.54.17.png'), filename: 'Bildschirmfoto 2018-10-29 um 02.54.17.png')
 
 
 Copyrigth.find_or_create_by({:copy => "Proofpoint Group all rights.....2018"})
 
-Faq.find_or_create_by({:question => "how can i, when bla is allready", :answer => "Just do it"})
+Faq.find_or_create_by({:question => "how can i, when is allready", :answer => "Just .... and do it"})
 Faq.find_or_create_by({:question => "Who is, a this time", :answer => "hats easy, we can`t"})
-Faq.find_or_create_by({:question => "I don`t like to do so is it pos..", :answer => "Clear yes juet talk to .... fist"})
+Faq.find_or_create_by({:question => "I don`t like to do, would it be pos..", :answer => "Clear yes just talk to .... fist"})
 Faq.find_or_create_by({:question => "what is the answer to everything?", :answer => "42"})
 Faq.find_or_create_by({:question => "Just another question", :answer => "Answer"})
 
@@ -109,6 +87,32 @@ email = Channel.find_or_create_by({:title => "Email", :status => "chat", :url =>
 instagram = Channel.find_or_create_by({:title => "instagram", :status => "blog", :url => "Bail@to.it", :login => "14256", :typ => "instagram"})
 twitter = Channel.find_or_create_by({:title => "Twitter", :status => "blog", :url => "Bmail@t.it", :login => "14256", :typ => "twitter"})
 slack =  Channel.find_or_create_by({:title => "Slack", :status => "chat", :url => "Bil@to.com", :login => "14256", :typ => "slack"})
+
+
+#default_company.icon.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/Bildschirmfoto 2018-10-26 um 16.42.07.png'),
+#                            filename: 'Bildschirmfoto 2018-10-26 um 16.42.07.png')
+
+#trainerall.image.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/index.jpg'),
+#                        filename: 'index.jpg')
+#yoga.image.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/outside-sport.jpg'),
+#                  filename: 'outside-sport.jpg')
+#stepper.image.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/sporty.jpg'),
+#                    filename: 'sporty.jpg')
+#condition.image.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/Bildschirmfoto 2018-10-29 um 02.52.54.png'),
+#                       filename: 'Bildschirmfoto 2018-10-29 um 02.52.54.png')
+
+
+#user_super=User.find(1)
+#user_admin=User.find(2)
+#user1=User.find(3)
+#user2=User.find(4)
+#user3=User.find(5)
+
+#user_super.avatar.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/Bildschirmfoto 2018-10-29 um 02.27.12.png'), filename: 'Bildschirmfoto 2018-10-29 um 02.27.12.png')
+#user_admin.avatar.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/Bildschirmfoto 2018-10-29 um 02.27.23.png'), filename: 'Bildschirmfoto 2018-10-29 um 02.27.23.png')
+#user1.avatar.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/images5.jpg'), filename: 'images5.jpg.jpg')
+#user2.avatar.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/Bildschirmfoto 2018-10-29 um 02.27.43.png'), filename: 'Bildschirmfoto 2018-10-29 um 02.27.43.png')
+#user3.avatar.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/Bildschirmfoto 2018-10-29 um 02.54.17.png'), filename: 'Bildschirmfoto 2018-10-29 um 02.54.17.png')
 
 #facebook=Channel.find(1)
 #email=Channel.find(2)
@@ -184,16 +188,16 @@ gm6 = GroupMessage.find_or_create_by({:group_id => trainerall.id, :context => co
 gm7 = GroupMessage.find_or_create_by({:group_id => trainerall.id, :context => context7, :creator_id => user2.id})
 gm8 = GroupMessage.find_or_create_by({:group_id => condition.id, :context => context8, :creator_id => user1.id})
 gm9 = GroupMessage.find_or_create_by({:group_id => trainerall.id, :context => context6, :creator_id => user2.id})
-gm10 = GroupMessage.find_or_create_by({:group_id => yoga.id, :context => context7, :creator_id => user_wokeecat.id})
+gm10 = GroupMessage.find_or_create_by({:group_id => yoga.id, :context => context7, :creator_id => user3.id})
 
 GroupComment.find_or_create_by({:group_message_id => gm1.id, :user_id => user_super.id, :comment =>'Jup wird erledigt.'})
 GroupComment.find_or_create_by({:group_message_id => gm1.id, :user_id => user_super.id, :comment =>'Bin ich nicht der Meinung.'})
 GroupComment.find_or_create_by({:group_message_id => gm3.id, :user_id => user_super.id, :comment =>'Jup wird erledigt.'})
 GroupComment.find_or_create_by({:group_message_id => gm1.id, :user_id => user_super.id, :comment =>'Das ist ja total Tibeltitipptop.'})
-GroupComment.find_or_create_by({:group_message_id => gm9.id, :user_id => user_wokeecat.id, :comment =>'Jup wird erledigt.'})
-GroupComment.find_or_create_by({:group_message_id => gm2.id, :user_id => user_wokeecat.id, :comment =>'Bin ich nicht der Meinung.'})
+GroupComment.find_or_create_by({:group_message_id => gm9.id, :user_id => user3.id, :comment =>'Jup wird erledigt.'})
+GroupComment.find_or_create_by({:group_message_id => gm2.id, :user_id => user3.id, :comment =>'Bin ich nicht der Meinung.'})
 GroupComment.find_or_create_by({:group_message_id => gm6.id, :user_id => user2.id, :comment =>'Hm.... ja ok.'})
-GroupComment.find_or_create_by({:group_message_id => gm4.id, :user_id => user_wokeecat.id, :comment =>'Hm.... ja ok.'})
+GroupComment.find_or_create_by({:group_message_id => gm4.id, :user_id => user3.id, :comment =>'Hm.... ja ok.'})
 GroupComment.find_or_create_by({:group_message_id => gm2.id, :user_id => user2.id, :comment =>'Jup wird erledigt.'})
 GroupComment.find_or_create_by({:group_message_id => gm5.id, :user_id => user2.id, :comment =>'Hm.... ja ok.'})
 GroupComment.find_or_create_by({:group_message_id => gm7.id, :user_id => user1.id, :comment =>'Wunderbar'})
@@ -216,12 +220,11 @@ GroupUserMessage.find_or_create_by({:group_id => yoga.id, :last_message_id => gm
 
 GroupUserMessage.find_or_create_by({:group_id => stepper.id, :last_message_id => gm3.id, :user_id => user1.id})
 GroupUserMessage.find_or_create_by({:group_id => stepper.id, :last_message_id => gm3.id, :user_id => user_admin.id})
-GroupUserMessage.find_or_create_by({:group_id => stepper.id, :last_message_id => gm3.id, :user_id => user_wokeecat.id})
+GroupUserMessage.find_or_create_by({:group_id => stepper.id, :last_message_id => gm3.id, :user_id => user3.id})
 GroupUserMessage.find_or_create_by({:group_id => stepper.id, :last_message_id => gm3.id, :user_id => user_super.id})
 
 GroupUserMessage.find_or_create_by({:group_id => condition.id, :last_message_id => gm8.id, :user_id => user1.id})
-GroupUserMessage.find_or_create_by({:group_id => condition.id, :last_message_id => gm8.id, :user_id => user_wokeecat.id})
-
+GroupUserMessage.find_or_create_by({:group_id => condition.id, :last_message_id => gm8.id, :user_id => user3.id})
 
 
 UserToGroup.find_or_create_by({:group_id => trainerall.id, :user_id => user1.id})
@@ -229,18 +232,17 @@ UserToGroup.find_or_create_by({:group_id => trainerall.id, :user_id => user_admi
 UserToGroup.find_or_create_by({:group_id => trainerall.id, :user_id => user2.id})
 UserToGroup.find_or_create_by({:group_id => trainerall.id, :user_id => user_super.id})
 
-
 UserToGroup.find_or_create_by({:group_id => yoga.id, :user_id => user1.id})
 UserToGroup.find_or_create_by({:group_id => yoga.id, :user_id => user_admin.id})
 UserToGroup.find_or_create_by({:group_id => yoga.id, :user_id => user2.id})
 
 UserToGroup.find_or_create_by({:group_id => stepper.id, :user_id => user1.id})
 UserToGroup.find_or_create_by({:group_id => stepper.id, :user_id => user_admin.id})
-UserToGroup.find_or_create_by({:group_id => stepper.id, :user_id => user_wokeecat.id})
+UserToGroup.find_or_create_by({:group_id => stepper.id, :user_id => user3.id})
 UserToGroup.find_or_create_by({:group_id => stepper.id, :user_id => user_super.id})
 
 UserToGroup.find_or_create_by({:group_id => condition.id, :user_id => user1.id})
-UserToGroup.find_or_create_by({:group_id => condition.id, :user_id => user_wokeecat.id})
+UserToGroup.find_or_create_by({:group_id => condition.id, :user_id => user3.id})
 
 
 
