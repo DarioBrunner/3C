@@ -2,7 +2,11 @@
 <div class="jumbotron jumbo-main-content">
   <h1>Channels</h1>
   <% if current_user.admin? %>
-    <%= link_to 'Add Channel', new_channel_path, class: 'btn btn-primary pull-right' %>
+    <%= link_to new_channel_path, class: 'btn btn-primary pull-right' do %>
+      <i class="glyphicon glyphicon-plus"></i>Add Channel
+    <% end %>
+
+
   <% end %>
   <br>
   <table class="table">
@@ -26,12 +30,19 @@
         <td><%= channel.status %></td>
         <td>
           <% if channel.icon.attached? %>
-            <p><%= image_tag channel.icon.variant(resize: "50x50"),  class: "img-circle" %></p>
+            <p><%= image_tag channel.icon.variant(resize: "50x50"), class: "img-circle" %></p>
           <% end %></td>
         <% if current_user.admin? %>
-          <td><%= link_to 'Show', channel,class: 'btn btn-default' %></td>
-          <td><%= link_to 'Edit', edit_channel_path(channel),class: 'btn btn-default' %></td>
-          <td><%= link_to 'Destroy', channel, method: :delete, data: {confirm: 'Are you sure?'},class: 'btn btn-default' %></td>
+          <td>
+            <%= link_to channel, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger pull-right' do %>
+              <i class="glyphicon glyphicon-remove"></i>
+              <% end %>
+              <%= link_to edit_channel_path(channel), class: 'btn btn-default pull-right' do %>
+                <i class="glyphicon glyphicon-pencil"></i>
+              <% end %>
+            <%= link_to channel, class: 'btn btn-default pull-right' do %>
+              <i class="glyphicon glyphicon-search"></i>
+            <% end %>
         <% end %>
       </tr>
     <% end %>

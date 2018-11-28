@@ -92,7 +92,7 @@
                 <li><a href="#"><%= link_to('Groups', groups_path, class: "button") %></a></li>
                 <% if current_user.superuser? %>
                   <li><a href="#"><%= link_to('Edit Users', users_path, class: "button") %></a></li>
-                  <li><a href="#"><%= link_to('Copyrigth', copyrigths_path, class: "button") %></a></li>
+                  <li><a href="#"><%= link_to('Copyright', copyrigths_path, class: "button") %></a></li>
                 <% end %>
                 <li><a href="#"><%= link_to('Channels', channels_path, class: "button") %></a></li>
                 <% if current_user.admin? %>

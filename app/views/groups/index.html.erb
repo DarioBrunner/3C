@@ -3,7 +3,10 @@
 
   <h1>Groups</h1>
   <% if current_user.admin? %>
-    <%= link_to 'Add Group', new_group_path, class: 'btn btn-primary pull-right' %>
+
+    <%= link_to new_group_path, class: 'btn btn-primary pull-right' do %>
+      <i class="glyphicon glyphicon-plus"></i>Add Group
+    <% end %>
   <% end %>
   <br>
   <table class="table">
@@ -22,43 +25,45 @@
         <td><%= group.description %></td>
         <td>
           <% if group.image.attached? %>
-            <p><%= image_tag group.image.variant(resize: "20x20"),  class: "img-circle" %></p>
+            <p><%= image_tag group.image.variant(resize: "20x20"), class: "img-circle" %></p>
           <% end %></td>
-        <td><%= link_to 'Show', group, class: 'btn btn-default' %></td>
-        <% if current_user.admin? %>
-          <td><%= link_to 'Edit', edit_group_path(group), class: 'btn btn-default' %></td>
-          <td><%= link_to 'Destroy', group, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-default' %></td>
-          </tr>
-          <tr>
-            <td><Strong>Users:</Strong></td>
-            <td>
-              <% group.users.each do |user| %>
-                <%= user.name %>&nbsp
-              <% end %>
-            </td><td><Strong>Channels:</Strong></td>
-            <td>
-              <% group.channels.each do |channel| %>
-                <%= channel.title %>&nbsp
-              <% end %>
-            </td><td></td><td></td>
+        <td></td>
+        <td>
+          <%= link_to group, class: 'btn btn-default pull-right' do %>
+            <i class="glyphicon glyphicon-search"></i>
+          <% end %>
+        </td>
 
+        <% if current_user.admin? %>
+          <td><%= link_to edit_group_path(group), class: 'btn btn-default pull-right' do %>
+              <i class="glyphicon glyphicon-pencil"></i>
+            <% end %></td>
+          <td><%= link_to group, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger pull-right' do %>
+              <i class="glyphicon glyphicon-remove"></i>
+            <% end %></td>
         <% end %>
-        </tr>
+      </tr>
+      <tr>
+        <td><Strong>Users:</Strong></td>
+        <td>
+          <% group.users.each do |user| %>
+            <%= user.name %>&nbsp
+          <% end %>
+        </td>
+        <td><Strong>Channels:</Strong></td>
+        <td>
+          <% group.channels.each do |channel| %>
+            <%= channel.title %>&nbsp
+          <% end %>
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
     <% end %>
     </tbody>
   </table>
   <br>
-<<<<<<< HEAD
 
-<<<<<<< HEAD
-<%if !current_user.nil? %>
-<%= link_to 'New Group', new_group_path %>
-<% end %>
-=======
-  <% if current_user.admin? %>
-    <%= link_to 'Add Group', new_group_path, class: 'btn btn-primary' %>
-  <% end %>
-=======
->>>>>>> temp-branch
+
 </div>
->>>>>>> bootstrap
+

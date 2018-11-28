@@ -6,8 +6,6 @@ class CompaniesController < ApplicationController
   def index
     if current_user.superuser?
       @companies = Company.all
-    else
-      @companies =  current_user.companies
     end
   end
 

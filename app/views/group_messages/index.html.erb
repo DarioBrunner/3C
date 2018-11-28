@@ -19,19 +19,27 @@
         <% if current_user.groups.include?(group_message.group) %>
           <td><%= group_message.group.title %></td>
           <td>
-            <pre><%= group_message.content %><br><br><small>Writer: <%= group_message.creator.name %></small></pre>
+            <pre><small><%= group_message.content %><br><br><small>Writer: <%= group_message.creator.name %></small>
+              </pre>
+            <% if current_user.id == group_message.creator_id %>
+              <%= link_to edit_group_message_path(group_message), class: 'btn btn-default' do %>
+                <i class="glyphicon glyphicon-pencil"></i>
+              <% end %>
+              <%= link_to group_message, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' do %>
+                <i class="glyphicon glyphicon-remove"></i>
+              <% end %>
+            <% end %>
           </td>
-          <td><%= link_to 'Show', group_message, class: 'btn btn-default' %></td>
-          <% if current_user.id == group_message.creator_id %>
-            <tr>
-              <td></td>
-              <td><%= link_to 'Edit', edit_group_message_path(group_message), class: 'btn' %></td>
-              <td><%= link_to 'Destroy', group_message, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn' %></td>
-              <td></td>
-              <td></td>
-              <td>
-            </tr>
-          <% end %>
+          <td>
+            <%= link_to group_message_path(group_message), class: 'btn btn-default' do %>
+              <i class="glyphicon glyphicon-search"></i>Show
+            <% end %>
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+
           <!---dropdown comments----------->
 
           <tr>
@@ -45,10 +53,12 @@
                   <!---all comments------------->
                   <% group_message.group_comments.each do |comment| %>
                     <% if current_user.id == comment.user_id %>
-                  <pre><%= link_to 'Edit', edit_group_message_group_comment_path(group_message, comment) %> <%= link_to 'Destroy', group_message_group_comment_path(group_message, comment), method: :delete, data: {confirm: 'Are you sure?'} %>
+                  <pre>
                     <br><%= comment.comment %>
                     <br><small>Written by: <%= comment.user.name %></small>
                   </pre>
+                      <%= link_to 'Edit', edit_group_message_group_comment_path(group_message, comment) %>
+                      <%= link_to 'Destroy', group_message_group_comment_path(group_message, comment), method: :delete, data: {confirm: 'Are you sure?'} %>
                     <% else %>
                       <pre><br><%= comment.comment %>
                         <br><small>Written by: <%= comment.user.name %></small>
@@ -62,10 +72,16 @@
                   Comments&nbsp;&nbsp;</a>
               <% end %>
             </td>
-            <td><%= link_to 'Add',  new_group_message_group_comment_path(group_message), class: 'btn btn-default' %></td>
+            <td>
+              <%= link_to new_group_message_group_comment_path(group_message), class: 'btn btn-default' do %>
+                <i class="glyphicon glyphicon-plus"></i>Add
+              <% end %>
+            </td>
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
+
           </tr>
 
         <% end %>

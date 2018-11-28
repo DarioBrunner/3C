@@ -148,8 +148,6 @@ Hey Guys,
 Tomorow ther will be no internet between 11-12.
 Sorry!!!
 
-<<<<<<< HEAD
-=======
 )
 
 context5 = %q(
@@ -524,11 +522,6 @@ Dataprotection.find_or_create_by({ :content => dataprotection_content})
 
 
 impressum_context=%q(
-=======
-Dataprotection.find_or_create_by({:content => dataprotection_content})
-
-impressum_context = %q(
->>>>>>> GroupMessaging
 Impressum
 Angaben gemäß § 5 TMG:
 
@@ -575,7 +568,7 @@ Eintragung im Handelsregister B
 Registergericht:Amtsgericht Landshut
 Registernummer: HRB-Nr.: B 11190
 
-Umsatzsteuer-Identifikationsnummer: DE317834455))
+Umsatzsteuer-Identifikationsnummer: DE317834455)
 
 
 

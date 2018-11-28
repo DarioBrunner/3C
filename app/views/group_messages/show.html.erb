@@ -16,13 +16,13 @@
       <% @group_message.group_comments.each do |comment| %>
     <pre><%= comment.comment %>
       <br><br><small>Written by: <%= comment.user.name %></small></pre>
+
       <% end %>
       <%else%>
         <strong>No Comment.</strong>
     <% end %>
-    </p><%= link_to 'Add Comment', new_group_comment_path, class: 'btn btn-default' %><p>
-
-    </p>
     <%= link_to 'Edit', edit_group_message_path(@group_message), class: 'btn btn-default' %>
     <%= link_to 'Back', group_messages_path, class: 'btn btn-primary' %>
+    <%= link_to 'Add Comment', new_group_message_group_comment_path(@group_message),
+                class: 'btn btn-primary' %>
     </div>
