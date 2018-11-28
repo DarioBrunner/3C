@@ -6,8 +6,8 @@
     <p><%= image_tag @channel.icon.variant(resize: "175X175")%></p>
   <% end %>
   <p>
-    <strong>Typ:</strong>
-    <%= @channel.typ.humanize %>
+    <strong>type:</strong>
+    <%= @channel.usage.humanize %>
   </p>
 
   <p>

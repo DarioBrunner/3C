@@ -6,7 +6,7 @@
   <table class="table">
     <thead>
     <tr>
-      <th>Copy</th>
+      <th>content</th>
       <th colspan="3"></th>
     </tr>
     </thead>
@@ -14,7 +14,7 @@
     <tbody>
     <% @copyrigths.each do |copyrigth| %>
       <tr>
-        <td><%= copyrigth.copy %></td>
+        <td><%= copyrigth.content %></td>
         <td><%= link_to 'Show', copyrigth, class: 'btn btn-default'%></td>
         <td><%= link_to 'Edit', edit_copyrigth_path(copyrigth), class: 'btn btn-default' %></td>
         <td><%= link_to 'Destroy', copyrigth, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-default'%></td>

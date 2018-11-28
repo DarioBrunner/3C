@@ -10,7 +10,7 @@
     <thead>
     <tr>
       <th>Companyname</th>
-      <th>Passwort</th>
+      <th>password</th>
       <th>Available Channels:</th>
       <th>Picture</th>
       <th colspan="3"></th>
@@ -21,8 +21,8 @@
     <% @companies.each do |company| %>
       <tr>
         <td><%= company.companyname %></td>
-        <td><%= company.adress %></td>
-        <td><%= company.channelnumber %></td>
+        <td><%= company.address %></td>
+        <td><%= company.channel_number %></td>
         <td>
           <% if company.icon.attached? %>
             <p><%= image_tag company.icon.variant(resize: "50x50"),  class: "img-circle" %></p>

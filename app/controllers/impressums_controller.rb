@@ -69,6 +69,6 @@ class ImpressumsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def impressum_params
-      params.require(:impressum).permit(:context)
+      params.require(:impressum).permit(:content)
     end
 end

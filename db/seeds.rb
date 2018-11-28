@@ -6,7 +6,7 @@
 # GroupMessage
 # GroupComment
 # GroupToChannels
-# GroupUserMessage
+# GroupUserMessageadr
 # Channels
 # ChannelToGroup
 # User
@@ -19,7 +19,7 @@
 
 
 
-default_company = Company.find_or_create_by({:companyname => "Proofpoint", :adress => "Steckengaße", :passwort => "false"})
+default_company = Company.find_or_create_by({:name => "Proofpoint", :address => "Steckengaße", :password => "false"})
 
 
 description_trainer= %q(Hier in dieser Gruppe soll alles besprochen werden was die Trainer dieses Studios angeht.
@@ -72,7 +72,7 @@ end
 
 
 
-Copyrigth.find_or_create_by({:copy => "Proofpoint Group all rights.....2018"})
+Copyrigth.find_or_create_by({:content => "Proofpoint Group all rights.....2018"})
 
 Faq.find_or_create_by({:question => "how can i, when is allready", :answer => "Just .... and do it"})
 Faq.find_or_create_by({:question => "Who is, a this time", :answer => "hats easy, we can`t"})
@@ -81,11 +81,11 @@ Faq.find_or_create_by({:question => "what is the answer to everything?", :answer
 Faq.find_or_create_by({:question => "Just another question", :answer => "Answer"})
 
 
-facebook = Channel.find_or_create_by({:title => "Facebook", :status => "both", :url => "B@to.it", :login => "14256", :typ => "facebook"})
-email = Channel.find_or_create_by({:title => "Email", :status => "chat", :url => "Mail@to.it", :login => "14256", :typ => "email"})
-instagram = Channel.find_or_create_by({:title => "instagram", :status => "blog", :url => "Bail@to.it", :login => "14256", :typ => "instagram"})
-twitter = Channel.find_or_create_by({:title => "Twitter", :status => "blog", :url => "Bmail@t.it", :login => "14256", :typ => "twitter"})
-slack =  Channel.find_or_create_by({:title => "Slack", :status => "chat", :url => "Bil@to.com", :login => "14256", :typ => "slack"})
+facebook = Channel.find_or_create_by({:title => "Facebook", :status => "both", :url => "B@to.it", :login => "14256", :usage => "facebook"})
+email = Channel.find_or_create_by({:title => "Email", :status => "chat", :url => "Mail@to.it", :login => "14256", :usage => "email"})
+instagram = Channel.find_or_create_by({:title => "instagram", :status => "blog", :url => "Bail@to.it", :login => "14256", :usage => "instagram"})
+twitter = Channel.find_or_create_by({:title => "Twitter", :status => "blog", :url => "Bmail@t.it", :login => "14256", :usage => "twitter"})
+slack =  Channel.find_or_create_by({:title => "Slack", :status => "chat", :url => "Bil@to.com", :login => "14256", :usage => "slack"})
 
 
 #default_company.icon.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/Bildschirmfoto 2018-10-26 um 16.42.07.png'),
@@ -180,16 +180,16 @@ context8 = %q(
 Happy Deepavali everyone.
 )
 
-gm1 = GroupMessage.find_or_create_by({:group_id => trainerall.id, :context => context1, :creator_id => user1.id})
-gm2 = GroupMessage.find_or_create_by({:group_id => yoga.id, :context => context2, :creator_id => user1.id})
-gm3 = GroupMessage.find_or_create_by({:group_id => stepper.id, :context => context3, :creator_id => user_super.id})
-gm4 = GroupMessage.find_or_create_by({:group_id => trainerall.id, :context => context4, :creator_id => user_super.id})
-gm5 = GroupMessage.find_or_create_by({:group_id => yoga.id, :context => context5, :creator_id => user_admin.id})
-gm6 = GroupMessage.find_or_create_by({:group_id => trainerall.id, :context => context6, :creator_id => user_admin.id})
-gm7 = GroupMessage.find_or_create_by({:group_id => trainerall.id, :context => context7, :creator_id => user2.id})
-gm8 = GroupMessage.find_or_create_by({:group_id => condition.id, :context => context8, :creator_id => user1.id})
-gm9 = GroupMessage.find_or_create_by({:group_id => trainerall.id, :context => context6, :creator_id => user2.id})
-gm10 = GroupMessage.find_or_create_by({:group_id => yoga.id, :context => context7, :creator_id => user3.id})
+gm1 = GroupMessage.find_or_create_by({:group_id => trainerall.id, :content => context1, :creator_id => user1.id})
+gm2 = GroupMessage.find_or_create_by({:group_id => yoga.id, :content => context2, :creator_id => user1.id})
+gm3 = GroupMessage.find_or_create_by({:group_id => stepper.id, :content => context3, :creator_id => user_super.id})
+gm4 = GroupMessage.find_or_create_by({:group_id => trainerall.id, :content => context4, :creator_id => user_super.id})
+gm5 = GroupMessage.find_or_create_by({:group_id => yoga.id, :content => context5, :creator_id => user_admin.id})
+gm6 = GroupMessage.find_or_create_by({:group_id => trainerall.id, :content => context6, :creator_id => user_admin.id})
+gm7 = GroupMessage.find_or_create_by({:group_id => trainerall.id, :content => context7, :creator_id => user2.id})
+gm8 = GroupMessage.find_or_create_by({:group_id => condition.id, :content => context8, :creator_id => user1.id})
+gm9 = GroupMessage.find_or_create_by({:group_id => trainerall.id, :content => context6, :creator_id => user2.id})
+gm10 = GroupMessage.find_or_create_by({:group_id => yoga.id, :content => context7, :creator_id => user3.id})
 
 GroupComment.find_or_create_by({:group_message_id => gm1.id, :user_id => user_super.id, :comment =>'Jup wird erledigt.'})
 GroupComment.find_or_create_by({:group_message_id => gm1.id, :user_id => user_super.id, :comment =>'Bin ich nicht der Meinung.'})
@@ -579,4 +579,4 @@ Umsatzsteuer-Identifikationsnummer: DE317834455))
 
 
 
-Impressum.find_or_create_by({:context => impressum_context})
+Impressum.find_or_create_by({:content => impressum_context})

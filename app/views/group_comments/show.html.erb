@@ -1,8 +1,10 @@
 <p id="notice"><%= notice %></p>
 <div class="jumbotron jumbo-main-content">
+  <%= debug @group_message  %>
+
   <p>
     <strong>Group message:</strong>
-  <pre><%= @group_comment.group_message.context %></pre>
+  <pre><%= @group_message.content %></pre>
 
   </p>
 
@@ -16,6 +18,7 @@
    <pre> <%= @group_comment.comment %> </pre>
   </p>
 
-  <%= link_to 'Edit', [:edit,  @group_messsage, @group_comment], class: 'btn btn-default' %>
-  <%= link_to 'Back', group_messages_path, class: 'btn btn-primary' %>
+  <%#= link_to 'edit', edit_group_message_path(@group_messsage) %>
+
+  <%#= link_to 'Back', group_messages_path, class: 'btn btn-primary' %>
 </div>

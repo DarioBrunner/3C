@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 2018_11_09_035034) do
-
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -35,16 +33,6 @@ ActiveRecord::Schema.define(version: 2018_11_09_035034) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "admins", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "blogs", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "channel_to_groups", force: :cascade do |t|
     t.integer "channel_id"
     t.integer "group_id"
@@ -57,7 +45,7 @@ ActiveRecord::Schema.define(version: 2018_11_09_035034) do
   end
 
   create_table "channels", force: :cascade do |t|
-    t.integer "typ", default: 0
+    t.integer "usage", default: 0
     t.string "url"
     t.string "title"
     t.string "login"
@@ -66,22 +54,17 @@ ActiveRecord::Schema.define(version: 2018_11_09_035034) do
     t.integer "status"
   end
 
-  create_table "chats", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "companies", force: :cascade do |t|
-    t.string "companyname"
-    t.text "adress"
-    t.string "passwort"
+    t.string "name"
+    t.text "address"
+    t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "channelnumber", default: 10, null: false
+    t.integer "channel_number", default: 10, null: false
   end
 
   create_table "copyrigths", force: :cascade do |t|
-    t.string "copy"
+    t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -113,7 +96,7 @@ ActiveRecord::Schema.define(version: 2018_11_09_035034) do
     t.integer "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "context"
+    t.text "content"
     t.integer "creator_id"
     t.index ["group_id"], name: "index_group_messages_on_group_id"
   end
@@ -136,7 +119,7 @@ ActiveRecord::Schema.define(version: 2018_11_09_035034) do
   end
 
   create_table "impressums", force: :cascade do |t|
-    t.text "context"
+    t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -154,12 +137,12 @@ ActiveRecord::Schema.define(version: 2018_11_09_035034) do
 
   create_table "user_to_companies", force: :cascade do |t|
     t.boolean "admin", default: false
-    t.integer "user_id"
-    t.integer "company_id"
+    t.integer "user_id_id"
+    t.integer "company_id_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["company_id"], name: "index_user_to_companies_on_company_id"
-    t.index ["user_id"], name: "index_user_to_companies_on_user_id"
+    t.index ["company_id_id"], name: "index_user_to_companies_on_company_id_id"
+    t.index ["user_id_id"], name: "index_user_to_companies_on_user_id_id"
   end
 
   create_table "user_to_groups", force: :cascade do |t|
@@ -187,6 +170,8 @@ ActiveRecord::Schema.define(version: 2018_11_09_035034) do
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false, null: false
     t.boolean "superuser", default: false, null: false
+    t.integer "creator_id"
+    t.index ["company_id"], name: "index_users_on_company_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

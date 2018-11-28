@@ -8,18 +8,12 @@
   <table class="table">
     <thead>
     <tr>
-      <th>Typ</th>
+      <th>type</th>
       <th>Title</th>
       <th>Status</th>
-<<<<<<< HEAD
-      <%if !current_user.nil?>
-       <th>Url</th>
-      <%end %>
-=======
       <% if current_user.admin? %>
         <th>Icon</th>
       <% end %>
->>>>>>> bootstrap
       <th colspan="3"></th>
     </tr>
     </thead>
@@ -27,7 +21,7 @@
     <tbody>
     <% @channels.each do |channel| %>
       <tr>
-        <td><%= channel.typ.humanize %></td>
+        <td><%= channel.usage.humanize %></td>
         <td><%= channel.title %></td>
         <td><%= channel.status %></td>
         <td>

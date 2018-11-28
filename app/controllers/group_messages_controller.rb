@@ -79,6 +79,6 @@ class GroupMessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_message_params
-      params.require(:group_message).permit(:group_id, :context)
+      params.require(:group_message).permit(:group_id, :content)
     end
 end

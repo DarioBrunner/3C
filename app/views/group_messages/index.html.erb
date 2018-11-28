@@ -19,7 +19,7 @@
         <% if current_user.groups.include?(group_message.group) %>
           <td><%= group_message.group.title %></td>
           <td>
-            <pre><%= group_message.context %><br><br><small>Writer: <%= group_message.creator.name %></small></pre>
+            <pre><%= group_message.content %><br><br><small>Writer: <%= group_message.creator.name %></small></pre>
           </td>
           <td><%= link_to 'Show', group_message, class: 'btn btn-default' %></td>
           <% if current_user.id == group_message.creator_id %>
