@@ -27,21 +27,17 @@
           <% if group.image.attached? %>
             <p><%= image_tag group.image.variant(resize: "20x20"), class: "img-circle" %></p>
           <% end %></td>
-        <td></td>
         <td>
-          <%= link_to group, class: 'btn btn-default pull-right' do %>
+          <%= link_to group, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger pull-right' do %>
+            <i class="glyphicon glyphicon-remove"></i>
+          <% end %>
+        <%= link_to edit_group_path(group), class: 'btn btn-default pull-right' do %>
+          <i class="glyphicon glyphicon-pencil"></i>
+        <% end %>
+        <%= link_to group, class: 'btn btn-default pull-right' do %>
             <i class="glyphicon glyphicon-search"></i>
           <% end %>
         </td>
-
-        <% if current_user.admin? %>
-          <td><%= link_to edit_group_path(group), class: 'btn btn-default pull-right' do %>
-              <i class="glyphicon glyphicon-pencil"></i>
-            <% end %></td>
-          <td><%= link_to group, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger pull-right' do %>
-              <i class="glyphicon glyphicon-remove"></i>
-            <% end %></td>
-        <% end %>
       </tr>
       <tr>
         <td><Strong>Users:</Strong></td>
@@ -56,8 +52,6 @@
             <%= channel.title %>&nbsp
           <% end %>
         </td>
-        <td></td>
-        <td></td>
       </tr>
     <% end %>
     </tbody>

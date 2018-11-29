@@ -9,13 +9,17 @@
 
   <% @impressums.each do |impressum| %>
     <% if current_user.superuser? %>
-      <p><%= link_to 'Show', impressum %> <%= link_to 'Edit', edit_impressum_path(impressum) %>
-        <%= link_to 'Destroy', impressum, method: :delete, data: {confirm: 'Are you sure?'} %></p>
-
     <% end %>
-    <pre><%= impressum.content %></pre>
-
-
+    <pre><%= link_to impressum, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-red pull-right' do %>
+  <i class="glyphicon glyphicon-remove"></i>
+<% end %>
+      <%= link_to  edit_impressum_path(impressum), class: 'btn btn-black pull-right' do %>
+  <i class="glyphicon glyphicon-pencil"></i>
+<% end %>
+      <%= link_to impressum, class: 'btn btn-black pull-right' do %>
+  <i class="glyphicon glyphicon-search"></i>
+<% end %>
+      <%= impressum.content %></pre>
   <% end %>
 
 

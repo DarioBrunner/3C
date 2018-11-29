@@ -3,12 +3,23 @@
 
   <h1>Faq</h1>
   <br>
+  <% if current_user.superuser? %>
+    <%= link_to 'Add Faq', new_faq_path, class: 'btn btn-primary pull-right' %>
+    <br>
+    <br>
+  <% end %>
 
   <% @faqs.each do |faq| %>
-    <% if current_user.superuser? %>
-      <%= link_to 'Show', faq ,class: 'btn pull-right'%>
-      <%= link_to 'Edit', edit_faq_path(faq),class: 'btn pull-right' %>
-      <%= link_to 'Destroy', faq, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn pull-right' %>
+    <% if current_user.superuser? || current_user.admin? %>
+      <%= link_to faq, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-red pull-right' do %>
+        <i class="glyphicon glyphicon-remove"></i>
+      <% end %>
+      <%= link_to edit_faq_path(faq), class: 'btn btn-black pull-right' do %>
+        <i class="glyphicon glyphicon-pencil"></i>
+      <% end %>
+      <%= link_to faq, class: 'btn btn-black pull-right' do %>
+        <i class="glyphicon glyphicon-search"></i>
+      <% end %>
     <% end %>
     <a href="#<%= faq.id %>" class="btn btn-default btn-block" data-toggle="collapse">
       <%= faq.question %>&nbsp;&nbsp;<span class="caret"></span></a>
@@ -18,8 +29,4 @@
     <br>
   <% end %>
   <br>
-  <% if current_user.superuser? %>
-    <%= link_to 'Add Faq', new_faq_path, class: 'btn btn-primary' %>
-  <% end %>
-
 </div>

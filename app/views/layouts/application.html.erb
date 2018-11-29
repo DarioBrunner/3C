@@ -9,7 +9,6 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
   <style></style>
 
 </head>
@@ -90,11 +89,12 @@
                   <li><a href="#"><%= link_to('Company', companies_path, class: "button") %></a></li>
                 <% end %>
                 <li><a href="#"><%= link_to('Groups', groups_path, class: "button") %></a></li>
+                <li><a href="#"><%= link_to('Channels', channels_path, class: "button") %></a></li>
                 <% if current_user.superuser? %>
                   <li><a href="#"><%= link_to('Edit Users', users_path, class: "button") %></a></li>
                   <li><a href="#"><%= link_to('Copyright', copyrigths_path, class: "button") %></a></li>
+                  <li><a href="#"><%= link_to('Impressum', impressums_path , class: "button") %></a></li>
                 <% end %>
-                <li><a href="#"><%= link_to('Channels', channels_path, class: "button") %></a></li>
                 <% if current_user.admin? %>
                   <li><a href="#"><%= link_to('Admin Settings', admins_path, class: "button") %></a></li>
                   <li><a href="#"><%= link_to('Edit Users', users_path, class: "button") %></a></li>

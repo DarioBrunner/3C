@@ -18,12 +18,13 @@
       <% if channel.icon.attached? %>
         <p><%= image_tag @channel.icon.variant(resize: "175x175") %></p>
       <% end %>
-      <%= form.file_field :icon, class: 'form-control', %>
+      <%= form.file_field :icon, direct_upload: true, class: 'form-control' %>
     </div>
+
 
     <div class="field form-group">
       <%= form.label :usage %><br>
-      <%= form.select :usage, Channel.typs.keys.map {|option| [option.humanize, option]}, class: 'channel-type-select' %>
+      <%= form.select :usage, Channel.usages.keys.map {|option| [option.humanize, option]}, class: 'channel-type-select' %>
     </div>
 
     <div class="field form-group">

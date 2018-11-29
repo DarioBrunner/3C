@@ -15,9 +15,15 @@
     <% @copyrigths.each do |copyrigth| %>
       <tr>
         <td><%= copyrigth.content %></td>
-        <td><%= link_to 'Show', copyrigth, class: 'btn btn-default'%></td>
-        <td><%= link_to 'Edit', edit_copyrigth_path(copyrigth), class: 'btn btn-default' %></td>
-        <td><%= link_to 'Destroy', copyrigth, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-default'%></td>
+        <td><%= link_to copyrigth, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger pull-right' do %>
+            <i class="glyphicon glyphicon-remove"></i>
+          <% end %>
+          <%= link_to edit_copyrigth_path(copyrigth), class: 'btn btn-default pull-right' do %>
+            <i class="glyphicon glyphicon-pencil"></i>
+          <% end %>
+          <%= link_to copyrigth, class: 'btn btn-default pull-right' do %>
+            <i class="glyphicon glyphicon-search"></i>
+          <% end %></td>
       </tr>
     <% end %>
     </tbody>

@@ -3,7 +3,7 @@
 
   <p>
     <strong>Companyname:</strong>
-    <%= @company.companyname %>
+    <%= @company.name %>
   </p>
   <% if @company.icon.attached? %>
     <p><%= image_tag @company.icon.variant(resize: "175X175")%></p>
