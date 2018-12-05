@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
 <div class="jumbotron jumbo-main-content">
+  <%= link_to new_group_message_group_comment_path(@group_message), class: 'btn btn-primary pull-right' do %>
+    <i class="glyphicon glyphicon-plus"></i>Add Comment
+  <% end %>
   <p>
     <strong>Group:</strong>
     <%= @group_message.group.title %>
@@ -23,6 +26,5 @@
     <% end %>
     <%= link_to 'Edit', edit_group_message_path(@group_message), class: 'btn btn-default' %>
     <%= link_to 'Back', group_messages_path, class: 'btn btn-primary' %>
-    <%= link_to 'Add Comment', new_group_message_group_comment_path(@group_message),
-                class: 'btn btn-primary' %>
+
     </div>

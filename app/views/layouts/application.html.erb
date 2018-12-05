@@ -86,12 +86,13 @@
               </button>
               <ul class="dropdown-menu">
                 <% if current_user.admin? || current_user.superuser? %>
-                  <li><a href="#"><%= link_to('Company', companies_path, class: "button") %></a></li>
+                  <li><a href="#"><%= link_to('Company', edit_company_path(current_user.company), class: "button") %></a></li>
                 <% end %>
                 <li><a href="#"><%= link_to('Groups', groups_path, class: "button") %></a></li>
                 <li><a href="#"><%= link_to('Channels', channels_path, class: "button") %></a></li>
                 <% if current_user.superuser? %>
                   <li><a href="#"><%= link_to('Edit Users', users_path, class: "button") %></a></li>
+                  <li><a href="#"><%= link_to('Edit Companies', companies_path, class: "button") %></a></li>
                   <li><a href="#"><%= link_to('Copyright', copyrigths_path, class: "button") %></a></li>
                   <li><a href="#"><%= link_to('Impressum', impressums_path , class: "button") %></a></li>
                 <% end %>
@@ -124,7 +125,7 @@
     <div class="alert alert-danger">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
       <%= flash[:alert] %>
-    </div>
+    </div>ß
   <% end %>
 <% end %>
 
@@ -148,7 +149,7 @@
           <!--the if statemants are just for showing and testing, the fullfill no use-->
           <% current_user.groups.each do |group| %>
             <div>
-              <a class="list-group-item" onclick="redirect()">
+              <a class="list-group-item" id="Groups" onclick="redirect()">
                 <% if group.image.attached? %>
                   <%= image_tag group.image.variant(resize: "25X25"), class: "img-circle", style: "margin-left: 0px;float:left" %>
                 <% end %>
@@ -174,7 +175,7 @@
           <!--the if statemants are just for showing and testing, the fullfill no use-->
           <% User.all.each do |user| %>
             <div>
-              <a class="list-group-item " onclick="redirect2()">
+              <a class="list-group-item " id="Users" onclick="redirect2()">
                 <% if user.avatar.attached? %>
                   <%= image_tag user.avatar.variant(resize: "25X25"), class: "img-circle", style: "margin-left: 0px;float:left" %>
                 <% end %>
@@ -210,12 +211,16 @@
 </footer>
 <script>
     function redirect() {
-        alert("Redirect() is missing");
+        document.getElementById("Groups").onclick = function () {
+            location.href = "<%= group_messages_path %>";
+        }
     }
 </script>
 <script>
     function redirect2() {
-        alert("Redirect2() is missing");
+        document.getElementById("Users").onclick = function () {
+            location.href = "<%= group_messages_path %>";
+        };
     }
 </script>
 </body>

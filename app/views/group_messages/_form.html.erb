@@ -11,6 +11,10 @@
     </div>
   <% end %>
 
+  <div class="actions form-group">
+    <%= form.submit class: 'btn btn-primary pull-right'%>
+  </div>
+
   <div class="field form-group">
     <%= form.label :group_id %>
     <%= form.collection_select :group_id, current_user.groups.order(:title), :id, :title, prompt: true %>
@@ -21,8 +25,4 @@
     <%= form.text_area :content, class: 'form-control', placeholder: 'Message', size: "30x8" %>
   </div>
 
-
-  <div class="actions form-group">
-    <%= form.submit class: 'btn btn-primary'%>
-  </div>
 <% end %>

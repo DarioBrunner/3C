@@ -1,8 +1,18 @@
 <p id="notice"><%= notice %></p>
 <div class="jumbotron jumbo-main-content">
 
-  <h1>Group Messages</h1><%= link_to 'New Group Message', new_group_message_path, class: 'btn btn-primary pull-right' %>
-
+  <h1>Group Messages</h1>
+  <%= link_to new_group_message_path, class: 'btn btn-primary pull-right' do %>
+    <i class="glyphicon glyphicon-plus"></i>Add Group Message
+  <% end %>
+  <% current_user.groups.each do |group| %>
+    <%= link_to new_group_message_path, class: 'btn btn-default' do %>
+      <% if group.image.attached? %>
+        <%= image_tag group.image.variant(resize: "25X25"), class: "img-circle", style: "margin-left: 0px;float:left" %>
+      <% end %>
+      <%= group.title %>
+    <% end %>
+  <% end %>
   <table class="table">
 
     <thead>
@@ -17,12 +27,17 @@
     <% @group_messages.each do |group_message| %>
       <tr>
         <% if current_user.groups.include?(group_message.group) %>
-          <td><%= group_message.group.title %></td>
           <td>
-            <pre><% if current_user.id == group_message.creator_id %><%= link_to group_message, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-red pull-right' do %><i class="glyphicon glyphicon-remove"></i><% end %><%= link_to edit_group_message_path(group_message), class: 'btn btn-black pull-right' do %><i class="glyphicon glyphicon-pencil"></i><% end %><%= group_message.content %><br><br><small>Writer: <%= group_message.creator.name %></small>
-              <% else%><%= group_message.content %><br><br><small>Writer: <%= group_message.creator.name %></small> </pre>
-         <% end %>
+            <%= link_to new_group_message_path, class: 'btn btn-default' do %>
+              <%= group_message.group.title %>
+            <% end %>
           </td>
+          <td>
+            <pre><% if current_user.id == group_message.creator_id %><%= link_to group_message, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-red pull-right' do %><i class="glyphicon glyphicon-remove"></i><% end %><%= link_to edit_group_message_path(group_message), class: 'btn btn-black pull-right' do %><i class="glyphicon glyphicon-pencil"></i><% end %>
+                <%= group_message.content %>
+                <br><small>Writer: <%= group_message.creator.name %></small><% else %><%= group_message.content %><br><small>Writer: <%= group_message.creator.name %></small>
+                </pre><% end %>
+              </td>
           <td>
             <%= link_to group_message_path(group_message), class: 'btn btn-default' do %>
               <i class="glyphicon glyphicon-search"></i>Show
@@ -46,12 +61,12 @@
                   <!---all comments------------->
                   <% group_message.group_comments.each do |comment| %>
                     <% if current_user.id == comment.user_id %>
-                  <pre><%= link_to group_message_group_comment_path(group_message, comment), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-red pull-right' do %><i class="glyphicon glyphicon-remove"></i><% end %><%= link_to  edit_group_message_group_comment_path(group_message, comment), class: 'btn btn-black pull-right' do %><i class="glyphicon glyphicon-pencil"></i><% end %><%= comment.comment %>
+                  <pre><%= link_to group_message_group_comment_path(group_message, comment), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-red pull-right' do %><i class="glyphicon glyphicon-remove"></i><% end %><%= link_to edit_group_message_group_comment_path(group_message, comment), class: 'btn btn-black pull-right' do %><i class="glyphicon glyphicon-pencil"></i><% end %>
+                    <%= comment.comment %>
                     <br><small>Written by: <%= comment.user.name %></small></pre>
                     <% else %>
-                      <pre><br><%= comment.comment %>
-                        <br><small>Written by: <%= comment.user.name %></small>
-                      </pre>
+                      <pre><%= comment.comment %>
+                        <br><small>Written by: <%= comment.user.name %></small></pre>
                     <% end %>
                   <% end %>
                 </div>

@@ -13,6 +13,10 @@
       </div>
     <% end %>
 
+    <div class="actions form-group">
+      <%= form.submit 'Save Faq', class: 'btn btn-success pull-right'%>
+    </div>
+
     <div class="field form-group">
       <%= form.label :question %><br>
       <%= form.text_area :question, class: 'form-control' , placeholder: 'Question', size: "30x5"%>
@@ -23,8 +27,5 @@
       <%= form.text_area :answer, class: 'form-control' , placeholder: 'Answer', size: "30x5"%>
     </div>
 
-    <div class="actions form-group">
-      <%= form.submit 'Save Faq', class: 'btn btn-primary'%>
-    </div>
 <% end %>
 </div>
