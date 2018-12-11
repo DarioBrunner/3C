@@ -11,11 +11,17 @@
     </div>
   <% end %>
   <br>
-  <pre><center>Group: <%= group_message.group.title%> </center><%= group_message.content %> </pre>
+  <h4>Group: <%= group_message.group.title%></h4>
+  <pre><%= group_message.content %><br><small>Writer: <%= group_message.creator.name %></small> </pre>
+
+  <% group_message.group_comments.each do |comment|%>
+   <pre><%= comment.comment%>
+     <br><small>Writer: <%= comment.user.name %></pre>
+  <%end%>
+
 
 
   <div class="field  form-group">
-    <%= form.label :comment %>
     <%= form.text_area :comment, class: 'form-control', placeholder: 'Message', size: "30x5" %>
   </div>
 
