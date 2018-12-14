@@ -19,6 +19,7 @@ class GroupMessagesController < ApplicationController
 
   # GET /group_messages/1/edit
   def edit
+
   end
 
   # POST /group_messages

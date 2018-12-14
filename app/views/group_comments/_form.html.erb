@@ -10,6 +10,9 @@
       </ul>
     </div>
   <% end %>
+  <div class="actions form-group">
+    <%= form.submit class: 'btn btn-success pull-right'%>
+  </div>
   <br>
   <h4>Group: <%= group_message.group.title%></h4>
   <pre><%= group_message.content %><br><small>Writer: <%= group_message.creator.name %></small> </pre>
@@ -19,14 +22,9 @@
      <br><small>Writer: <%= comment.user.name %></pre>
   <%end%>
 
-
-
   <div class="field  form-group">
     <%= form.text_area :comment, class: 'form-control', placeholder: 'Message', size: "30x5" %>
   </div>
 
-  <div class="actions  form-group">
-    <%= form.submit class: 'btn btn-primary' %>
-  </div>
 <% end %>
 

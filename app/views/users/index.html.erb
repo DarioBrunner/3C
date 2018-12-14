@@ -22,12 +22,15 @@
             <p><%= image_tag user.avatar.variant(resize: "45x45"), class: "img-circle" %></p>
           <% end %></td>
         <td>
-          <%= link_to user, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger pull-right' do %>
+          <%= link_to user, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger pull-right',
+                      'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'delete' do %>
             <i class="glyphicon glyphicon-remove"></i>
-          <% end %><%= link_to edit_user_path(user), class: 'btn btn-default pull-right' do %>
+          <% end %><%= link_to edit_user_path(user), class: 'btn btn-default pull-right',
+                               'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'edit' do %>
             <i class="glyphicon glyphicon-pencil"></i>
           <% end %>
-          <%= link_to user, class: 'btn btn-default pull-right' do %>
+          <%= link_to user, class: 'btn btn-default pull-right',
+                      'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'show' do %>
             <i class="glyphicon glyphicon-search"></i>
           <% end %>
         </td>

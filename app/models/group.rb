@@ -10,14 +10,14 @@
 #
 
 class Group < ApplicationRecord
- has_many :channel_to_groups
+ has_many :channel_to_groups, :dependent => :nullify
  has_many :channels, :through => :channel_to_groups
- has_many :user_to_groups
+ has_many :user_to_groups, :dependent =>:nullify
  has_many :users, :through => :user_to_groups
 
- has_many :group_messages
+ has_many :group_messages, :dependent =>:nullify
  has_many :group_user_messages
 
- has_one_attached :image
+ has_one_attached :image, :dependent => :nullify
 
 end

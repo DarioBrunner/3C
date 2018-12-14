@@ -10,7 +10,6 @@ class GroupCommentsController < ApplicationController
   # GET /group_comments/1
   # GET /group_comments/1.json
   def show
-    #byebug
     @group_message = GroupMessage.find(params[:group_message_id])
   end
 
@@ -22,7 +21,11 @@ class GroupCommentsController < ApplicationController
 
   # GET /group_comments/1/edit
   def edit
+
     @group_message = GroupMessage.find(params[:group_message_id])
+    @group_comment = GroupComment.find(params[:id])
+
+
   end
 
   # POST /group_comments

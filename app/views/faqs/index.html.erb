@@ -11,13 +11,16 @@
 
   <% @faqs.each do |faq| %>
     <% if current_user.superuser? || current_user.admin? %>
-      <%= link_to faq, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-red pull-right' do %>
+      <%= link_to faq, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-red pull-right',
+                  'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'delete' do %>
         <i class="glyphicon glyphicon-remove"></i>
       <% end %>
-      <%= link_to edit_faq_path(faq), class: 'btn btn-black pull-right' do %>
+      <%= link_to edit_faq_path(faq), class: 'btn btn-black pull-right',
+                  'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'edit' do %>
         <i class="glyphicon glyphicon-pencil"></i>
       <% end %>
-      <%= link_to faq, class: 'btn btn-black pull-right' do %>
+      <%= link_to faq, class: 'btn btn-black pull-right',
+                  'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'show' do %>
         <i class="glyphicon glyphicon-search"></i>
       <% end %>
     <% end %>
@@ -30,3 +33,4 @@
   <% end %>
   <br>
 </div>
+

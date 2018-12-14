@@ -28,13 +28,16 @@
             <p><%= image_tag company.icon.variant(resize: "50x50"), class: "img-circle" %></p>
           <% end %></td>
         <td>
-          <%= link_to company, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger pull-right' do %>
+          <%= link_to company, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger pull-right',
+                      'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'delete' do %>
             <i class="glyphicon glyphicon-remove"></i>
           <% end %>
-          <%= link_to edit_company_path(company), class: 'btn btn-default pull-right' do %>
+          <%= link_to edit_company_path(company), class: 'btn btn-default pull-right',
+                      'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'edit' do %>
             <i class="glyphicon glyphicon-pencil"></i>
           <% end %>
-          <%= link_to company, class: 'btn btn-default pull-right' do %>
+          <%= link_to company, class: 'btn btn-default pull-right',
+                      'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'show' do %>
             <i class="glyphicon glyphicon-search"></i>
           <% end %>
         </td>

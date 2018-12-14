@@ -9,62 +9,68 @@
     <% end %>
   <% end %>
   <br>
+
   <table class="table">
     <thead>
     <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Group Messages</th>
-      <th>Picture</th>
-      <th colspan="3"></th>
+      <th><div class="row">
+        <div class="col-sm-2">Title</div>
+        <div class="col-sm-4">Description</div>
+        <div class="col-sm-2">Group Messages</div>
+        <div class="col-sm-2">Picture</div>
+        <div class="col-sm-2"></div>
+      </div></th>
     </tr>
     </thead>
     <tbody>
     <% @groups.each do |group| %>
-      <tr>
-        <!--Admin and superuser can see everything, Users only there Groups -->
-        <% if current_user.admin? || current_user.superuser? || current_user.group_ids.include?(group.id) %>
-        <td><%= group.title %></td>
-        <td><%= group.description %></td>
-          <td><%= group.group_messages.count %> </td>
-        <td>
+      <% if current_user.admin? || current_user.superuser? || current_user.group_ids.include?(group.id) %>
+    <tr>
+      <td>
+      <div class="row">
+        <div class="col-sm-2"><%= group.title %></div>
+        <div class="col-sm-4"><%= group.description %></div>
+        <div class="col-sm-2"><%= group.group_messages.count %></div>
+        <div class="col-sm-1">
           <% if group.image.attached? %>
             <p><%= image_tag group.image.variant(resize: "20x20"), class: "img-circle" %></p>
-          <% end %></td>
-        <td>
-          <% if current_user.admin? || current_user.superuser? %>
-          <%= link_to group, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger pull-right' do %>
-            <i class="glyphicon glyphicon-remove"></i>
-          <% end %>
-        <%= link_to edit_group_path(group), class: 'btn btn-default pull-right' do %>
-          <i class="glyphicon glyphicon-pencil"></i>
-        <% end %>
+        <% end %></div>
+        <div class="col-sm-3"> <% if current_user.admin? || current_user.superuser? %>
+            <%= link_to group, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger pull-right',
+                        'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'delete' do %>
+              <i class="glyphicon glyphicon-remove"></i>
             <% end %>
-        <%= link_to group, class: 'btn btn-default pull-right' do %>
-            <i class="glyphicon glyphicon-search"></i>
+            <%= link_to edit_group_path(group), class: 'btn btn-default pull-right',
+                        'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'edit' do %>
+              <i class="glyphicon glyphicon-pencil"></i>
+            <% end %>
           <% end %>
-        </td>
+          <%= link_to group, class: 'btn btn-default pull-right',
+                      'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'show' do %>
+            <i class="glyphicon glyphicon-search"></i>
+          <% end %></div>
+      </div>
+      </td>
       </tr>
       <tr>
-        <td><Strong>Users:</Strong></td>
-        <td>
+      <td>
+      <div class="row">
+        <div class="col-sm-2"><strong>Users:</strong></div>
+        <div class="col-sm-4">
           <% group.users.each do |user| %>
             <%= user.name %>&nbsp
-          <% end %>
-        </td>
-        <td><Strong>Channels:</Strong></td>
-        <td>
+          <% end %></div>
+        <div class="col-sm-2"><strong>Channels:</strong></div>
+        <div class="col-sm-4">
           <% group.channels.each do |channel| %>
             <%= channel.title %>&nbsp
-          <% end %>
-        </td>
-      </tr>
+          <% end %></div>
+      </div>
+      </td>
+    </tr>
+      <% end %>
     <% end %>
-        <% end %>
     </tbody>
   </table>
-  <br>
-
-
 </div>
 

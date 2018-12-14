@@ -15,13 +15,16 @@
     <% @copyrigths.each do |copyrigth| %>
       <tr>
         <td><%= copyrigth.content %></td>
-        <td><%= link_to copyrigth, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger pull-right' do %>
+        <td><%= link_to copyrigth, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger pull-right',
+                        'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'delete' do %>
             <i class="glyphicon glyphicon-remove"></i>
           <% end %>
-          <%= link_to edit_copyrigth_path(copyrigth), class: 'btn btn-default pull-right' do %>
+          <%= link_to edit_copyrigth_path(copyrigth), class: 'btn btn-default pull-right',
+                      'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'edit' do %>
             <i class="glyphicon glyphicon-pencil"></i>
           <% end %>
-          <%= link_to copyrigth, class: 'btn btn-default pull-right' do %>
+          <%= link_to copyrigth, class: 'btn btn-default pull-right',
+                      'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'show' do %>
             <i class="glyphicon glyphicon-search"></i>
           <% end %></td>
       </tr>

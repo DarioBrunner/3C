@@ -8,6 +8,8 @@
 
 
   <% end %>
+
+
   <br>
   <table class="table">
     <thead>
@@ -34,13 +36,16 @@
           <% end %></td>
         <% if current_user.admin? %>
           <td>
-            <%= link_to channel, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger pull-right' do %>
+            <%= link_to channel, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger pull-right',
+                        'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'delete' do %>
               <i class="glyphicon glyphicon-remove"></i>
               <% end %>
-              <%= link_to edit_channel_path(channel), class: 'btn btn-default pull-right' do %>
+              <%= link_to edit_channel_path(channel), class: 'btn btn-default pull-right',
+                          'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'edit' do %>
                 <i class="glyphicon glyphicon-pencil"></i>
               <% end %>
-            <%= link_to channel, class: 'btn btn-default pull-right' do %>
+            <%= link_to channel, class: 'btn btn-default pull-right',
+                        'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'show'  do %>
               <i class="glyphicon glyphicon-search"></i>
             <% end %>
         <% end %>

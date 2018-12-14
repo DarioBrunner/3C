@@ -4,6 +4,7 @@
 
   <%= render 'form', group_comment: @group_comment , group_message: @group_message %>
 
-  <%= link_to 'Show', @group_comment, class: 'btn btn-primary' %>
+
+  <%= link_to 'Show', group_message_group_comment_path(@group_message, @group_comment), class: 'btn btn-primary' %>
   <%= link_to 'Back', group_messages_path, class: 'btn btn-default' %>
 </div>

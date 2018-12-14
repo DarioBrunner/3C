@@ -1,3 +1,10 @@
+<style>
+  .hide {
+    display: none;
+  }
+
+</style>
+
 <p id="notice"><%= notice %></p>
 <div class="jumbotron jumbo-main-content">
 
@@ -5,97 +12,113 @@
   <%= link_to new_group_message_path, class: 'btn btn-primary pull-right' do %>
     <i class="glyphicon glyphicon-plus"></i>Add Group Message
   <% end %>
-  <% current_user.groups.each do |group| %>
-    <%= link_to new_group_message_path, class: 'btn btn-default' do %>
-      <% if group.image.attached? %>
-        <%= image_tag group.image.variant(resize: "25X25"), class: "img-circle", style: "margin-left: 0px;float:left" %>
-      <% end %>
-      <%= group.title %>
-    <% end %>
-  <% end %>
-  <table class="table">
 
+  <!---btn-group-selector--->
+  <% current_user.groups.each do |group| %>
+    <button class="btn btn-default" onclick="hideFunction('<%=group.id%>')">
+      <% if group.image.attached? %>
+        <%= image_tag group.image.variant(resize: "20X20"), class: "img-circle", style: "margin-left: 0px;float:left" %>
+      <% end %>
+      <%= group.title %></button>
+  <% end %>
+  <%= link_to('Show all', group_messages_path, class: 'btn btn-default btn-hide hide') %>
+
+  <!--Table-->
+  <table class="table">
     <thead>
     <tr>
-      <th>Group</th>
-      <th>Message</th>
-      <th colspan="3"></th>
+      <th>
+        <div class="row">
+          <div class="col-sm-2">Group</div>
+          <div class="col-sm-8">Message</div>
+          <div class="col-sm-2"></div>
+        </div>
+      </th>
     </tr>
     </thead>
-
     <tbody>
     <% @group_messages.each do |group_message| %>
-      <tr>
-        <% if current_user.groups.include?(group_message.group) %>
+      <% if current_user.groups.include?(group_message.group) %>
+        <tr class='chat-group <%= group_message.group.id %>'>
           <td>
-            <%= link_to new_group_message_path, class: 'btn btn-default' do %>
-              <%= group_message.group.title %>
-            <% end %>
-          </td>
-          <td>
-            <pre><% if current_user.id == group_message.creator_id %><%= link_to group_message, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-red pull-right' do %><i class="glyphicon glyphicon-remove"></i><% end %><%= link_to edit_group_message_path(group_message), class: 'btn btn-black pull-right' do %><i class="glyphicon glyphicon-pencil"></i><% end %>
-                <%= group_message.content %>
-                <br><small>Writer: <%= group_message.creator.name %></small><% else %><%= group_message.content %><br><small>Writer: <%= group_message.creator.name %></small>
-                </pre><% end %>
-              </td>
-          <td>
-            <%= link_to group_message_path(group_message), class: 'btn btn-default' do %>
-              <i class="glyphicon glyphicon-search"></i>Show
-            <% end %>
-          </td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+            <div class="row">
+              <div class="col-sm-2"><strong><%= group_message.group.title %>:</strong>
+               </div>
+              <div class="col-sm-8">
+                <pre><% if current_user.id == group_message.creator_id %><%= link_to group_message, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-red pull-right', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'delete' do %><i class="glyphicon glyphicon-remove"></i><% end %><%= link_to edit_group_message_path(group_message), class: 'btn btn-black pull-right', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'edit' do %><i class="glyphicon glyphicon-pencil"></i><% end %>
+                  <%= group_message.content %>
+                  <br><small>Writer: <%= group_message.creator.name %></small><% else %><%= group_message.content %><br><small>Writer: <%= group_message.creator.name %></small>
+                  </pre><% end %></div>
+              <div class="col-sm-2">
+                <%= link_to group_message_path(group_message), class: 'btn btn-default' do %>
+                  <i class="glyphicon glyphicon-search"></i>Show
+                <% end %>
 
-          <!---dropdown comments----------->
+                <%= link_to new_group_message_path, class: 'btn btn-default' do %>
+                  <i class="glyphicon glyphicon-plus"></i>Add Message
+                <% end %>
+              </div>
+            </div>
+          </td>
+        </tr>
 
-          <tr>
-            <td><strong>Comments:</strong></td>
-            <td>
-              <% if group_message.group_comments.count != 0 %>
-                <a href="#<%= group_message.id %>" class="btn btn-default btn-block" data-toggle="collapse">
-                  <span class="badge new-message"><%= group_message.group_comments.count %></span>
-                  Comments&nbsp;&nbsp;<span class="caret"></span></a>
-                <div id="<%= group_message.id %>" class="collapse">
-                  <!---all comments------------->
-                  <% group_message.group_comments.each do |comment| %>
-                    <% if current_user.id == comment.user_id %>
-                  <pre><%= link_to group_message_group_comment_path(group_message, comment), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-red pull-right' do %><i class="glyphicon glyphicon-remove"></i><% end %><%= link_to edit_group_message_group_comment_path(group_message, comment), class: 'btn btn-black pull-right' do %><i class="glyphicon glyphicon-pencil"></i><% end %>
+        <tr class='chat-group <%= group_message.group.id %>'>
+          <td>
+            <div class="row">
+              <div class="col-sm-2"><strong>Comments:</strong></div>
+              <div class="col-sm-8"><% if group_message.group_comments.count != 0 %>
+                  <a href="#<%= group_message.id %>" class="btn btn-default btn-block" data-toggle="collapse">
+                    <span class="badge new-message"><%= group_message.group_comments.count %></span>
+                    Comments&nbsp;&nbsp;<span class="caret"></span></a>
+                  <div id="<%= group_message.id %>" class="collapse">
+                    <!---all comments------------->
+                    <% group_message.group_comments.each do |comment| %>
+                      <% if current_user.id == comment.user_id %>
+                  <pre><%= link_to group_message_group_comment_path(group_message, comment), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-red pull-right', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'delete' do %><i class="glyphicon glyphicon-remove"></i><% end %><%= link_to edit_group_message_group_comment_path(group_message, comment), class: 'btn btn-black pull-right', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'edit' do %><i class="glyphicon glyphicon-pencil"></i><% end %>
                     <%= comment.comment %>
                     <br><small>Written by: <%= comment.user.name %></small></pre>
-                    <% else %>
+                      <% else %>
                       <pre><%= comment.comment %>
                         <br><small>Written by: <%= comment.user.name %></small></pre>
+                      <% end %>
                     <% end %>
-                  <% end %>
-                </div>
-              <% else %>
-                <a href="#<%= group_message.id %>" class="btn btn-default btn-block" data-toggle="collapse">
-                  <span class="badge">0</span>
-                  Comments&nbsp;&nbsp;</a>
-              <% end %>
-            </td>
-            <td>
-              <%= link_to new_group_message_group_comment_path(group_message), class: 'btn btn-default' do %>
-                <i class="glyphicon glyphicon-plus"></i>Add
-              <% end %>
-            </td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-
-          </tr>
-
-        <% end %>
+                  </div>
+                <% else %>
+                  <a href="#<%= group_message.id %>" class="btn btn-default btn-block" data-toggle="collapse">
+                    <span class="badge">0</span>
+                    Comments&nbsp;&nbsp;</a>
+                <% end %></div>
+              <div class="col-sm-2">
+                <%= link_to new_group_message_group_comment_path(group_message), class: 'btn btn-default' do %>
+                  <i class="glyphicon glyphicon-plus"></i>Add Commment
+                <% end %>
+              </div>
+            </div>
+          </td>
         </tr>
+      <% end %>
     <% end %>
     </tbody>
   </table>
 
-  <br>
 
+
+  <script>
+      function hideFunction(grpId) {
+          var btn = document.getElementsByClassName('btn-hide')
+          btn[0].classList.remove('hide')
+          var Groups = document.getElementsByClassName('chat-group')
+          for (var i = 0; i < Groups.length; i++) {
+              for (var j = 0; j < Groups[i].classList.length; j++) {
+                  if (Groups[i].classList[j] !== grpId) {
+                      Groups[i].classList.add('hide')
+                  } else {
+                      Groups[i].classList.remove('hide')
+                  }
+              }
+          }
+      }
+  </script>
 
 </div>
 
