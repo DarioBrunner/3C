@@ -9,7 +9,7 @@
 <div class="jumbotron jumbo-main-content">
 
   <h1>Group Messages</h1>
-  <%= link_to new_group_message_path, class: 'btn btn-primary pull-right' do %>
+  <%= link_to groups_path, class: 'btn btn-primary pull-right' do %>
     <i class="glyphicon glyphicon-plus"></i>Add Group Message
   <% end %>
 
@@ -42,7 +42,10 @@
         <tr class='chat-group <%= group_message.group.id %>'>
           <td>
             <div class="row">
-              <div class="col-sm-2"><strong><%= group_message.group.title %>:</strong>
+              <div class="col-sm-2"><strong><%= group_message.group.title %></strong><br><br>
+                <% if group_message.group.image.attached? %>
+                  <%= image_tag group_message.group.image.variant(resize: "70X70"), class: "img-circle", style: "margin-left: 0px;float:left" %>
+                <% end %>
                </div>
               <div class="col-sm-8">
                 <pre><% if current_user.id == group_message.creator_id %><%= link_to group_message, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-red pull-right', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'delete' do %><i class="glyphicon glyphicon-remove"></i><% end %><%= link_to edit_group_message_path(group_message), class: 'btn btn-black pull-right', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'edit' do %><i class="glyphicon glyphicon-pencil"></i><% end %>
@@ -50,12 +53,13 @@
                   <br><small>Writer: <%= group_message.creator.name %></small><% else %><%= group_message.content %><br><small>Writer: <%= group_message.creator.name %></small>
                   </pre><% end %></div>
               <div class="col-sm-2">
-                <%= link_to group_message_path(group_message), class: 'btn btn-default' do %>
-                  <i class="glyphicon glyphicon-search"></i>Show
+                <%= link_to  new_group_group_message_path(group_message.group) , class: 'btn btn-danger pull-right',
+                             'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'Add Message' do %>
+                  <i class="glyphicon glyphicon-plus"></i>
                 <% end %>
-
-                <%= link_to new_group_message_path, class: 'btn btn-default' do %>
-                  <i class="glyphicon glyphicon-plus"></i>Add Message
+                <%= link_to group_message_path(group_message), class: 'btn btn-default pull-right',
+                            'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'Show' do %>
+                  <i class="glyphicon glyphicon-search"></i>
                 <% end %>
               </div>
             </div>
@@ -65,7 +69,7 @@
         <tr class='chat-group <%= group_message.group.id %>'>
           <td>
             <div class="row">
-              <div class="col-sm-2"><strong>Comments:</strong></div>
+              <div class="col-sm-2"><strong>Comments</strong></div>
               <div class="col-sm-8"><% if group_message.group_comments.count != 0 %>
                   <a href="#<%= group_message.id %>" class="btn btn-default btn-block" data-toggle="collapse">
                     <span class="badge new-message"><%= group_message.group_comments.count %></span>
@@ -89,8 +93,9 @@
                     Comments&nbsp;&nbsp;</a>
                 <% end %></div>
               <div class="col-sm-2">
-                <%= link_to new_group_message_group_comment_path(group_message), class: 'btn btn-default' do %>
-                  <i class="glyphicon glyphicon-plus"></i>Add Commment
+                <%= link_to new_group_message_group_comment_path(group_message), class: 'btn btn-danger pull-right',
+                            'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'Add Commment' do %>
+                  <i class="glyphicon glyphicon-plus"></i>
                 <% end %>
               </div>
             </div>

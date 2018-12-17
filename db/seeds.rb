@@ -40,7 +40,7 @@ fort
 
 )
 
-trainerall = Group.find_or_create_by({:title => "Trainer.all", :description => description_trainer})
+trainerall = Group.find_or_create_by({:title => "Trainer", :description => description_trainer})
 yoga =   Group.find_or_create_by({:title => "Yoga", :description => description_yoga})
 stepper =  Group.find_or_create_by({:title => "Stepper", :description => description_stepper})
 condition =  Group.find_or_create_by({:title => "Condition", :description => description_condition})
@@ -83,7 +83,7 @@ Faq.find_or_create_by({:question => "Just another question", :answer => "Answer"
 
 facebook = Channel.find_or_create_by({:title => "Facebook", :status => "both", :url => "B@to.it", :login => "14256", :usage => "facebook"})
 email = Channel.find_or_create_by({:title => "Email", :status => "chat", :url => "Mail@to.it", :login => "14256", :usage => "email"})
-instagram = Channel.find_or_create_by({:title => "instagram", :status => "blog", :url => "Bail@to.it", :login => "14256", :usage => "instagram"})
+instagram = Channel.find_or_create_by({:title => "Instagram", :status => "blog", :url => "Bail@to.it", :login => "14256", :usage => "instagram"})
 twitter = Channel.find_or_create_by({:title => "Twitter", :status => "blog", :url => "Bmail@t.it", :login => "14256", :usage => "twitter"})
 slack =  Channel.find_or_create_by({:title => "Slack", :status => "chat", :url => "Bil@to.com", :login => "14256", :usage => "slack"})
 

@@ -8,8 +8,10 @@
       <i class="glyphicon glyphicon-plus"></i>Add Group
     <% end %>
   <% end %>
+  <%= link_to group_messages_path, class: 'btn btn-default' do %>
+    <i class="glyphicon glyphicon-search"></i> All Groupmessages
+  <% end %>
   <br>
-
   <table class="table">
     <thead>
     <tr>
@@ -30,7 +32,11 @@
       <div class="row">
         <div class="col-sm-2"><%= group.title %></div>
         <div class="col-sm-4"><%= group.description %></div>
-        <div class="col-sm-2"><%= group.group_messages.count %></div>
+        <div class="col-sm-2"><%= group.group_messages.count %>
+          <%= link_to new_group_group_message_path(group), class: 'btn btn-danger pull-right',
+                      'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'Add Groupmessage' do %>
+            <i class="glyphicon glyphicon-plus"></i>
+          <% end %></div>
         <div class="col-sm-1">
           <% if group.image.attached? %>
             <p><%= image_tag group.image.variant(resize: "20x20"), class: "img-circle" %></p>

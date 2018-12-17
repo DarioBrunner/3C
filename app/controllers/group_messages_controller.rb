@@ -15,6 +15,7 @@ class GroupMessagesController < ApplicationController
   # GET /group_messages/new
   def new
     @group_message = GroupMessage.new
+    @group = Group.find(params[:group_id])
   end
 
   # GET /group_messages/1/edit

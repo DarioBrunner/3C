@@ -1,31 +1,143 @@
 <p id="notice"><%= notice %></p>
 <div class="jumbotron jumbo-main-content">
-  <%= link_to new_group_message_path, class: 'btn btn-primary pull-right' do %>
-    <i class="glyphicon glyphicon-plus"></i>Add Group Message
-  <% end %>
    <h1><%= @group.title %></h1>
- <% if @group.image.attached? %>
-  <p><%= image_tag @group.image.variant(resize: "175X175")%></p>
- <% end %>
-  <p><strong>Description:</strong></p>
-  <p><pre><%= @group.description %></pre></p>
-  <strong>Channel:</strong></p>
-    <% Channel.all.each do |channel| %>
-      <% if @group.channel_ids.include?(channel.id) %>
-        <%= channel.title %>
-        <br/>
+
+  <%= link_to new_group_group_message_path(@group), class: 'btn btn-primary pull-right' do %>
+    <i class="glyphicon glyphicon-plus"></i>Add Message
+  <% end %>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-2">
+        <% if @group.image.attached? %>
+          <p><%= image_tag @group.image.variant(resize: "70X70")%></p>
+        <% end %>
+      </div>
+      <div class="col-sm-5">
+        <strong>Channel:</strong></p>
+        <% Channel.all.each do |channel| %>
+          <% if @group.channel_ids.include?(channel.id) %>
+            <%= channel.title %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="col-sm-5">
+        <strong>User:</strong>
+        <p>
+          <% User.all.each do |user| %>
+            <% if @group.user_ids.include?(user.id) %>
+              <%= user.name %>
+
+            <% end %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <p><pre><%= @group.description %></pre></p>
+      </div>
+    </div>
+  </div>
+
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>
+        <div class="row">
+          <div class="col-sm-2">Group</div>
+          <div class="col-sm-8">Message</div>
+          <div class="col-sm-2"></div>
+        </div>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @group.group_messages.each do |group_message| %>
+      <% if current_user.groups.include?(group_message.group) %>
+        <tr class='chat-group <%= group_message.group.id %>'>
+          <td>
+            <div class="row">
+              <div class="col-sm-2"><strong><%= group_message.group.title %></strong>
+                  <% if group_message.creator.avatar.attached? %>
+                    <p><%= image_tag group_message.creator.avatar.variant(resize: "70X70")%></p>
+                  <% end %>
+              </div>
+              <div class="col-sm-8">
+                <pre><% if current_user.id == group_message.creator_id %><%= link_to group_message, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-red pull-right', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'delete' do %><i class="glyphicon glyphicon-remove"></i><% end %><%= link_to edit_group_message_path(group_message), class: 'btn btn-black pull-right', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'edit' do %><i class="glyphicon glyphicon-pencil"></i><% end %>
+                    <%= group_message.content %>
+                    <br><small>Writer: <%= group_message.creator.name %></small><% else %><%= group_message.content %><br><small>Writer: <%= group_message.creator.name %></small>
+                    </pre><% end %></div>
+              <div class="col-sm-2">
+                <%= link_to group_message_path(group_message), class: 'btn btn-default pull-right',
+                            'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'Show' do %>
+                  <i class="glyphicon glyphicon-search"></i>
+                <% end %>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <tr class='chat-group <%= group_message.group.id %>'>
+          <td>
+            <div class="row">
+              <div class="col-sm-2"><strong>Comments</strong></div>
+              <div class="col-sm-8"><% if group_message.group_comments.count != 0 %>
+                  <a href="#<%= group_message.id %>" class="btn btn-default btn-block" data-toggle="collapse">
+                    <span class="badge new-message"><%= group_message.group_comments.count %></span>
+                    Comments&nbsp;&nbsp;<span class="caret"></span></a>
+                  <div id="<%= group_message.id %>" class="collapse">
+                    <!---all comments------------->
+                    <% group_message.group_comments.each do |comment| %>
+                      <% if current_user.id == comment.user_id %>
+                  <pre><%= link_to group_message_group_comment_path(group_message, comment), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-red pull-right', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'delete' do %><i class="glyphicon glyphicon-remove"></i><% end %><%= link_to edit_group_message_group_comment_path(group_message, comment), class: 'btn btn-black pull-right', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'edit' do %><i class="glyphicon glyphicon-pencil"></i><% end %>
+                    <%= comment.comment %>
+                    <br><small>Written by: <%= comment.user.name %></small></pre>
+                      <% else %>
+                      <pre><%= comment.comment %>
+                        <br><small>Written by: <%= comment.user.name %></small></pre>
+                      <% end %>
+                    <% end %>
+                  </div>
+                <% else %>
+                  <a href="#<%= group_message.id %>" class="btn btn-default btn-block" data-toggle="collapse">
+                    <span class="badge">0</span>
+                    Comments&nbsp;&nbsp;</a>
+                <% end %></div>
+              <div class="col-sm-2">
+                <%= link_to new_group_message_group_comment_path(group_message), class: 'btn btn-danger pull-right',
+                            'data-toggle' => 'tooltip', 'data-placement' => 'top', 'Title' => 'Add Comment' do %>
+                  <i class="glyphicon glyphicon-plus"></i>
+                <% end %>
+              </div>
+            </div>
+          </td>
+        </tr>
       <% end %>
     <% end %>
-  </p>
-  <strong>User:</strong>
-  <p>
-    <% User.all.each do |user| %>
-      <% if @group.user_ids.include?(user.id) %>
-        <%= user.name %>
-        <br/>
-      <% end %>
-    <% end %>
-  </p>
+    </tbody>
+  </table>
+
+
+
+
+
+
+
+
+
+
   <%= link_to 'Edit', edit_group_path(@group), class: 'btn btn-primary'%>
   <%= link_to 'Back', groups_path, class: 'btn btn-default' %>
 </div>
