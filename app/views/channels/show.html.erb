@@ -28,3 +28,11 @@
   <%= link_to 'Edit', edit_channel_path(@channel), class: 'btn btn-primary' %>
   <%= link_to 'Back', channels_path, class: 'btn btn-default' %>
 </div>
+
+
+<script>
+    window.onload = function() {
+        document.getElementById('channelChat'+<%= @channel.id %>).className = 'active';
+        document.getElementById('channelBlog'+<%= @channel.id %>).className = 'active';
+    };
+</script>

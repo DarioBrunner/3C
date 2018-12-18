@@ -10,7 +10,6 @@ gem 'devise'
 gem 'mini_magick'
 gem 'annotate'
 
-
 #gem 'bootstrap', '~> 4.1.3'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'aws-sdk-s3', require: false

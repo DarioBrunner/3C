@@ -128,16 +128,11 @@
     <% end %>
     </tbody>
   </table>
-
-
-
-
-
-
-
-
-
-
   <%= link_to 'Edit', edit_group_path(@group), class: 'btn btn-primary'%>
   <%= link_to 'Back', groups_path, class: 'btn btn-default' %>
 </div>
+<script>
+window.onload = function() {
+document.getElementById('group'+<%= @group.id %>).className= 'groups active';
+};
+</script>
