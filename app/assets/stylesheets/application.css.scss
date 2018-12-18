@@ -2,6 +2,63 @@
 
 //@import "bootstrap";
 
+//Tabs
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 7px 7px;
+  transition: 0.3s;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  font-size: 15px;
+  height: 40px;
+
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+//end Tabs
+
+
+//Sidenav hovering
+.messages:hover{
+  cursor: pointer;
+}
+
+.groups:hover{
+  cursor: pointer;
+}
+
+
+
 .btn-black{
   color: #000;
 }
