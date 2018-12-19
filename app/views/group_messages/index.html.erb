@@ -1,13 +1,22 @@
-<style>
-  .hide {
-    display: none;
-  }
 
-</style>
 
-<p id="notice"><%= notice %></p>
 <div class="jumbotron jumbo-main-content">
-
+  <% if flash.now[:notice] %>
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash.now[:notice] %>
+    </div>
+  <% elsif flash.now[:error] %>
+    <div class="alert alert-warning">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash.now[:error] %>
+    </div>
+  <% elsif flash.now[:alert] %>
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash.now[:alert] %>
+    </div>
+  <% end %>
   <h1>Group Messages</h1>
   <%= link_to new_group_group_message_path(current_user.groups.first), class: 'btn btn-primary pull-right' do %>
     <i class="glyphicon glyphicon-plus"></i>Add Group Message
@@ -107,7 +116,6 @@
   </table>
 
 
-
   <script>
       function hideFunction(grpId) {
           var btn = document.getElementsByClassName('btn-hide')
@@ -128,7 +136,7 @@
 </div>
 <script>
     window.onload = function() {
-        document.getElementById('groupMsg').className = 'btn btn-default active';
+        document.getElementById('groupMsg').className = 'active';
     };
 </script>
 

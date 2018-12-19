@@ -6,9 +6,10 @@
 
 /* Style the tab */
 .tab {
-  overflow: hidden;
+  overflow: scroll;
   border: 1px solid #ccc;
   background-color: #f1f1f1;
+  height: 42px;
 }
 
 /* Style the buttons inside the tab */
@@ -82,16 +83,22 @@ footer {
   padding-top: 10px;
   padding-right: 0px;
   padding-left: 0px;
-  //background: transparent !important;
+  margin-top: 16px;
+
 }
 
 .jumbo-signin {
   padding-bottom: 35px;
   padding-top: 35px;
+  padding-bottom: 0px
 }
 
 #CCC {
   text-align: center;
+}
+
+.placeholderForImage {
+  padding-left: 24px;
 }
 
 .user-link {

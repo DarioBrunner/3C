@@ -18,14 +18,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :validatable, :timeoutable, :lockable, :recoverable, :rememberable
 
   belongs_to :company
-  has_many :user_to_groups
+  has_many :user_to_groups, :dependent => :nullify
   has_many :groups, :through => :user_to_groups
 
 
-  has_one_attached :avatar
+  has_one_attached :avatar, :dependent => :nullify
 
   has_many :group_comments
-  has_many :group_user_messages
+  has_many :group_user_messages, :dependent => :nullify
   has_many :group_messages, :through => :group_user_messages
 
   def channels

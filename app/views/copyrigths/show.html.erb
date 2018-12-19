@@ -1,11 +1,26 @@
-<p id="notice"><%= notice %></p>
 <div class="jumbotron jumbo-main-content">
+  <% if flash.now[:notice] %>
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash.now[:notice] %>
+    </div>
+  <% elsif flash.now[:error] %>
+    <div class="alert alert-warning">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash.now[:error] %>
+    </div>
+  <% elsif flash.now[:alert] %>
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash.now[:alert] %>
+    </div>
+  <% end %>
 
-<p>
-  <strong>Copyright:</strong>
-  ©<%= @copyrigth.content %>
-</p>
+  <p>
+    <strong>Copyright:</strong>
+    ©<%= @copyrigth.content %>
+  </p>
 
-<%= link_to 'Edit', edit_copyrigth_path(@copyrigth), class:'btn btn-primary'%>
-<%= link_to 'Back', copyrigths_path, class:'btn btn-default' %>
+  <%= link_to 'Edit', edit_copyrigth_path(@copyrigth), class: 'btn btn-primary' %>
+  <%= link_to 'Back', copyrigths_path, class: 'btn btn-default' %>
 </div>

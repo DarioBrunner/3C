@@ -1,6 +1,25 @@
-<p id="notice"><%= notice %></p>
+<style>
+  .faqPadding {
+    padding-left: 115px;
+  }
+</style>
 <div class="jumbotron jumbo-main-content">
-
+  <% if flash.now[:notice] %>
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash.now[:notice] %>
+    </div>
+  <% elsif flash.now[:error] %>
+    <div class="alert alert-warning">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash.now[:error] %>
+    </div>
+  <% elsif flash.now[:alert] %>
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash.now[:alert] %>
+    </div>
+  <% end %>
   <h1>Faq</h1>
   <br>
   <% if current_user.superuser? %>
@@ -24,8 +43,12 @@
         <i class="glyphicon glyphicon-search"></i>
       <% end %>
     <% end %>
-    <a href="#<%= faq.id %>" class="btn btn-default btn-block" data-toggle="collapse">
-      <%= faq.question %>&nbsp;&nbsp;<span class="caret"></span></a>
+    <% if current_user.superuser? || current_user.admin? %>
+      <a href="#<%= faq.id %>" class="btn btn-default btn-block faqPadding " data-toggle="collapse">
+    <% else %>
+      <a href="#<%= faq.id %>" class="btn btn-default btn-block " data-toggle="collapse">
+    <% end %>
+    <%= faq.question %>&nbsp;&nbsp;<span class="caret"></span></a>
     <div id="<%= faq.id %>" class="collapse">
       <pre><%= faq.answer %></pre>
     </div>

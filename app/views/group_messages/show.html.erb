@@ -1,5 +1,20 @@
-<p id="notice"><%= notice %></p>
 <div class="jumbotron jumbo-main-content">
+  <% if flash.now[:notice] %>
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash.now[:notice] %>
+    </div>
+  <% elsif flash.now[:error] %>
+    <div class="alert alert-warning">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash.now[:error] %>
+    </div>
+  <% elsif flash.now[:alert] %>
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash.now[:alert] %>
+    </div>
+  <% end %>
   <%= link_to new_group_message_group_comment_path(@group_message), class: 'btn btn-primary pull-right' do %>
     <i class="glyphicon glyphicon-plus"></i>Add Comment
   <% end %>
@@ -22,9 +37,8 @@
 
       <% end %>
       <%else%>
-        <strong>No Comment.</strong>
+        <p><strong>No Comment.</strong></p>
     <% end %>
     <%= link_to 'Edit', edit_group_message_path(@group_message), class: 'btn btn-default' %>
     <%= link_to 'Back', group_messages_path, class: 'btn btn-primary' %>
-
     </div>

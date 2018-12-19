@@ -11,7 +11,11 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
-
+<style>
+ .placeholderForImage {
+     padding-left: 24px;
+   }
+</style>
 <body>
 <!--Navbar-->
 <% if !current_user.nil? %>
@@ -40,7 +44,7 @@
           <!--showing Channels in Center and Logo-->
           <div class="col-sm-8 middleNav" id="btnDiv">
             <h3 id="CCC"><strong>3C</strong></h3>
-            <div class="tab">
+            <div class="tab withOverflow" >
               <button class="tablinks btn-default" id="chat" onclick="redirect('<%= chats_path %>')">Chat:</button>
               <% current_user.channels.each do |channel| %>
                 <% if channel.both? || channel.chat? %>
@@ -74,7 +78,7 @@
             </div>
 
 
-            <div class="tab">
+            <div class="tab withOverflow">
               <button class="tablinks btn-default" id="blog" onclick="redirect('<%= blogs_path %>')">Blog:</button>
               <% current_user.channels.each do |channel| %>
                 <% if channel.both? || channel.blog? %>
@@ -157,23 +161,6 @@
   <div class="container-fluid">
     <div class="row main-content">
       <div class="col-xs-10">
-        <!--setup for messages like error-->
-        <% if flash.now[:notice] %>
-          <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <%= flash.now[:notice] %>
-          </div>
-        <% elsif flash.now[:error] %>
-          <div class="alert alert-warning">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <%= flash.now[:error] %>
-          </div>
-        <% elsif flash.now[:alert] %>
-          <div class="alert alert-danger">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <%= flash.now[:alert] %>
-          </div>
-        <% end %>
         <div class="jumbotron jumbo-content">
           <%= yield %>
         </div>
@@ -188,12 +175,13 @@
         <div class="list-group">
           <!--the if statemants are just for showing and testing, the fullfill no use-->
           <% current_user.groups.each do |group| %>
-            <div class="groups" onclick="redirect('<%= group_path(group)%>'), id='group<%= group.id %>'">
+            <div class="groups withoverlfow" onclick="redirect('<%= group_path(group)%>'), id='group<%= group.id %>'">
               <a class="list-group-item">
                 <% if group.image.attached? %>
                   <%= image_tag group.image.variant(resize: "25X25"), class: "img-circle", style: "margin-left: 0px;float:left" %>
+                <% else %> <span class="placeholderForImage"></span>
                 <% end %>
-                <%= group.title %>
+                <%= group.title[0, 10] %>
                 <% if group.id.odd? %>
                    <span class="badge">
                      <%= group.group_messages.count %></span>
@@ -217,8 +205,9 @@
               <a class="list-group-item " id="rederectId" onclick="redirect2()">
                 <% if user.avatar.attached? %>
                   <%= image_tag user.avatar.variant(resize: "25X25"), class: "img-circle", style: "margin-left: 0px;float:left" %>
+                  <% else %> <span class="placeholderForImage"></span>
                 <% end %>
-                <%= user.name %>
+                <%= user.name[0, 10] %>
                 <% if user.id.odd? %>
                    <span class="badge">
                      <%= user.id %></span>
@@ -248,6 +237,8 @@
     <% end %></p>
   </p>
 </footer>
+
+
 
 <script>
     function redirect(path) {

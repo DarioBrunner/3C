@@ -1,5 +1,27 @@
-<p id="notice"><%= notice %></p>
 <div class="jumbotron jumbo-main-content">
+  <% if flash.now[:notice] %>
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash.now[:notice] %>
+    </div>
+  <% elsif flash.now[:error] %>
+    <div class="alert alert-warning">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash.now[:error] %>
+    </div>
+  <% elsif flash.now[:alert] %>
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash.now[:alert] %>
+    </div>
+  <% end %>
+  <h1>Channels</h1>
+  <% if current_user.admin? %>
+    <%= link_to new_channel_path, class: 'btn btn-primary pull-right' do %>
+      <i class="glyphicon glyphicon-plus"></i>Add Channel
+    <% end %>
+    <%end%>
+
   <h1>Admin</h1>
   <br>
   <p><%= link_to('Edit Company Profil', companies_path, class: "btn btn-default btn-block") %></p>
