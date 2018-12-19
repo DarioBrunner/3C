@@ -149,6 +149,24 @@ h1 {
   background: transparent !important;
 }
 
+   /* Style the active class, and buttons on mouse-over */
+ .active, .tablinks:hover {
+   background-color: #666;
+ }
+
+.imageHolder {
+  height: 70px;
+}
+
+.dropdown {
+  height: 83px;
+}
+
+.smallBlack {
+  color: #000;
+}
+
+
 @media screen and (max-width: 767px) {
   .sidenav {
     height: auto;

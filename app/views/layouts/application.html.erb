@@ -11,12 +11,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
-<style>
-/* Style the active class, and buttons on mouse-over */
-.active, .tablinks:hover {
-background-color: #666;
-}
-</style>
+
 <body>
 <!--Navbar-->
 <% if !current_user.nil? %>
@@ -27,9 +22,10 @@ background-color: #666;
 
           <!--Showing Userdata-->
           <div class="col-sm-2 sidenav">
-            <% if current_user.company.icon.attached? %>
-              <p><%= image_tag current_user.company.icon.variant(resize: "75X75"), class: "img-circle" %></p>
-            <% end %>
+            <p class="imageHolder">
+              <% if current_user.company.icon.attached? %>
+                <%= image_tag current_user.company.icon.variant(resize: "75X75"), class: "img-circle" %>
+              <% end %></p>
             <p><%= current_user.name.humanize %>
               <% if current_user.admin? %>
                 Role: Admin
@@ -48,17 +44,22 @@ background-color: #666;
               <button class="tablinks btn-default" id="chat" onclick="redirect('<%= chats_path %>')">Chat:</button>
               <% current_user.channels.each do |channel| %>
                 <% if channel.both? || channel.chat? %>
-                  <button class="tablinks btn-default"  id="channelChat<%=channel.id %>" onclick="redirect('<%= channel_path(channel) %>')" >
+                  <button class="tablinks btn-default" id="channelChat<%= channel.id %>" onclick="redirect('<%= channel_path(channel) %>')"
+                          <% if (@channels.chat.count + @channels.both.count)  >= 5 && (@channels.chat.count + @channels.both.count) < 10 %>
+                          onmouseover="changeText('channelIDChat<%= channel.id%>', '<%= channel.title %>')"
+                          onmouseout="changeText('channelIDChat<%= channel.id%>', '<%= channel.title[0, 5] %>')"
+                          <% elsif (@channels.chat.count + @channels.both.count) >= 10 %>
+                          onmouseover="changeText('channelIDChat<%= channel.id%>', '<%= channel.title %>')"
+                          onmouseout="changeText('channelIDChat<%= channel.id%>', '<%= channel.title[0, 2] %>')"<%end%>>
                     <% if channel.icon.attached? %>
                       <%= image_tag channel.icon.variant(resize: "25X25"), class: "img-circle" %>
                     <% end %>
-                    <!--slims down the title charackters for hight number of channels-->
-                    <% if @channels.count <= 5 %>
-                      <span id="channelID<%= channel.id%>"><%= channel.title %></span>
-                    <% elsif @channels.count <= 8 %>
-                      <span id="channelID<%= channel.id%>"><%= channel.title[0, 5] %></span>
-                    <% elsif @channels.count <= 10 %>
-                      <span id="channelID<%= channel.id%>"><%= channel.title[0, 2] %></span>
+                    <% if (@channels.chat.count + @channels.both.count) <= 5 %>
+                      <span id="channelIDChat<%= channel.id %>"><%= channel.title %></span>
+                    <% elsif (@channels.chat.count + @channels.both.count) <= 8 %>
+                      <span id="channelIDChat<%= channel.id %>"><%= channel.title[0, 5] %></span>
+                    <% elsif (@channels.chat.count + @channels.both.count) <= 10 %>
+                      <span id="channelIDChat<%= channel.id %>"><%= channel.title[0, 2] %></span>
                     <% end %>
                     <% if channel.id.odd? %>
                    <span class="badge">
@@ -74,20 +75,25 @@ background-color: #666;
 
 
             <div class="tab">
-              <button class="tablinks btn-default" id="blog" onclick="redirect('<%= blogs_path %>')" >Blog:</button>
+              <button class="tablinks btn-default" id="blog" onclick="redirect('<%= blogs_path %>')">Blog:</button>
               <% current_user.channels.each do |channel| %>
                 <% if channel.both? || channel.blog? %>
-                  <button class="tablinks btn-default" id="channelBlog<%=channel.id %>" onclick="redirect('<%= channel_path(channel) %>')">
+                  <button class="tablinks btn-default" id="channelBlog<%= channel.id %>" onclick="redirect('<%= channel_path(channel) %>')"
+                          <% if (@channels.blog.count + @channels.both.count)  >= 10 %>
+                          onmouseover="changeText('channelIDBlog<%= channel.id%>', '<%= channel.title %>')"
+                          onmouseout="changeText('channelIDBlog<%= channel.id%>', '<%= channel.title[0, 2] %>')"
+                          <% elsif (@channels.blog.count + @channels.both.count) >= 5 %>
+                          onmouseover="changeText('channelIDBlog<%= channel.id%>', '<%= channel.title %>')"
+                          onmouseout="changeText('channelIDBlog<%= channel.id%>', '<%= channel.title[0, 5] %>')"<% end %>>
                     <% if channel.icon.attached? %>
-                      <%= image_tag channel.icon.variant(resize: "25X25"), class: "img-circle" %>
+                    <%= image_tag channel.icon.variant(resize: "25X25"), class: "img-circle" %>
                     <% end %>
-                    <!--slims down the title charackters for hight number of channels-->
-                    <% if @channels.count <= 5 %>
-                     <span id="channelID<%= channel.id%>"><%= channel.title %></span>
-                    <% elsif @channels.count <= 10 %>
-                     <span id="channelID<%= channel.id%>"> <%= channel.title[0, 5] %></span>
+                    <% if (@channels.blog.count + @channels.both.count) <= 5 %>
+                    <span id="channelIDBlog<%= channel.id %>"><%= channel.title %></span>
+                    <% elsif (@channels.blog.count + @channels.both.count) < 10 %>
+                    <span id="channelIDBlog<%= channel.id %>"><%=channel.title[0, 5] %></span>
                     <% else %>
-                     <span id="channelID<%= channel.id%>"> <%= channel.title[0, 2] %></span>
+                    <span id="channelIDBlog<%= channel.id %>"><%= channel.title[0, 2] %></span>
                     <% end %>
                     <% if channel.id.odd? %>
                    <span class="badge">
@@ -135,7 +141,7 @@ background-color: #666;
             <br>
             <div class="btn-group btn-group-justified">
               <%= link_to group_messages_path, class: 'btn btn-default', id: 'groupMsg' do %>
-                <i class="glyphicon glyphicon-search" ></i> Group Messages
+                <i class="glyphicon glyphicon-search"></i> Group Messages
               <% end %>
             </div>
           </div>
@@ -143,32 +149,31 @@ background-color: #666;
       </div>
     </div>
   <% end %>
-
-  <!--setup for messages like error-->
-  <% if flash[:notice] %>
-    <div class="alert alert-success">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <%= flash[:notice] %>
-    </div>
-  <% elsif flash[:error] %>
-    <div class="alert alert-warning">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <%= flash[:error] %>
-    </div>
-  <% elsif flash[:alert] %>
-    <div class="alert alert-danger">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <%= flash[:alert] %>
-    </div>
-    ß
-  <% end %>
 <% end %>
+
 
 <% if user_signed_in? %>
   <!--content-->
   <div class="container-fluid">
     <div class="row main-content">
       <div class="col-xs-10">
+        <!--setup for messages like error-->
+        <% if flash.now[:notice] %>
+          <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%= flash.now[:notice] %>
+          </div>
+        <% elsif flash.now[:error] %>
+          <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%= flash.now[:error] %>
+          </div>
+        <% elsif flash.now[:alert] %>
+          <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%= flash.now[:alert] %>
+          </div>
+        <% end %>
         <div class="jumbotron jumbo-content">
           <%= yield %>
         </div>
@@ -177,7 +182,7 @@ background-color: #666;
       <!--sidenav news-->
       <div class="col-xs-2 sidenav" id="rightbar">
         <h4>
-          <small>Group News:</small>
+          <small class="smallBlack">Group News:</small>
         </h4>
 
         <div class="list-group">
@@ -198,12 +203,11 @@ background-color: #666;
                 <% end %>
               </a>
             </div>
-
           <% end %>
         </div>
 
         <h4>
-          <small>Messages:</small>
+          <small class="smallBlack">Messages:</small>
         </h4>
         <div class="list-group messages">
 
@@ -256,8 +260,13 @@ background-color: #666;
         alert('need to be linked, no use til now');
     }
 </script>
-
-
+<script>
+    function changeText(elementId, text) {
+        var display = document.getElementById(elementId);
+        display.innerHTML = "";
+        display.innerHTML = text;
+    }
+</script>
 
 </body>
 </html>

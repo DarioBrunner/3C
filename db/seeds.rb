@@ -40,10 +40,21 @@ fort
 
 )
 
+description_testTabs= %q(Small Tabs should now appear for the blog, also hoverover is should work
+)
+
+description_testMuchTabs= %q( Very small Tabs should now appear for the blog, also hoverover is should work
+)
+
+
 trainerall = Group.find_or_create_by({:title => "Trainer", :description => description_trainer})
 yoga =   Group.find_or_create_by({:title => "Yoga", :description => description_yoga})
 stepper =  Group.find_or_create_by({:title => "Stepper", :description => description_stepper})
 condition =  Group.find_or_create_by({:title => "Condition", :description => description_condition})
+
+#these are only for testing the tab system
+testTabs =  Group.find_or_create_by({:title => "testTabs", :description => description_testTabs})
+testMuchTabs =  Group.find_or_create_by({:title => "testMuchTabs", :description => description_testMuchTabs})
 
 user_super = User.find_or_create_by(:email => 'super@super.com', :company_id => default_company.id, :name => "super", :admin => "false", :superuser => "true") do |user|
   user.password = "123"
@@ -86,6 +97,7 @@ email = Channel.find_or_create_by({:title => "Email", :status => "chat", :url =>
 instagram = Channel.find_or_create_by({:title => "Instagram", :status => "blog", :url => "Bail@to.it", :login => "14256", :usage => "instagram"})
 twitter = Channel.find_or_create_by({:title => "Twitter", :status => "blog", :url => "Bmail@t.it", :login => "14256", :usage => "twitter"})
 slack =  Channel.find_or_create_by({:title => "Slack", :status => "chat", :url => "Bil@to.com", :login => "14256", :usage => "slack"})
+
 
 
 #default_company.icon.attach(io: File.open('//Users/dariobrunner/Desktop/Proof_Point/Catpics/Bildschirmfoto 2018-10-26 um 16.42.07.png'),
@@ -260,7 +272,6 @@ ChannelToGroup.find_or_create_by({:group_id => stepper.id, :channel_id => facebo
 ChannelToGroup.find_or_create_by({:group_id => condition.id, :channel_id => facebook.id, :blogging => true, :writing => true})
 ChannelToGroup.find_or_create_by({:group_id => condition.id, :channel_id => email.id, :blogging => true, :writing => true})
 ChannelToGroup.find_or_create_by({:group_id => condition.id, :channel_id => instagram.id, :blogging => true, :writing => true})
-
 
 
 dataprotection_content = %q(Datenschutzerklärung
@@ -570,6 +581,42 @@ Registernummer: HRB-Nr.: B 11190
 
 Umsatzsteuer-Identifikationsnummer: DE317834455)
 
-
-
 Impressum.find_or_create_by({:content => impressum_context})
+
+
+#they are only for testing the tap system
+# TestTabs1 =  Channel.find_or_create_by({:title => "TestTabs1", :status => "blog", :url => "Bil@to.com", :login => "14256", :usage => "slack"})
+# TestTabs2 =  Channel.find_or_create_by({:title => "TestTabs2", :status => "blog", :url => "Bil@to.com", :login => "14256", :usage => "slack"})
+# TestTabs3 =  Channel.find_or_create_by({:title => "TestTabs3", :status => "blog", :url => "Bil@to.com", :login => "14256", :usage => "slack"})
+# TestTabs4 =  Channel.find_or_create_by({:title => "TestTabs4", :status => "blog", :url => "Bil@to.com", :login => "14256", :usage => "slack"})
+# TestTabs5 =  Channel.find_or_create_by({:title => "TestTabs5", :status => "blog", :url => "Bil@to.com", :login => "14256", :usage => "slack"})
+# TestTabs6 =  Channel.find_or_create_by({:title => "TestTabs6", :status => "blog", :url => "Bil@to.com", :login => "14256", :usage => "slack"})
+#
+#
+# TestTabs1b =  Channel.find_or_create_by({:title => "TestTabs1b", :status => "blog", :url => "Bil@to.com", :login => "14256", :usage => "slack"})
+# TestTabs2b =  Channel.find_or_create_by({:title => "TestTabs2b", :status => "blog", :url => "Bil@to.com", :login => "14256", :usage => "slack"})
+# TestTabs3b=  Channel.find_or_create_by({:title => "TestTabs3b", :status => "blog", :url => "Bil@to.com", :login => "14256", :usage => "slack"})
+# TestTabs4b =  Channel.find_or_create_by({:title => "TestTabs4b", :status => "blog", :url => "Bil@to.com", :login => "14256", :usage => "slack"})
+# TestTabs5b =  Channel.find_or_create_by({:title => "TestTabs5b", :status => "blog", :url => "Bil@to.com", :login => "14256", :usage => "slack"})
+# TestTabs6b=  Channel.find_or_create_by({:title => "TestTabs6b", :status => "blog", :url => "Bil@to.com", :login => "14256", :usage => "slack"})
+
+
+#UserToGroup.find_or_create_by({:group_id => testTabs.id, :user_id => user1.id})
+
+#UserToGroup.find_or_create_by({:group_id => testTabs.id, :user_id => user2.id})
+#UserToGroup.find_or_create_by({:group_id => testMuchTabs.id, :user_id => user2.id})
+
+
+# ChannelToGroup.find_or_create_by({:group_id => testTabs.id, :channel_id => TestTabs1.id, :blogging => true, :writing => true})
+# ChannelToGroup.find_or_create_by({:group_id => testTabs.id, :channel_id => TestTabs2.id, :blogging => true, :writing => true})
+# ChannelToGroup.find_or_create_by({:group_id => testTabs.id, :channel_id => TestTabs3.id, :blogging => true, :writing => true})
+# ChannelToGroup.find_or_create_by({:group_id => testTabs.id, :channel_id => TestTabs4.id, :blogging => true, :writing => true})
+# ChannelToGroup.find_or_create_by({:group_id => testTabs.id, :channel_id => TestTabs5.id, :blogging => true, :writing => true})
+# ChannelToGroup.find_or_create_by({:group_id => testTabs.id, :channel_id => TestTabs6.id, :blogging => true, :writing => true})
+#
+# ChannelToGroup.find_or_create_by({:group_id => testMuchTabs.id, :channel_id => TestTabs1b.id, :blogging => true, :writing => true})
+# ChannelToGroup.find_or_create_by({:group_id => testMuchTabs.id, :channel_id => TestTabs2b.id, :blogging => true, :writing => true})
+# ChannelToGroup.find_or_create_by({:group_id => testMuchTabs.id, :channel_id => TestTabs3b.id, :blogging => true, :writing => true})
+# ChannelToGroup.find_or_create_by({:group_id => testMuchTabs.id, :channel_id => TestTabs4b.id, :blogging => true, :writing => true})
+# ChannelToGroup.find_or_create_by({:group_id => testMuchTabs.id, :channel_id => TestTabs5b.id, :blogging => true, :writing => true})
+# ChannelToGroup.find_or_create_by({:group_id => testMuchTabs.id, :channel_id => TestTabs6b.id, :blogging => true, :writing => true})

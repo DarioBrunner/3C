@@ -32,7 +32,20 @@
 
 <script>
     window.onload = function() {
-        document.getElementById('channelChat'+<%= @channel.id %>).className = 'active';
-        document.getElementById('channelBlog'+<%= @channel.id %>).className = 'active';
+        <%if @channel.chat? || @channel.both?  %>
+        var tab =document.getElementById('channelChat'+<%= @channel.id %>).className = 'active'
+        tab.className = 'active'
+        var tabText = document.getElementById('channelIDChat'+<%= @channel.id %>).innerHTML = "<%= @channel.title %>"
+        tabText.innerHTML = ""
+        tabText.innerHTML = "<%= @channel.title %>"
+        <% end %>
+
+        <%if @channel.blog? || @channel.both?  %>
+        var tab = document.getElementById('channelBlog'+<%= @channel.id %>)
+        tab.className = 'active'
+        var tabText = document.getElementById('channelIDBlog'+<%= @channel.id %>).innerHTML = "<%= @channel.title %>"
+        tabText.innerHTML = ""
+        tabText.innerHTML = "<%= @channel.title %>"
+        <% end %>
     };
 </script>
